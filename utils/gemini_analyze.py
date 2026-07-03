@@ -1,8 +1,9 @@
 """
 LLM analysis module for PyScreen.
-Supports two backends:
-  - "gemini" : Google Gemini cloud API (requires GEMINI_API_KEY)
-  - "ollama" : Local Ollama server (requires Ollama running on the machine)
+Supports three backends:
+  - "gemini"    : Google Gemini cloud API (requires GEMINI_API_KEY)
+  - "ollama"    : Local Ollama server (requires Ollama running)
+  - "llama_cpp" : Local llama.cpp server (llama-server, OpenAI-compatible API)
 
 Set the LLM_BACKEND env var to choose. Default is "gemini".
 """
@@ -16,9 +17,10 @@ load_dotenv()
 
 logger = logging.getLogger("pyscreen")
 
-# Default model — can be overridden via GEMINI_MODEL env var or function parameter
+# Default models per backend
 DEFAULT_MODEL = "gemini-2.5-flash"
 DEFAULT_OLLAMA_MODEL = "gemma3:27b"
+DEFAULT_LLAMA_CPP_MODEL = "Gemma 4 31B QAT"  # alias set in llama-server
 
 # Backend selection
 LLM_BACKEND = os.getenv("LLM_BACKEND", "gemini").strip().lower()
@@ -27,7 +29,11 @@ LLM_BACKEND = os.getenv("LLM_BACKEND", "gemini").strip().lower()
 MAX_RETRIES = 5
 RETRY_DELAYS = [30, 60, 120]  # seconds between retries
 REQUEST_TIMEOUT = 120  # seconds
+
+# Local server hosts
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434").strip()
+LLAMA_CPP_HOST = os.getenv("LLAMA_CPP_HOST", "http://localhost:8001").strip()
+LLAMA_CPP_API_KEY = os.getenv("LLAMA_CPP_API_KEY", "my_secret_token").strip()
 
 
 def validate_api_key():
@@ -88,8 +94,12 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
         import requests as _requests
         model_name = model or os.getenv("OLLAMA_MODEL", DEFAULT_OLLAMA_MODEL)
         logger.info(f"Ollama model: {model_name} at {OLLAMA_HOST}")
+    elif backend == "llama_cpp":
+        import requests as _requests
+        model_name = model or os.getenv("LLAMA_CPP_MODEL", DEFAULT_LLAMA_CPP_MODEL)
+        logger.info(f"llama.cpp model: {model_name} at {LLAMA_CPP_HOST}")
     else:
-        raise ValueError(f"Unknown LLM_BACKEND: '{backend}'. Use 'gemini' or 'ollama'.")
+        raise ValueError(f"Unknown LLM_BACKEND: '{backend}'. Use 'gemini', 'ollama', or 'llama_cpp'.")
 
     def _call_ollama(prompt):
         """Call the local Ollama REST API."""
@@ -138,12 +148,87 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
 
         return text
 
+    def _call_llama_cpp(prompt):
+        """Call the local llama.cpp server (OpenAI-compatible API)."""
+        import requests as _requests
+        url = f"{LLAMA_CPP_HOST}/v1/chat/completions"
+        start_time = time.perf_counter()
+
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {LLAMA_CPP_API_KEY}",
+        }
+
+        payload = {
+            "model": model_name,
+            "messages": [
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "stream": False,
+        }
+
+        try:
+            resp = _requests.post(url, json=payload, headers=headers, timeout=600)
+            resp.raise_for_status()
+        except _requests.exceptions.ConnectionError:
+            raise RuntimeError(
+                f"Cannot connect to llama-server at {LLAMA_CPP_HOST}. "
+                "Make sure llama-server is running. Start it with:\n"
+                "  llama-server --model ./gemma-4-31B-it-qat-UD-Q4_K_XL.gguf "
+                "--port 8001 --api-key your_token"
+            )
+        except _requests.exceptions.Timeout:
+            raise RuntimeError(
+                "llama-server request timed out after 600s. "
+                "The model may be too large for your hardware."
+            )
+        except _requests.exceptions.HTTPError as e:
+            if resp.status_code == 401:
+                raise RuntimeError(
+                    "llama-server returned 401 Unauthorized. "
+                    "Check that LLAMA_CPP_API_KEY in .env matches the --api-key used to start llama-server."
+                )
+            raise RuntimeError(f"llama-server HTTP error: {e}")
+
+        request_time = time.perf_counter() - start_time
+        data = resp.json()
+
+        # Extract response text from OpenAI-compatible format
+        text = ""
+        if "choices" in data and len(data["choices"]) > 0:
+            text = data["choices"][0].get("message", {}).get("content", "")
+
+        # Extract token counts
+        usage = data.get("usage", {})
+        input_tokens = usage.get("prompt_tokens", 0) or 0
+        output_tokens = usage.get("completion_tokens", 0) or 0
+
+        logger.info(f"llama.cpp response received in {request_time:.1f}s")
+        logger.info(f"Tokens — input: {input_tokens}, output: {output_tokens}")
+
+        if benchmark_callback:
+            benchmark_callback(
+                model=model_name,
+                input_tokens=input_tokens,
+                output_tokens=output_tokens,
+                request_time=request_time,
+                retries=0,
+                success=True,
+                error=None,
+            )
+
+        return text
+
     def _call_api(prompt):
         logger.info(f"Calling LLM ({backend}: {model_name})...")
         logger.debug(f"Prompt length: {len(prompt)} characters")
 
         if backend == "ollama":
             return _call_ollama(prompt)
+        if backend == "llama_cpp":
+            return _call_llama_cpp(prompt)
 
         # --- Gemini backend ---
         last_error = None
