@@ -1,4 +1,34 @@
-videos/
+# Python
 __pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual Environment
+pyscreen/
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Secrets — NEVER commit API keys
 .env
+
+# Output — regenerated on each run
+result/
+videos/
+
+# Test data (keep ARES_screenshots, exclude temp test folders)
+ARES_test/

@@ -1,158 +1,169 @@
-import json
-import math
+"""
+Text extraction and analysis pipeline for PyScreen.
+Runs OCR on screenshots and sends results to Gemini for analysis.
+"""
 import os
-import re
-from collections import Counter
-from re import findall
-
 import cv2
-import nltk
+import time
+import logging
 import pytesseract
-import unidecode
 
-from utils.chatgpt import chatgpt
-from utils.word_sizes import get_word_sizes
-from utils.wordcloud import wordcloud_write
+# Set Tesseract path for Windows
+if os.name == 'nt':
+    tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    if os.path.exists(tesseract_path):
+        pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
-nltk.download("stopwords", quiet=True)
-stopwords = nltk.corpus.stopwords.words("portuguese")
+from utils.gemini_analyze import analyze_screens
 
-def text_compute(array_imgs, height, width, disable_chatgpt):
-    print("Processing text")
-    all_text = ""
-    words_sizes = []
-    result_imgs = []
-    print("\r", end="")
-    total_next = 0
-    for img in array_imgs:
-        text_from_img = image_to_string(img)
-        result_array = get_word_sizes(img)
-        blur_ind, blurred_img = blur_specific_words(img, result_array)
-        if blur_ind:
-            result_imgs.append(blurred_img)
+logger = logging.getLogger("pyscreen")
+
+
+def text_compute(frames, disable_analysis, output_dir="result", tracker=None, state_graph=None):
+    """
+    For each screenshot:
+      1. Extract all visible text via OCR.
+      2. Bundle it with the filename.
+    Then send the full bundle to Gemini for a detailed user-journey analysis.
+
+    Args:
+        frames: List of (filename, frame) tuples.
+        disable_analysis: If True, skip Gemini analysis.
+        output_dir: Directory to save output files. Default: "result"
+        tracker: Optional BenchmarkTracker for metrics collection.
+        state_graph: Optional dictionary representing the state transition graph.
+
+
+    Returns:
+        dict with 'screen_data', 'analysis_report' (or None), and 'success' status.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+
+    result = {
+        "screen_data": [],
+        "analysis_report": None,
+        "success": True,
+        "error": None,
+    }
+
+    # Phase: OCR Processing
+    screen_data = []
+    ocr_phase_name = "ocr_processing"
+
+    if tracker:
+        ctx = tracker.phase(ocr_phase_name)
+    else:
+        from contextlib import nullcontext
+        ctx = nullcontext()
+
+    with ctx:
+        for index, (filename, img) in enumerate(frames):
+            logger.info(f"  Scanning ({index+1}/{len(frames)}): {filename}")
+            try:
+                text = image_to_string(img)
+            except Exception as e:
+                logger.warning(f"  OCR failed for {filename}: {e}")
+                text = f"[OCR ERROR: {e}]"
+
+            screen_data.append({
+                "screen_number": index + 1,
+                "filename": filename,
+                "extracted_text": text.strip()
+            })
+
+    result["screen_data"] = screen_data
+
+    # Save raw extracted text
+    text_path = os.path.join(output_dir, "extracted_text.txt")
+    with open(text_path, "w", encoding="utf-8") as f:
+        for screen in screen_data:
+            f.write(f"--- Screen {screen['screen_number']}: {screen['filename']} ---\n")
+            f.write(screen["extracted_text"])
+            f.write("\n\n")
+    logger.info(f"  Raw text saved to {text_path}")
+
+    # Phase: Gemini Analysis
+    if not disable_analysis:
+        logger.info("  Running Gemini analysis (this may take a moment)...")
+
+        # Benchmark callback to capture API metrics
+        def api_callback(model, input_tokens, output_tokens, request_time,
+                         retries, success, error):
+            if tracker:
+                tracker.record_api_metrics(
+                    model=model,
+                    input_tokens=input_tokens,
+                    output_tokens=output_tokens,
+                    request_time=request_time,
+                    retries=retries,
+                    success=success,
+                    error=error,
+                )
+
+        gemini_phase_name = "gemini_analysis"
+        if tracker:
+            ctx = tracker.phase(gemini_phase_name)
         else:
-            result_imgs.append(img)
-        if len(result_array) > 0:
-            words_sizes.append(result_array)
-        all_text += "\n" + text_from_img
-        print("\r> screens scanned: " + str(total_next+1), end="")
-        total_next += 1
-    print("\r")
-    result = frequency(all_text)
-    result = json.dumps(result.most_common(200))
+            from contextlib import nullcontext
+            ctx = nullcontext()
 
-    with open("result/all_text.txt", "w") as f:
-        f.write(str(words_sizes))
-    with open("result/words_count.json", "w") as f:
-        f.write(str(result))
-    if not disable_chatgpt:
-        print("ChatGPT analysis started (this may take a while)")
-        chatgpt_result = chatgpt(str(words_sizes))
-        with open("result/chatgpt.txt", "w") as f:
-            f.write(str(chatgpt_result))
-    wordcloud_write(words_sizes, stopwords, height, width)
-    return result_imgs
+        with ctx:
+            try:
+                analysis_report = analyze_screens(
+                    screen_data,
+                    benchmark_callback=api_callback,
+                    state_graph=state_graph,
+                )
+                result["analysis_report"] = analysis_report
 
+                # Save analysis report
+                report_path = os.path.join(output_dir, "analysis_report.txt")
+                with open(report_path, "w", encoding="utf-8") as f:
+                    f.write(analysis_report)
+                logger.info(f"  Analysis report saved to {report_path}")
 
-def frequency(string):
-    palavras = findall(r"\w+", string)
-    result = []
-    for word in palavras:
-        word = unidecode.unidecode(word.lower())
-        if not word in stopwords and len(word) >= 3 and not word.isnumeric():
-            result.append(word)
-    counts = Counter(result)
-    return counts
+                if tracker:
+                    tracker.set_analysis_length(len(analysis_report))
+
+            except Exception as e:
+                error_msg = str(e)
+                logger.error(f"  Gemini analysis failed: {error_msg}")
+                result["success"] = False
+                result["error"] = error_msg
+
+                # Save error to report file
+                report_path = os.path.join(output_dir, "analysis_report.txt")
+                with open(report_path, "w", encoding="utf-8") as f:
+                    f.write(f"Analysis failed: {error_msg}\n")
+    else:
+        logger.info("  Gemini analysis skipped (--disable_analysis flag).")
+
+    return result
 
 
 def image_to_string(img):
-    height, width, channels = img.shape
-    cropped_image = img[100:height, 0:width]
-    img = cropped_image
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray = cv2.medianBlur(gray, channels)
-    text = pytesseract.image_to_string(gray, lang="por+eng")
-    return text
-
-
-def load_words_from_file(filename):
     """
-    Load regular expressions from a file into a list.
+    Convert an image to text using Tesseract OCR.
 
-    Parameters:
-    - filename: Name of the file to read from.
+    Args:
+        img: OpenCV image (BGR format).
 
     Returns:
-    - regex_patterns: List of compiled regular expressions.
+        Extracted text string.
+
+    Raises:
+        RuntimeError: If Tesseract is not installed or accessible.
     """
-    regex_patterns = []
-    with open(filename, 'r') as f:
-        for line in f:
-            pattern = line.strip()
-            if pattern:  # ensure the pattern is not empty
-                regex_patterns.append(re.compile(pattern, re.IGNORECASE))  # compile the pattern for better performance
-    return regex_patterns
-
-def blur_specific_words(img, result_array):
-    """
-    Blurs specific words in the image based on regex patterns from a file.
-
-    Parameters:
-    - img: The image on which to apply blur
-    - result_array: An array containing word details in the format (word, x, y, w, h)
-    - blur_size: The size of the blur, default is (51, 51)
-
-    Returns:
-    - img: Image with specific words blurred
-    """
-    BLUR_CONSTANT = 1.82
-    blur_ind = False
-    # Load regex patterns from the file
-    regex_patterns = load_words_from_file("utils/words_to_blur.txt")
-
-    for index, word_details in enumerate(result_array):
-        (word, x, y, w, h) = word_details
-        if any(pattern.match(word) for pattern in regex_patterns):
-            # print(word_details)
-            blur_number = int(BLUR_CONSTANT * h)
-            if (blur_number % 2 == 0):
-                blur_number += 1
-            blur_size = (blur_number, blur_number)
-            img = apply_local_blur(img, (x, y), (w, h), blur_size)
-            blur_ind = True
-
-    return blur_ind, img
-
-def apply_local_blur(img, top_left, size, blur_intensity=(15, 15)):
-    """
-    Apply local blur to a specific region of an image.
-
-    Parameters:
-    - img: Input image
-    - top_left: (x, y) tuple specifying the top left corner of the region to blur
-    - size: (width, height) tuple specifying the size of the region to blur
-    - blur_intensity: (optional) tuple specifying the intensity of blur in x and y directions. Default is (15, 15).
-
-    Returns:
-    - Blurred image
-    """
-
-    # Clone the original image
-    blurred_img = img.copy()
-
-    # Extract region to blur
-    x, y = top_left
-    w, h = size
-    x -= 5
-    y -= 5
-    w += 10
-    h += 10
-    region_to_blur = img[y:y+h, x:x+w]
-
-    # Apply Gaussian blur to the region
-    blurred_region = cv2.GaussianBlur(region_to_blur, blur_intensity, 0)
-
-    # Replace the region in the original image with blurred region
-    blurred_img[y:y+h, x:x+w] = blurred_region
-
-    return blurred_img
+    try:
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        gray = cv2.medianBlur(gray, 3)
+        text = pytesseract.image_to_string(gray, lang="eng")
+        return text
+    except pytesseract.TesseractNotFoundError:
+        raise RuntimeError(
+            "Tesseract OCR is not installed or not in PATH.\n"
+            "Install it:\n"
+            "  Windows: winget install tesseract-ocr.tesseract\n"
+            "  macOS:   brew install tesseract\n"
+            "  Linux:   sudo apt install tesseract-ocr\n"
+        )
