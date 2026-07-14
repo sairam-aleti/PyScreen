@@ -1,0 +1,57 @@
+{
+  "app_summary": "The app is an Android Reddit client, RedReader, providing access to Reddit content and allowing users to customize their experience through settings. It includes a login flow, subreddit management, and options for adjusting the user interface, including font scaling and theme settings.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 10 -> State 11 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27",
+      "description": "User accepts terms and conditions, navigates to subreddit management, then customizes text scaling and settings, and finally views a post with customized text scaling.",
+      "purpose": "Ensures the user agrees to terms, manages their Reddit experience, and customizes the app to their liking."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "0",
+      "type": "Terms and Conditions",
+      "context": "User is asked to accept Reddit's terms and conditions before proceeding."
+    },
+    {
+      "state_id": "11",
+      "type": "Main Front Page",
+      "context": "Displays options to interact with Reddit content, including post submission and navigation to settings."
+    },
+    {
+      "state_id": "21",
+      "type": "Settings Menu",
+      "context": "Allows users to customize font scaling for comments and inbox sections."
+    },
+    {
+      "state_id": "22",
+      "type": "Text Scaling Preferences",
+      "context": "Enables customization of font scales for various text elements across the app."
+    },
+    {
+      "state_id": "23",
+      "type": "Subtitle Settings",
+      "context": "Provides options to customize subtitle display settings, including font scaling."
+    },
+    {
+      "state_id": "24",
+      "type": "Opened Post Titles",
+      "context": "Allows customization of font scale for opened post titles and other text elements."
+    },
+    {
+      "state_id": "25",
+      "type": "Post Viewing Interface",
+      "context": "Displays a post with options to adjust the font size for improved readability."
+    },
+    {
+      "state_id": "26",
+      "type": "Font Customization",
+      "context": "Enables detailed customization of font scaling for various text elements."
+    },
+    {
+      "state_id": "27",
+      "type": "Settings Overview",
+      "context": "Provides access to different settings categories for app customization."
+    }
+  ]
+}

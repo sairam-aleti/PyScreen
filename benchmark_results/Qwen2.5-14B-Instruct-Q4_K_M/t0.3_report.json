@@ -1,0 +1,167 @@
+{
+  "app_summary": "RedReader is an application that allows users to browse and interact with Reddit content. It provides a range of features including subreddit subscriptions, account management, and customization options such as font scaling and theme selection.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 10 -> State 11",
+      "description": "User logs in or continues browsing anonymously, then navigates through the subreddit listings and settings.",
+      "purpose": "This workflow is crucial for user engagement and customization, allowing users to access content and tailor their experience."
+    },
+    {
+      "path": "State 10 -> State 19",
+      "description": "User accesses the settings menu from the subreddit listings.",
+      "purpose": "Enables users to customize their experience with options such as font scaling, theme selection, and cache management."
+    },
+    {
+      "path": "State 11 -> State 12 -> State 20",
+      "description": "User navigates through settings options, adjusting font scales for various elements.",
+      "purpose": "Allows for detailed customization of the application's text and visual elements to enhance readability and accessibility."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "0",
+      "type": "User Agreement",
+      "context": "Prompts the user to accept the Reddit user agreement before accessing Reddit API content."
+    },
+    {
+      "state_id": "1",
+      "type": "Login Prompt",
+      "context": "Guides the user to log in via a web browser."
+    },
+    {
+      "state_id": "2",
+      "type": "Subreddit Listing",
+      "context": "Displays a list of subscribed subreddits and provides options for account management."
+    },
+    {
+      "state_id": "3",
+      "type": "Login Process",
+      "context": "Navigates the user to a web browser for login and redirects back to the application."
+    },
+    {
+      "state_id": "4",
+      "type": "Network Error",
+      "context": "Indicates an internet connectivity issue preventing the application from loading a web page."
+    },
+    {
+      "state_id": "5",
+      "type": "Front Page",
+      "context": "Shows all subreddits and provides options to interact with them."
+    },
+    {
+      "state_id": "6",
+      "type": "Theme Selection",
+      "context": "Allows users to choose between different color schemes for the application."
+    },
+    {
+      "state_id": "7",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font size for various elements of the application."
+    },
+    {
+      "state_id": "8",
+      "type": "Settings Menu",
+      "context": "Provides access to various settings categories such as appearance, behavior, images/video, cache, network, menus, accessibility, backup/restore, and about."
+    },
+    {
+      "state_id": "9",
+      "type": "Subreddit Subscriptions",
+      "context": "Provides a detailed view of subreddit subscriptions with options to manage pinned subreddits."
+    },
+    {
+      "state_id": "10",
+      "type": "Main Dashboard",
+      "context": "Serves as the main entry point for the user, providing an overview of subscribed subreddits and account management options."
+    },
+    {
+      "state_id": "11",
+      "type": "Front Page",
+      "context": "Displays a list of hot posts and navigation options."
+    },
+    {
+      "state_id": "12",
+      "type": "Theme Options",
+      "context": "Lists different color schemes for the application."
+    },
+    {
+      "state_id": "13",
+      "type": "User Agreement Prompt",
+      "context": "Prompts the user to accept the Reddit user agreement before accessing content."
+    },
+    {
+      "state_id": "14",
+      "type": "Font Scaling Options",
+      "context": "Allows users to adjust the font scale for different sections of the application."
+    },
+    {
+      "state_id": "15",
+      "type": "Font Scaling Confirmation",
+      "context": "Confirms the user's font scaling settings."
+    },
+    {
+      "state_id": "16",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "17",
+      "type": "Front Page",
+      "context": "Displays all subreddits and provides options to interact with them."
+    },
+    {
+      "state_id": "18",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "19",
+      "type": "Settings Menu",
+      "context": "Provides access to various settings categories such as appearance, behavior, images/video, cache, network, menus, accessibility, backup/restore, and about."
+    },
+    {
+      "state_id": "20",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "21",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "22",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "23",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "24",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "25",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "26",
+      "type": "Font Scaling",
+      "context": "Enables users to adjust the font scale for various elements of the application."
+    },
+    {
+      "state_id": "27",
+      "type": "Settings Menu",
+      "context": "Provides access to various settings categories such as appearance, behavior, images/video, cache, network, menus, accessibility, backup/restore, and about."
+    },
+    {
+      "state_id": "28",
+      "type": "Settings Confirmation",
+      "context": "Confirms the user's settings changes."
+    }
+  ]
+}

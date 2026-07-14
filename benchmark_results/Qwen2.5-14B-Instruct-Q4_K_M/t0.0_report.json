@@ -1,0 +1,77 @@
+{
+  "app_summary": "RedReader is an Android application that provides access to Reddit content. It allows users to browse subreddits, manage their accounts, and customize their experience through settings such as font scaling and theme selection. The application requires users to accept the Reddit user agreement before accessing content and ensures that users are aware of the terms of service.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 10 -> State 12",
+      "description": "User navigates from the initial user agreement screen to the main front page and then to the theme selection screen.",
+      "purpose": "This workflow allows users to accept the terms of service and customize their experience with the application."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 3",
+      "description": "User logs in via a web browser and then navigates to the main front page.",
+      "purpose": "This workflow enables users to authenticate and access the main content of the application."
+    },
+    {
+      "path": "State 10 -> State 11 -> State 12",
+      "description": "User navigates from the main front page to the theme selection screen.",
+      "purpose": "This workflow allows users to customize the visual appearance of the application."
+    },
+    {
+      "path": "State 21 -> State 22 -> State 23",
+      "description": "User navigates through font scaling settings for different sections of the application.",
+      "purpose": "This workflow enables users to adjust the font scale for better readability and accessibility."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "0",
+      "type": "User Agreement",
+      "context": "This screen requires users to accept the Reddit user agreement before proceeding to use the application."
+    },
+    {
+      "state_id": "1",
+      "type": "Login Prompt",
+      "context": "This screen prompts users to log in via a web browser."
+    },
+    {
+      "state_id": "2",
+      "type": "Main Front Page",
+      "context": "This screen displays a list of subreddits and provides navigation options."
+    },
+    {
+      "state_id": "3",
+      "type": "Theme Selection",
+      "context": "This screen allows users to choose from different visual themes for the application."
+    },
+    {
+      "state_id": "10",
+      "type": "Font Scaling",
+      "context": "This screen allows users to adjust the font scale for different sections of the application."
+    },
+    {
+      "state_id": "11",
+      "type": "Settings Menu",
+      "context": "This screen provides access to various settings categories such as Appearance, Behavior, Images/Video, Cache, Network, Menus, Accessibility, Backup/Restore, and About."
+    },
+    {
+      "state_id": "12",
+      "type": "Global Font Scale",
+      "context": "This screen allows users to adjust the global font scale for the application."
+    },
+    {
+      "state_id": "21",
+      "type": "Font Scaling Options",
+      "context": "This screen provides detailed font scaling options for different sections of the application."
+    },
+    {
+      "state_id": "22",
+      "type": "Font Scaling Confirmation",
+      "context": "This screen confirms the font scaling settings and allows users to apply or cancel changes."
+    },
+    {
+      "state_id": "23",
+      "type": "Font Scaling Finalization",
+      "context": "This screen finalizes the font scaling settings and allows users to exit the settings menu."
+    }
+  ]
+}

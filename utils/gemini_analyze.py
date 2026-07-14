@@ -60,7 +60,7 @@ def validate_api_key():
     return key
 
 
-def analyze_screens(screen_data, model=None, benchmark_callback=None, state_graph=None):
+def analyze_screens(screen_data, model=None, benchmark_callback=None, state_graph=None, **kwargs):
     """
     Send extracted screen text data to an LLM for a detailed
     user-journey and security analysis report.
@@ -164,8 +164,10 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
             "messages": [
                 {"role": "user", "content": prompt}
             ],
-            "temperature": 1.0,
-            "top_p": 0.95,
+            "temperature": kwargs.get("temperature", 1.0),
+            "top_p": kwargs.get("top_p", 0.95),
+            "top_k": kwargs.get("top_k", 64),
+            "response_format": {"type": "json_object"},
             "stream": False,
         }
 
@@ -375,48 +377,30 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
 def _build_prompt(screen_data):
     """Build the analysis prompt with screen data."""
     prompt = """
-You are a security researcher analyzing screenshots captured from an Android mobile application.
-
+You are an expert mobile application analyst.
 You are given a sequence of screens in chronological order. Each screen has a number, a filename, and the text extracted from it via OCR.
 
-Your task is to produce a DETAILED and PINPOINT analysis report with the following structure:
+Your task is to produce a structured JSON object that maps the application's surface and workflows. Do not include markdown formatting like ```json, just output raw JSON.
 
----
-
-## Step 1: Screen-by-Screen Analysis
-
-For EACH screen:
-- **Screen Type:** Identify what kind of screen it is (e.g., Splash Screen, Login Page, Home Dashboard, Settings, Permission Dialog, etc.)
-- **Description:** Describe in detail what is visible on this screen based on the extracted text. Mention specific UI elements, buttons, labels, input fields, and any data shown.
-- **Key Observations:** Note anything security-relevant: permissions requested, data displayed (emails, usernames, account info), network indicators, toggles, or sensitive actions.
-
-## Step 2: Transition Analysis
-
-For EACH pair of consecutive screens:
-- **What Changed:** Precisely describe what text appeared, disappeared, or changed between the two screens.
-- **Inferred User Action:** Based on the changes, deduce exactly what the user did (e.g., "Tapped the 'Login' button", "Scrolled down", "Granted location permission", "Navigated to Settings > Privacy").
-- **Data Exposure Risk:** Flag if this transition likely triggered any data being sent, stored, or exposed (e.g., login credentials submitted, location access granted, personal info displayed).
-
-## Step 3: User Journey Timeline
-
-Build a numbered, chronological timeline of the entire user journey. Each entry should include:
-- The screen number
-- The sequence position
-- A one-line summary of what happened
-
-## Step 4: Final Assessment
-
-- **What is the user trying to achieve?** Summarize the user's overall goal.
-- **What sensitive data or permissions were involved?** List all sensitive data points observed (credentials, personal info, device IDs, etc.) and permissions requested/granted.
-- **Security-relevant actions:** Highlight any moments where data was likely transmitted, stored, or made accessible to third parties.
-
----
-
-Important:
-- Be thorough and specific. Do NOT produce vague summaries.
-- Reference screen numbers and filenames in your analysis.
-- Focus on security-relevant details since this is for a side-channel attack research project.
-- If the OCR text is noisy or incomplete, note that and make your best inference.
+Use the following JSON schema:
+{
+  "app_summary": "A brief overall summary of the application based on the screens.",
+  "workflows": [
+    {
+      "start_screen": "filename or state ID",
+      "end_screen": "filename or state ID",
+      "user_action": "What the user did (e.g. tapped Login, scrolled down)",
+      "description": "What this workflow accomplishes."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "screen_id": "filename or state ID",
+      "type": "e.g. Splash Screen, Login, Dashboard",
+      "context": "Detailed description of UI elements, buttons, and text on this screen."
+    }
+  ]
+}
 
 Data:
 """
@@ -444,8 +428,9 @@ To prevent hallucinations, here is the GLOBAL State Transition Graph for the ent
 Your task is to analyze ONLY the provided screens below, and extract their contextual meaning, UI elements, and any sensitive data. Keep in mind where they fit into the overall state graph.
 
 Produce a mini-report with:
-1. **Screen-by-Screen Breakdown:** For each screen, what is its purpose and what data is visible?
+1. **Screen-by-Screen Breakdown:** For each screen, what is its purpose and what data is visible? Describe specific UI elements, buttons, labels, input fields, and any data shown.
 2. **Level Context:** How do these screens relate to each other within this level?
+3. **Security Observations:** Flag any security-relevant details: permissions requested, data displayed (emails, usernames, account info), network indicators, toggles, or sensitive actions.
 
 ### Provided Screens for Analysis
 """
@@ -460,32 +445,30 @@ Produce a mini-report with:
 def _build_ares_synthesis_prompt(mini_reports, state_graph):
     """Build a synthesis prompt to combine mini-reports into a final analysis."""
     prompt = """
-You are a security researcher mapping the entire functional surface of an Android mobile application to identify privacy and security risks.
+You are an expert mobile application analyst mapping the entire functional surface of an Android app.
 
 We have processed the application's screens in batches. Below are the mini-reports for each level of the application, along with the global State Transition Graph.
 
-Your task is to synthesize these mini-reports into a SINGLE, cohesive Final Analysis Report. Do NOT just summarize the mini-reports. Connect the dots using the State Graph to figure out the critical workflows.
+Your task is to synthesize these mini-reports into a SINGLE, cohesive Final Context Report in JSON format. Do not include markdown block formatting, output raw JSON.
 
-Produce a DETAILED analysis report with the following structure:
-
----
-
-## Step 1: App Surface Mapping
-- **Core Workflows:** Identify the main user journeys across the app (e.g., "States 0->1->2 represent User Login"). Use the State Graph to prove these connections.
-- **App Purpose:** What is the overall purpose of this app?
-
-## Step 2: Critical Workflows & Risk Assessment
-Highlight the most security-sensitive paths in the graph. For each:
-- Describe the path (e.g., "Path: State A -> State B -> State C")
-- Explain the security or privacy implications of this workflow.
-- Detail what data is likely transmitted or collected during this flow.
-
-## Step 3: Final Assessment
-- **What is the user trying to achieve?**
-- **What sensitive data or permissions were involved?** List all sensitive data points observed and permissions requested/granted.
-- **Security-relevant actions:** Highlight any moments where data was likely transmitted or stored.
-
----
+Use the following JSON schema:
+{
+  "app_summary": "Overall purpose of the app and a summary of what it does.",
+  "core_workflows": [
+    {
+      "path": "e.g. State 0 -> State 10 -> State 12",
+      "description": "What the user is doing in this flow.",
+      "purpose": "Why this flow is important to the app's functionality."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "state number",
+      "type": "e.g. Dashboard, Settings",
+      "context": "Detailed description of the screen's UI and data shown."
+    }
+  ]
+}
 
 ### State Transition Graph (JSON)
 """
@@ -502,7 +485,7 @@ Highlight the most security-sensitive paths in the graph. For each:
 def _build_ares_single_prompt(screen_data, state_graph):
     """Build a single massive prompt to analyze all ARES screens at once to save quota."""
     prompt = """
-You are a security researcher mapping the entire functional surface of an Android mobile application to identify privacy and security risks.
+You are an expert mobile application analyst mapping the functional surface of an Android app.
 
 To prevent hallucinations, here is the GLOBAL State Transition Graph for the entire application:
 """
@@ -512,26 +495,26 @@ To prevent hallucinations, here is the GLOBAL State Transition Graph for the ent
     prompt += """
 Your task is to analyze ALL the provided screens below. Keep in mind where they fit into the overall state graph.
 
-Produce a DETAILED analysis report with the following structure:
+Produce a structured JSON object containing your analysis. Do NOT output markdown, just raw JSON.
 
----
-
-## Step 1: App Surface Mapping
-- **Core Workflows:** Identify the main user journeys across the app (e.g., "States 0->1->2 represent User Login"). Use the State Graph to prove these connections.
-- **App Purpose:** What is the overall purpose of this app?
-
-## Step 2: Critical Workflows & Risk Assessment
-Highlight the most security-sensitive paths in the graph. For each:
-- Describe the path (e.g., "Path: State A -> State B -> State C")
-- Explain the security or privacy implications of this workflow.
-- Detail what data is likely transmitted or collected during this flow.
-
-## Step 3: Final Assessment
-- **What is the user trying to achieve?**
-- **What sensitive data or permissions were involved?** List all sensitive data points observed and permissions requested/granted.
-- **Security-relevant actions:** Highlight any moments where data was likely transmitted or stored.
-
----
+Use the following JSON schema:
+{
+  "app_summary": "Overall purpose of the app and a summary of what it does.",
+  "core_workflows": [
+    {
+      "path": "e.g. State 0 -> State 10 -> State 12",
+      "description": "What the user is doing in this flow.",
+      "purpose": "Why this flow is important to the app's functionality."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "state number",
+      "type": "e.g. Dashboard, Settings",
+      "context": "Detailed description of the screen's UI and data shown."
+    }
+  ]
+}
 
 ### Provided Screens for Analysis
 """

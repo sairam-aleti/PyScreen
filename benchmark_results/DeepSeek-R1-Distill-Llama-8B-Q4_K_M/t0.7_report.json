@@ -1,0 +1,171 @@
+
+
+```json
+{
+  "app_summary": "RedReader is a Reddit client application that allows users to view and interact with Reddit content, manage subscriptions, and customize app settings. It provides features such as a front page view, subreddit management, and settings configuration. The app also handles Reddit API integration and user agreements, ensuring secure access to content.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 1 -> State 10",
+      "description": "Initial screen displaying Reddit User Agreement, leading to main dashboard (State 1) and then to all subreddits (State 10).",
+      "purpose": "Ensures user agreement to Reddit's terms before accessing the app's main features."
+    },
+    {
+      "path": "State 2 -> State 3 -> State 6",
+      "description": "Settings screen (State 2) allows users to manage subscriptions and toggle anonymous mode, leading to user agreement (State 3) and display of subreddits (State 6).",
+      "purpose": "Provides users with control over their account settings and access to content."
+    },
+    {
+      "path": "State 6 -> State 9 -> State 18",
+      "description": "Displaying subreddits (State 6) allows users to pin subreddits (State 9), which then leads to enforcing Reddit's API terms (State 18).",
+      "purpose": "Manages user-configured content and ensures compliance with third-party API requirements."
+    },
+    {
+      "path": "State 10 -> State 11 -> State 12",
+      "description": "After accepting API terms, the app transitions to displaying content (State 11) and allows font customization (State 12).",
+      "purpose": "Facilitates user interaction with content and personalization of the user experience."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "0",
+      "type": "Reddit User Agreement",
+      "context": "Informs users about Reddit's User Agreement, including links to terms and a confirmation message."
+    },
+    {
+      "state_id": "1",
+      "type": "Dashboard",
+      "context": "Main dashboard view displaying front page, all subreddits, and search functionality."
+    },
+    {
+      "state_id": "2",
+      "type": "Settings",
+      "context": "Manages account settings, including subscriptions and anonymous mode."
+    },
+    {
+      "state_id": "3",
+      "type": "User Agreement Confirmation",
+      "context": "Confirms user acceptance of Reddit's User Agreement."
+    },
+    {
+      "state_id": "4",
+      "type": "Error Handling",
+      "context": "Manages failed web requests related to Reddit's authorization page."
+    },
+    {
+      "state_id": "5",
+      "type": "Web Login Error",
+      "context": "Displays error messages for failed web login attempts."
+    },
+    {
+      "state_id": "6",
+      "type": "Subreddit Display",
+      "context": "Shows list of subreddits after logging in or navigating from a previous state."
+    },
+    {
+      "state_id": "7",
+      "type": "Main Feed",
+      "context": "Main interface after successful authentication, displaying user's subscribed subreddits."
+    },
+    {
+      "state_id": "8",
+      "type": "Session Information",
+      "context": "Displays session ID and timestamp for user tracking."
+    },
+    {
+      "state_id": "9",
+      "type": "Pinned Subreddits",
+      "context": "Manages pinned subreddits and allows search for locations."
+    },
+    {
+      "state_id": "10",
+      "type": "Content Access",
+      "context": "Handles user agreement for Reddit's API access, displaying necessary information and buttons."
+    },
+    {
+      "state_id": "11",
+      "type": "Main Landing Page",
+      "context": "Landing page displaying subreddit content and settings options."
+    },
+    {
+      "state_id": "12",
+      "type": "Font Customization",
+      "context": "Allows users to adjust font sizes for different text elements."
+    },
+    {
+      "state_id": "13",
+      "type": "User Agreement Modal",
+      "context": "Enforces user agreement for Reddit's API access, requiring acceptance before proceeding."
+    },
+    {
+      "state_id": "14",
+      "type": "Reddit API Agreement",
+      "context": "Displays notification about the need to accept Reddit's user agreement."
+    },
+    {
+      "state_id": "15",
+      "type": "Content Interaction",
+      "context": "Provides options for interacting with subreddits, such as copying links or blocking subreddits."
+    },
+    {
+      "state_id": "16",
+      "type": "Comprehensive Settings",
+      "context": "Offers a wide range of settings, including appearance, behavior, and network options."
+    },
+    {
+      "state_id": "17",
+      "type": "Data Handling",
+      "context": "Handles data related to Reddit API access and user agreement."
+    },
+    {
+      "state_id": "18",
+      "type": "Security Confirmation",
+      "context": "Confirms user agreement to Reddit's API terms, ensuring secure access."
+    },
+    {
+      "state_id": "19",
+      "type": "App Settings",
+      "context": "Allows users to customize app settings, including appearance and behavior."
+    },
+    {
+      "state_id": "20",
+      "type": "Font Settings",
+      "context": "Manages font scale settings for different text elements."
+    },
+    {
+      "state_id": "21",
+      "type": "Session Information",
+      "context": "Displays session information, including timestamps and IDs."
+    },
+    {
+      "state_id": "22",
+      "type": "Font Customization",
+      "context": "Customizes font sizes for various text elements."
+    },
+    {
+      "state_id": "23",
+      "type": "Backup/Restore",
+      "context": "Provides options for backing up and restoring app data."
+    },
+    {
+      "state_id": "24",
+      "type": "Comprehensive Settings",
+      "context": "Offers a range of settings, including appearance, behavior, and network options."
+    },
+    {
+      "state_id": "25",
+      "type": "Font Settings Confirmation",
+      "context": "Confirms font scale settings for different text elements."
+    },
+    {
+      "state_id": "26",
+      "type": "Data Handling",
+      "context": "Handles data related to Reddit API access and user agreement."
+    },
+    {
+      "state_id": "27",
+      "type": "User Data Protection",
+      "context": "Manages user data securely, ensuring compliance with privacy policies."
+    }
+  ]
+}
+```

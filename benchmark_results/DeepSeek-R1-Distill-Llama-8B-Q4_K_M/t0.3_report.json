@@ -1,0 +1,176 @@
+
+
+```json
+{
+  "app_summary": "RedReader is an Android application that allows users to access Reddit content, manage subscriptions, and customize their experience. It includes features for user agreements, settings, error handling, and content management, with a focus on privacy and security considerations.",
+  "core_workflows": [
+    {
+      "path": "state_0 -> state_1 -> state_10",
+      "description": "Initial user agreement screen leading to main menu or other settings.",
+      "purpose": "Ensures users agree to Reddit's terms before accessing the app."
+    },
+    {
+      "path": "state_1 -> state_2 -> state_3 -> state_6 -> state_15",
+      "description": "Main menu navigation and content access after login.",
+      "purpose": "Provides users with access to various app features and content."
+    },
+    {
+      "path": "state_4 -> state_14 -> state_16",
+      "description": "Handles internet connectivity issues and user agreement acceptance.",
+      "purpose": "Manages app functionality when internet access is unavailable."
+    },
+    {
+      "path": "state_5 -> state_7 -> state_8 -> state_13 -> state_17",
+      "description": "Error handling and content display for various user actions.",
+      "purpose": "Provides error messages and content access, ensuring smooth user experience."
+    },
+    {
+      "path": "state_9 -> state_10 -> state_11 -> state_12 -> state_20 -> state_23 -> state_24 -> state_25 -> state_26 -> state_27",
+      "description": "Customization of appearance and font settings across multiple screens.",
+      "purpose": "Allows users to tailor the app's visual appearance and accessibility."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "0",
+      "type": "User Agreement",
+      "context": "Informs users about accessing Reddit content via the Reddit API and requests confirmation of terms acceptance."
+    },
+    {
+      "state_id": "1",
+      "type": "Main Menu",
+      "context": "Dashboard displaying navigation options, subscribed subreddits, and login prompts."
+    },
+    {
+      "state_id": "2",
+      "type": "Subreddit Management",
+      "context": "Manages subscribed subreddits and location settings."
+    },
+    {
+      "state_id": "3",
+      "type": "Login",
+      "context": "Login prompt directing users to log in via a web browser."
+    },
+    {
+      "state_id": "4",
+      "type": "Error Handling",
+      "context": "Displays error messages for internet connectivity issues."
+    },
+    {
+      "state_id": "5",
+      "type": "Error Handling",
+      "context": "Displays error messages for web page unavailability."
+    },
+    {
+      "state_id": "6",
+      "type": "Main Content",
+      "context": "Main feed displaying subreddits and location options."
+    },
+    {
+      "state_id": "7",
+      "type": "Content Management",
+      "context": "Interactive feed for managing content and subscriptions."
+    },
+    {
+      "state_id": "8",
+      "type": "Content Management",
+      "context": "Similar to state_7 but with a different state."
+    },
+    {
+      "state_id": "9",
+      "type": "Pinned Subreddits",
+      "context": "Screen for managing pinned subreddits."
+    },
+    {
+      "state_id": "10",
+      "type": "User Agreement",
+      "context": "Error/warning screen for unaccepted user agreement."
+    },
+    {
+      "state_id": "11",
+      "type": "Main Content",
+      "context": "Main front page displaying popular content."
+    },
+    {
+      "state_id": "12",
+      "type": "Theme Customization",
+      "context": "Screen for theme customization within the front page."
+    },
+    {
+      "state_id": "13",
+      "type": "Legal Screen",
+      "context": "Legal screen prompting user to accept Reddit's user agreement."
+    },
+    {
+      "state_id": "14",
+      "type": "User Agreement",
+      "context": "Informs users about Reddit API access and terms."
+    },
+    {
+      "state_id": "15",
+      "type": "Content Management",
+      "context": "Interactive feed for managing content and subscriptions."
+    },
+    {
+      "state_id": "16",
+      "type": "Main Content",
+      "context": "Main content screen displaying subreddits and settings."
+    },
+    {
+      "state_id": "17",
+      "type": "Content Management",
+      "context": "Similar to state_15 but with a different state."
+    },
+    {
+      "state_id": "18",
+      "type": "Error Handling",
+      "context": "Error/warning screen for unaccepted user agreement."
+    },
+    {
+      "state_id": "19",
+      "type": "Settings",
+      "context": "Customizable settings for app behavior and appearance."
+    },
+    {
+      "state_id": "20",
+      "type": "Font Settings",
+      "context": "Screen for adjusting font scale settings."
+    },
+    {
+      "state_id": "21",
+      "type": "Comment Management",
+      "context": "Screen for managing comments or messages with font settings."
+    },
+    {
+      "state_id": "22",
+      "type": "Font Settings",
+      "context": "Screen for adjusting font scale settings for different text elements."
+    },
+    {
+      "state_id": "23",
+      "type": "Font Settings",
+      "context": "Screen for adjusting font size options for various text elements."
+    },
+    {
+      "state_id": "24",
+      "type": "Appearance Settings",
+      "context": "Main appearance settings screen allowing customization of visual aspects."
+    },
+    {
+      "state_id": "25",
+      "type": "Font Settings",
+      "context": "Screen for adjusting font size settings for specific text elements."
+    },
+    {
+      "state_id": "26",
+      "type": "Font Settings",
+      "context": "Screen for adjusting global font scale settings."
+    },
+    {
+      "state_id": "27",
+      "type": "Appearance Settings",
+      "context": "Expandable categories for various appearance settings."
+    }
+  ]
+}
+```
