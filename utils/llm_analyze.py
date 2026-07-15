@@ -353,25 +353,39 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
             level_name = 'unknown_level'
         levels[level_name].append(screen)
 
-    mini_reports = []
+    all_screen_contexts = []
     logger.info(f"Processing {len(levels)} levels sequentially to avoid server timeouts...")
     for i, (level_name, level_screens) in enumerate(levels.items(), 1):
         logger.info(f"  Analyzing level {i}/{len(levels)}: {level_name} ({len(level_screens)} screens)...")
         prompt = _build_ares_batch_prompt(level_screens, state_graph, level_name)
         try:
             report = _call_api(prompt)
-            mini_reports.append(f"### Level: {level_name}\n\n{report}")
+            import json
+            try:
+                data = json.loads(report)
+                if "screen_contexts" in data:
+                    all_screen_contexts.extend(data["screen_contexts"])
+            except json.JSONDecodeError:
+                logger.error(f"Failed to parse JSON for {level_name}: {report[:100]}...")
         except RuntimeError as e:
             logger.error(f"Failed to analyze {level_name}: {e}. Skipping to next level to save pipeline.")
-            mini_reports.append(f"### Level: {level_name}\n\n(Analysis skipped due to API server timeout)")
         
         # Tiny sleep to avoid 429 RPM limits on free tier
         if i < len(levels):
             time.sleep(2)
 
-    logger.info("Synthesizing mini-reports into final analysis...")
-    synthesis_prompt = _build_ares_synthesis_prompt(mini_reports, state_graph)
-    return _call_api(synthesis_prompt)
+    logger.info("Synthesizing core workflows into final analysis...")
+    synthesis_prompt = _build_ares_synthesis_prompt(all_screen_contexts, state_graph)
+    synthesis_report = _call_api(synthesis_prompt)
+    
+    import json
+    try:
+        final_data = json.loads(synthesis_report)
+        final_data["screen_contexts"] = all_screen_contexts
+        return json.dumps(final_data, indent=2)
+    except json.JSONDecodeError:
+        logger.error(f"Failed to parse synthesis JSON: {synthesis_report[:100]}...")
+        return synthesis_report
 
 
 def _build_prompt(screen_data):
@@ -427,10 +441,19 @@ To prevent hallucinations, here is the GLOBAL State Transition Graph for the ent
     prompt += """
 Your task is to analyze ONLY the provided screens below, and extract their contextual meaning, UI elements, and any sensitive data. Keep in mind where they fit into the overall state graph.
 
-Produce a mini-report with:
-1. **Screen-by-Screen Breakdown:** For each screen, what is its purpose and what data is visible? Describe specific UI elements, buttons, labels, input fields, and any data shown.
-2. **Level Context:** How do these screens relate to each other within this level?
-3. **Security Observations:** Flag any security-relevant details: permissions requested, data displayed (emails, usernames, account info), network indicators, toggles, or sensitive actions.
+Produce a JSON array containing the detailed context of EVERY SINGLE SCREEN provided. Do NOT skip any screens.
+Do not output markdown block formatting, output raw JSON.
+
+Use this JSON schema:
+{
+  "screen_contexts": [
+    {
+      "state_id": "filename or state ID",
+      "type": "e.g. Dashboard, Settings",
+      "context": "Detailed description of the screen's UI and data shown."
+    }
+  ]
+}
 
 ### Provided Screens for Analysis
 """
@@ -442,16 +465,18 @@ Produce a mini-report with:
     return prompt
 
 
-def _build_ares_synthesis_prompt(mini_reports, state_graph):
-    """Build a synthesis prompt to combine mini-reports into a final analysis."""
+def _build_ares_synthesis_prompt(all_screen_contexts, state_graph):
+    """Build a synthesis prompt to combine screen contexts into a final workflow analysis."""
     prompt = """
 You are an expert mobile application analyst mapping the entire functional surface of an Android app.
 
-We have processed the application's screens in batches. Below are the mini-reports for each level of the application, along with the global State Transition Graph.
+We have processed the application's screens in batches and extracted their raw contexts into a massive JSON array. Below is the global State Transition Graph, and the extracted screen contexts array.
 
-Your task is to synthesize these mini-reports into a SINGLE, cohesive Final Context Report in JSON format. Do not include markdown block formatting, output raw JSON.
+Your task is to synthesize these contexts into a SINGLE, cohesive Final Report in JSON format. Do not include markdown block formatting, output raw JSON.
 
-Use the following JSON schema:
+CRITICAL: Do NOT output `screen_contexts`. We already have it. You must ONLY output `app_summary` and `core_workflows`.
+
+Use this EXACT JSON schema:
 {
   "app_summary": "Overall purpose of the app and a summary of what it does.",
   "core_workflows": [
@@ -459,13 +484,6 @@ Use the following JSON schema:
       "path": "e.g. State 0 -> State 10 -> State 12",
       "description": "What the user is doing in this flow.",
       "purpose": "Why this flow is important to the app's functionality."
-    }
-  ],
-  "screen_contexts": [
-    {
-      "state_id": "state number",
-      "type": "e.g. Dashboard, Settings",
-      "context": "Detailed description of the screen's UI and data shown."
     }
   ]
 }
@@ -475,9 +493,8 @@ Use the following JSON schema:
     import json
     prompt += json.dumps(state_graph, indent=2) + "\n\n"
 
-    prompt += "### Mini-Reports by Level\n\n"
-    for report in mini_reports:
-        prompt += report + "\n"
+    prompt += "### Aggregated Screen Contexts\n\n"
+    prompt += json.dumps(all_screen_contexts, indent=2)
 
     return prompt
 

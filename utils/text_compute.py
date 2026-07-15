@@ -14,7 +14,7 @@ if os.name == 'nt':
     if os.path.exists(tesseract_path):
         pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
-from utils.gemini_analyze import analyze_screens
+from utils.llm_analyze import analyze_screens
 
 logger = logging.getLogger("pyscreen")
 

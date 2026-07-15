@@ -28,7 +28,7 @@ from datetime import datetime
 
 from utils.frames import get_frames_from_ares_dir
 from utils.text_compute import text_compute
-from utils.gemini_analyze import analyze_screens
+from utils.llm_analyze import analyze_screens
 
 
 def detect_model_name(host="http://127.0.0.1:8001", api_key="my_secret_token"):

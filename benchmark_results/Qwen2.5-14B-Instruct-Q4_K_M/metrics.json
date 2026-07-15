@@ -1,6 +1,6 @@
 {
   "model": "Qwen2.5-14B-Instruct-Q4_K_M",
-  "timestamp": "2026-07-14T12:23:46.175022",
+  "timestamp": "2026-07-15T16:10:07.596684",
   "levels": [
     "all"
   ],
@@ -10,22 +10,8 @@
     {
       "temperature": 0.0,
       "success": true,
-      "time": 189.82,
-      "length": 3443,
-      "score": 100
-    },
-    {
-      "temperature": 0.3,
-      "success": true,
-      "time": 209.92,
-      "length": 6229,
-      "score": 96
-    },
-    {
-      "temperature": 0.7,
-      "success": true,
-      "time": 200.85,
-      "length": 2372,
+      "time": 84.39,
+      "length": 15502,
       "score": 100
     }
   ],
