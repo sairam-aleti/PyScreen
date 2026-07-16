@@ -474,15 +474,20 @@ We have processed the application's screens in batches and extracted their raw c
 
 Your task is to synthesize these contexts into a SINGLE, cohesive Final Report in JSON format. Do not include markdown block formatting, output raw JSON.
 
+CRITICAL INSTRUCTIONS FOR CORE WORKFLOWS:
+1. You MUST extract EVERY SINGLE distinct workflow path (level) present in the state graph.
+2. DO NOT summarize them into just 2 or 3 workflows. If there are 10 unique paths in the graph, you MUST output at least 10 core_workflows. 
+3. For the description, provide a HIGHLY DETAILED, step-by-step breakdown of every single action and screen transition that occurs in that path.
+
 CRITICAL: Do NOT output `screen_contexts`. We already have it. You must ONLY output `app_summary` and `core_workflows`.
 
 Use this EXACT JSON schema:
 {
-  "app_summary": "Overall purpose of the app and a summary of what it does.",
+  "app_summary": "Overall purpose of the app and a detailed summary of what it does.",
   "core_workflows": [
     {
       "path": "e.g. State 0 -> State 10 -> State 12",
-      "description": "What the user is doing in this flow.",
+      "description": "A highly detailed, step-by-step breakdown of exactly what the user clicks and does at every state in this flow.",
       "purpose": "Why this flow is important to the app's functionality."
     }
   ]
