@@ -1,20 +1,55 @@
 {
-  "app_summary": "RedReader is an Android application designed to access and browse Reddit content via the Reddit API. It provides users with a customizable front page featuring subscribed and pinned subreddits, along with options for personalization such as theme selection and font scaling. The application also includes a settings menu for further customization and account management.",
+  "app_summary": "RedReader is an Android application designed to access and browse content from Reddit. The app allows users to view and interact with various subreddits, manage their accounts, customize settings, and adjust font scales. It includes features such as subscribing to subreddits, viewing pinned subreddits, and customizing the application's appearance and behavior.",
   "core_workflows": [
     {
       "path": "State 0 -> State 10 -> State 11",
-      "description": "The user starts by accepting the Reddit user agreement, then navigates to the front page where they can view and interact with subreddit content.",
-      "purpose": "This workflow is crucial for ensuring users agree to the terms of service and provides them with the main interface to explore Reddit content."
+      "description": "The user starts by viewing the User Agreement screen (State 0). They then navigate to the Agreement Prompt screen (State 10) where they are prompted to accept the Reddit user agreement. Upon accepting, they proceed to the Front Page screen (State 11) which lists various navigation options such as 'VIEW AGREEMENT', 'Past Versions', 'Submit Post', 'Accounts', 'Themes', 'Settings', and 'Search'.",
+      "purpose": "This workflow is crucial for ensuring users agree to the terms and conditions before accessing the main content of the app."
     },
     {
-      "path": "State 1 -> State 2 -> State 3 -> State 4 -> State 5",
-      "description": "The user navigates through the front page, viewing subscribed subreddits and encountering an error due to a network issue.",
-      "purpose": "This workflow highlights the application's handling of network connectivity issues and its ability to display subscribed subreddits."
+      "path": "State 0 -> State 10 -> State 12",
+      "description": "The user starts by viewing the User Agreement screen (State 0). They then navigate to the Agreement Prompt screen (State 10) and proceed to the Theme Selection screen (State 12) where they can choose from various theme options such as 'Night', 'Night (low contrast)', 'Green', 'Blue', 'Light Blue', 'Orange', 'Gray', and 'Ultra Black'.",
+      "purpose": "This workflow allows users to customize the appearance of the app by selecting a preferred theme."
     },
     {
-      "path": "State 19 -> State 20 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27",
-      "description": "The user accesses the settings menu and customizes font scaling for various text elements within the application.",
-      "purpose": "This workflow allows users to personalize their experience by adjusting font sizes and other display settings, enhancing usability and accessibility."
+      "path": "State 1 -> State 2 -> State 3",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the Login Prompt screen (State 3) where they are prompted to log in via a web browser.",
+      "purpose": "This workflow guides users through the process of logging in to their Reddit account within the app."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 6",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the Front Page screen (State 6) which lists all subreddits and subscribed subreddits.",
+      "purpose": "This workflow allows users to view all subreddits and manage their subscriptions."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 9",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the Front Page with Pinned and Subscribed Subreddits screen (State 9) which lists both pinned and subscribed subreddits.",
+      "purpose": "This workflow allows users to view both pinned and subscribed subreddits, providing a more personalized browsing experience."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 18",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the User Agreement Prompt screen (State 18) which prompts them to accept the Reddit user agreement.",
+      "purpose": "This workflow ensures that users accept the user agreement before accessing the main content of the app."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 19",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the Settings Menu screen (State 19) which offers various options for customization.",
+      "purpose": "This workflow allows users to access and customize the settings of the app."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 20",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the Font Scale Settings screen (State 20) which allows them to adjust the font scale for different elements of the application.",
+      "purpose": "This workflow allows users to customize the font scale settings for various elements within the app."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 21",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the Settings or Preferences screen (State 21) which allows them to adjust the global font scale.",
+      "purpose": "This workflow allows users to customize the global font scale settings within the app."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 22",
+      "description": "The user starts by viewing the Front Page screen (State 1) which lists subscribed subreddits and provides options to 'Be anonymous' or 'Log in now'. They then navigate to the Front Page with Subscribed Subreddits screen (State 2) which includes a 'Find Location' button and a 'Close' button. From there, they proceed to the Settings - Font Customization screen (State 22) which allows them to customize the font scaling for various text elements within the application.",
+      "purpose": "This workflow allows users to customize the font scaling for various text elements within the app."
     }
   ],
   "screen_contexts": [

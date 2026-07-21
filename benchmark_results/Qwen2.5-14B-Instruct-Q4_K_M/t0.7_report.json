@@ -1,57 +1,197 @@
 {
-  "app_summary": "The app is an Android Reddit client, RedReader, providing access to Reddit content and allowing users to customize their experience through settings. It includes a login flow, subreddit management, and options for adjusting the user interface, including font scaling and theme settings.",
+  "app_summary": "RedReader is an Android application that provides access to Reddit content via its API. It offers features such as browsing subreddits, subscribing to them, pinning subreddits, managing accounts, and customizing the application's appearance and behavior. Users can log in to access personalized content, adjust font scales, and manage settings related to cache, network, and accessibility.",
   "core_workflows": [
     {
-      "path": "State 0 -> State 10 -> State 11 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27",
-      "description": "User accepts terms and conditions, navigates to subreddit management, then customizes text scaling and settings, and finally views a post with customized text scaling.",
-      "purpose": "Ensures the user agrees to terms, manages their Reddit experience, and customizes the app to their liking."
+      "path": "State 0 -> State 10 -> State 11 -> State 12 -> State 10",
+      "description": "User starts by accepting the user agreement (State 0). They then transition to the front page (State 10). From there, they navigate to a front page with a Reddit user agreement prompt (State 11). Upon accepting the agreement, they return to the front page (State 10) and then navigate back to the agreement prompt (State 11). Finally, they return to the front page (State 10).",
+      "purpose": "This workflow ensures that the user acknowledges and accepts the Reddit user agreement before accessing content."
+    },
+    {
+      "path": "State 0 -> State 1 -> State 2 -> State 3 -> State 4 -> State 5 -> State 2",
+      "description": "User starts by accepting the user agreement (State 0). They then transition to the front page (State 1) and navigate to the front page with subscribed subreddits (State 2). From there, the user can either navigate back to the front page (State 3), encounter an error (State 4), or return to the front page (State 5). They finally return to the front page with subscribed subreddits (State 2).",
+      "purpose": "This workflow allows users to view and interact with the main subreddit list and manage subscribed subreddits."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 13 -> State 14 -> State 13 -> State 10",
+      "description": "User starts by accepting the user agreement (State 0). They then transition to the front page (State 10) and encounter a Reddit user agreement prompt (State 13). They navigate to an agreement prompt (State 14) and return to the previous agreement prompt (State 13). Finally, they return to the front page (State 10).",
+      "purpose": "This workflow ensures the user accepts the Reddit user agreement before accessing specific content."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 15 -> State 16 -> State 6 -> State 7 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27",
+      "description": "User starts by accepting the user agreement (State 0). They then transition to the front page (State 10), navigate to a pinned subreddits screen (State 15), and then to the front page again (State 16). From there, they navigate to the main menu/front page (State 6), and continue to adjust font scales and settings (State 7, State 22, State 23, State 24, State 25, State 26). Finally, they reach a settings screen for appearance (State 27).",
+      "purpose": "This workflow allows users to browse pinned subreddits and customize application settings."
+    },
+    {
+      "path": "State 0 -> State 18 -> State 19 -> State 20 -> State 21 -> State 22",
+      "description": "User starts by accepting the user agreement (State 0) and then encounters a Reddit user agreement prompt (State 18). They then navigate to the settings menu (State 19), adjust font scales (State 20), and customize settings further (State 21, State 22).",
+      "purpose": "This workflow allows users to customize various settings and configurations within the application."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 8 -> State 7 -> State 6",
+      "description": "User starts by accepting the user agreement (State 0) and then transitions to the front page (State 10). They navigate to the front page with pinned and subscribed subreddits (State 9), and then view a subreddit list (State 8). From there, they navigate to the main menu/front page (State 7) and finally return to the front page (State 6).",
+      "purpose": "This workflow allows users to browse through various subreddits and manage their subscriptions."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 11 -> State 12 -> State 26",
+      "description": "User starts by accepting the user agreement (State 0) and then transitions to the front page (State 10). They navigate to the front page with a Reddit user agreement prompt (State 11), theme selection (State 12), and then to a detailed settings interface for font customization (State 26).",
+      "purpose": "This workflow allows users to customize various settings and configurations within the application."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 11 -> State 20 -> State 21",
+      "description": "User starts by accepting the user agreement (State 0) and then transitions to the front page (State 10). They navigate to the front page with a Reddit user agreement prompt (State 11), adjust font scales (State 20), and then customize settings further (State 21).",
+      "purpose": "This workflow allows users to customize various settings and configurations within the application."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 11 -> State 23 -> State 24 -> State 25 -> State 26",
+      "description": "User starts by accepting the user agreement (State 0) and then transitions to the front page (State 10). They navigate to the front page with a Reddit user agreement prompt (State 11), adjust font scales for subtitles (State 23), and then customize settings further (State 24, State 25, State 26).",
+      "purpose": "This workflow allows users to customize various settings and configurations within the application."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 11 -> State 27",
+      "description": "User starts by accepting the user agreement (State 0) and then transitions to the front page (State 10). They navigate to the front page with a Reddit user agreement prompt (State 11) and then to a settings screen for appearance (State 27).",
+      "purpose": "This workflow allows users to customize the appearance of the application."
     }
   ],
   "screen_contexts": [
     {
-      "state_id": "0",
-      "type": "Terms and Conditions",
-      "context": "User is asked to accept Reddit's terms and conditions before proceeding."
+      "state_id": "state_0",
+      "type": "User Agreement",
+      "context": "This screen is a user agreement screen for RedReader, an Android application that provides access to Reddit content via its API. It requires users to read the terms and conditions of Reddit and confirm their acceptance to proceed. The screen displays a timestamp of 11:31 and a version number or build number of 243. It includes a link to the Reddit terms and conditions."
     },
     {
-      "state_id": "11",
-      "type": "Main Front Page",
-      "context": "Displays options to interact with Reddit content, including post submission and navigation to settings."
-    },
-    {
-      "state_id": "21",
+      "state_id": "state_19",
       "type": "Settings Menu",
-      "context": "Allows users to customize font scaling for comments and inbox sections."
+      "context": "This screen is a settings menu for the RedReader application. It allows users to configure various aspects of the application, such as appearance (including font settings), behavior, image and video display options, cache management, network settings, and accessibility features. Additionally, there are options for backup and restore functionality. The screen also includes a section for 'About' the application. The timestamp is 11:33 and the build number or version is 20."
     },
     {
-      "state_id": "22",
-      "type": "Text Scaling Preferences",
-      "context": "Enables customization of font scales for various text elements across the app."
+      "state_id": "state_1",
+      "type": "Front Page",
+      "context": "This screen displays the front page of a Reddit-like application called RedReader. It shows the current time (11:30) and lists some subreddits. Below the main content, there is a note indicating that the user is not logged in. The UI elements include buttons for 'Be anonymous', 'Log in now', and a menu option to access the 'Accounts' list. Additionally, it suggests that the user can find the account list by selecting 'Accounts' from the menu. The subreddits listed are 'art', 'creepy', 'dataisbeautiful', 'diy', 'documentaries', and 'earthporn'."
     },
     {
-      "state_id": "23",
-      "type": "Subtitle Settings",
-      "context": "Provides options to customize subtitle display settings, including font scaling."
+      "state_id": "state_2",
+      "type": "Front Page with Subscribed Subreddits",
+      "context": "The screen displays the front page of RedReader with a list of subscribed subreddits. The UI includes options such as 'Find Location', 'Subscribed Subreddits', and 'Reddit Accounts'. It also provides an option to 'Add Reddit Account'. The currently active account is 'Anonymous'. The screen also lists several subreddits, including 'creepy', 'dataisbeautiful', 'diy', and 'documentaries'."
     },
     {
-      "state_id": "24",
-      "type": "Opened Post Titles",
-      "context": "Allows customization of font scale for opened post titles and other text elements."
+      "state_id": "state_9",
+      "type": "Front Page with Pinned and Subscribed Subreddits",
+      "context": "This screen shows the front page of RedReader with a list of both pinned and subscribed subreddits. The UI includes options for 'Find Location'. The screen lists '/t/diy' as a pinned subreddit, along with a list of subscribed subreddits such as 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'."
     },
     {
-      "state_id": "25",
-      "type": "Post Viewing Interface",
-      "context": "Displays a post with options to adjust the font size for improved readability."
+      "state_id": "state_18",
+      "type": "Reddit User Agreement Prompt",
+      "context": "The screen prompts the user to accept the Reddit user agreement to access content through the Reddit API. The current time is 11:32. The UI includes options to view the agreement details and accept it. The screen title is '/r/aww', indicating that the user is attempting to access the 'aww' subreddit."
     },
     {
-      "state_id": "26",
-      "type": "Font Customization",
-      "context": "Enables detailed customization of font scaling for various text elements."
+      "state_id": "state_3",
+      "type": "Login Prompt",
+      "context": "This screen prompts the user to log in using a web browser. It provides a time stamp of 11:30, and lists options for logging in, including instructions to be redirected back to RedReader after logging in through Reddit in a web browser. It also offers help for users who are having trouble logging in, and includes buttons to close and continue the login process. Below this prompt, a list of subscribed subreddits is displayed: 'creepy', 'dataisbeautiful', 'diy', 'documentaries', and 'earthporn'."
     },
     {
-      "state_id": "27",
-      "type": "Settings Overview",
-      "context": "Provides access to different settings categories for app customization."
+      "state_id": "state_6",
+      "type": "Front Page",
+      "context": "This screen is the main front page of RedReader. It includes a time stamp of 11:31 and displays a list of all subreddits. The list includes subreddits such as 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', 'diy', 'documentaries', and 'earthporn'. There is also an option to 'Find Location', which might be a feature for finding specific subreddit locations or topics within the app."
+    },
+    {
+      "state_id": "state_15",
+      "type": "Pinned Subreddits",
+      "context": "This screen displays a list of pinned subreddits, with a time stamp of 11:32. It includes options for each subreddit such as copying the link, viewing it in an external browser, sharing the subreddit, and blocking it. There is also an option to unpin the subreddit from the main menu. The displayed subreddits are 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'."
+    },
+    {
+      "state_id": "state_4",
+      "type": "Error",
+      "context": "This screen displays an error message indicating that a web page at https://www.reddit.com/api/v1/authorize.compact with specific query parameters could not be loaded due to an internet disconnection (net::ERR_INTERNET_DISCONNECTED). The screen shows the time 11:31 and the title 'RedReader'."
+    },
+    {
+      "state_id": "state_14",
+      "type": "Agreement Prompt",
+      "context": "This screen prompts the user to accept the Reddit user agreement to access content through the Reddit API. It mentions '/r/documentaries' and shows the time 11:32. The screen includes buttons to view the agreement details."
+    },
+    {
+      "state_id": "state_16",
+      "type": "Front Page",
+      "context": "This screen is the front page of RedReader, showing various subreddits. It includes 'Find Location' and 'Pinned Subreddits' sections. The displayed subreddits are /r/diy, art, askreddit, askscience, aww, creepy, and reddit. The screen shows the time 11:32."
+    },
+    {
+      "state_id": "state_5",
+      "type": "Error Notification",
+      "context": "An error notification is displayed stating that the web page at https://www.reddit.com/api/v1/authorize.compact?response_type=code&duration=permanent&state=Te could not be loaded due to an internet disconnection (net::ERR_INTERNET_DISCONNECTED). The timestamp at the top is 11:31."
+    },
+    {
+      "state_id": "state_7",
+      "type": "Main Menu / Front Page",
+      "context": "The main menu or front page of the application RedReader is shown with the current time as 11:32. It lists 'All Subreddits' and 'Pinned Subreddits'. Various actions are available such as 'Find Location', 'Copy Link', 'View in External Browser', 'Share', 'Block Subreddit', and 'Pin to Main Menu'. The pinned subreddits listed are aww, books, creepy, dataisbeautiful, diy."
+    },
+    {
+      "state_id": "state_8",
+      "type": "Subreddit List",
+      "context": "A list of subreddits is displayed with the time 11:31. It includes 'All Subreddits', 'Pinned Subreddits', and 'Subscribed Subreddits'. The pinned subreddits are aww, books, creepy, dataisbeautiful, diy. The subscribed subreddits are art, askreddit, askscience, aww, books, creepy, dataisbeautiful, diy. The current focus seems to be on the '/t/diy' subreddit."
+    },
+    {
+      "state_id": "state_13",
+      "type": "User Agreement Prompt",
+      "context": "A prompt appears at 11:32 indicating that the Reddit user agreement has not been accepted. It informs the user that to access content through the Reddit API, they must accept the agreement. The prompt includes links to 'DETAILS' and 'VIEW AGREEMENT'."
+    },
+    {
+      "state_id": "state_17",
+      "type": "Subreddit List",
+      "context": "Similar to state_8, this screen shows a subreddit list with the time 11:32. It includes 'All Subreddits', 'Pinned Subreddits', and 'Subscribed Subreddits'. The focus is on the '/t/diy' subreddit. The pinned subreddits are aww, books, creepy, dataisbeautiful, diy. The subscribed subreddits are art, askreddit, askscience, aww, books, creepy, dataisbeautiful, diy."
+    },
+    {
+      "state_id": "state_10",
+      "type": "Agreement Prompt",
+      "context": "This screen prompts the user to accept the Reddit user agreement to access content through the Reddit API. It displays a timestamp '11:31', a header 'Front Page', and a message stating that the Reddit user agreement has not been accepted. There is an option to 'VIEW AGREEMENT DETAILS'. This screen fits into the overall state graph as a branching point, where accepting the agreement would likely lead to further content access screens, while not accepting it could lead back to similar prompts or restrictions."
+    },
+    {
+      "state_id": "level_9/state_11.png",
+      "type": "Front Page",
+      "context": "This screen displays the front page of a Reddit-like application. It includes a time stamp (11:31), a title 'Front Page', and the URL 'reddit.com/hot'. Below the title, it mentions 'Reddit user agreement' and prompts the user to accept it to access the content. The screen includes navigation options such as 'VIEW AGREEMENT', 'Past Versions', 'Submit Post', 'Accounts', 'Themes', 'Settings', 'Search'."
+    },
+    {
+      "state_id": "level_9/state_12.png",
+      "type": "Theme Selection",
+      "context": "This screen is dedicated to theme selection. It includes a time stamp (11:31) and the title 'Front Page'. Listed are different theme options: 'Night', 'Night (low contrast)', 'Green', 'Blue', 'Light Blue', 'Orange', 'Gray', and 'Ultra Black'. Additionally, there is a copyright notice at the bottom 'OO0O0000000 \u00a9'."
+    },
+    {
+      "state_id": "level_9/state_20.png",
+      "type": "Font Scale Settings",
+      "context": "This screen is for adjusting font scales globally and for specific elements within the application. It includes a time stamp (11:33 243) and options to set font scale for various elements such as 'Post titles', 'Post subtitles', 'Opened post titles', 'Opened post subtitles', 'Comment/Inbox headers', 'Body text', and 'Link buttons'. Each option allows the user to 'Use global font scale' or customize it separately."
+    },
+    {
+      "state_id": "level_10/state_21.png",
+      "type": "Settings or Preferences",
+      "context": "This screen appears to be a settings or preferences page with a focus on adjusting the font scale. The user can choose from a range of font sizes from 0.7x to 1.7x to adjust the text size on the application. There are also 'Cancel' and 'Use global font scale' options available. The screen seems to be part of a larger navigation flow within the application, specifically related to 'level_10' in the state transition graph."
+    },
+    {
+      "state_id": "level_11/state_22.png",
+      "type": "Settings",
+      "context": "This screen provides font customization options for various elements within the application. It includes settings for post titles, subtitles, opened post titles and subtitles, comment/inbox headers, body text, and link buttons. There is a global font scale option that can be used for multiple text elements. The comment/inbox headers have a specific size of 0.7x which is a fixed scale setting."
+    },
+    {
+      "state_id": "level_12/state_23.png",
+      "type": "Settings",
+      "context": "This screen is a settings page that allows the user to adjust the font scale for subtitles. The options provided range from 0.7x to 1.7x, with the ability to select a specific scale or use a predefined value like 'Normal' or '1.05x'. At the bottom of the screen, there is a 'Cancel' button to exit without applying changes."
+    },
+    {
+      "state_id": "state_24",
+      "type": "Settings - Font Customization",
+      "context": "This screen provides customization options for various text elements within the application. The user can adjust the font scale for different text types, such as post titles, post subtitles, opened post titles and subtitles, comment/inbox headers, body text, and link buttons. There are options to either use a global font scale or set specific scales for each text type. The current settings show that post subtitles use a font scale of 1.1x and comment/inbox headers use 0.7x, while other text types default to the global scale."
+    },
+    {
+      "state_id": "state_25",
+      "type": "Post Titles",
+      "context": "This screen displays a list of post titles. It includes a feature to adjust the global font scale, offering options from 0.7x to 1.5x in increments of 0.1x, and a larger 1.6x and 1.7x option. There are buttons labeled 'Cancel' which could be used to exit the current view or settings adjustment without saving changes. Additionally, there is a section labeled with text that seems to be a mix of characters and placeholders, which might be a placeholder for user names or similar text that did not display correctly. The time '11:33' and '74m' might indicate the time of the last activity or duration of a post."
+    },
+    {
+      "state_id": "state_26",
+      "type": "Settings - Font Customization",
+      "context": "This screen provides a detailed interface for customizing font scales in various sections of the application. Users can adjust the font size for post titles, opened post titles, post subtitles, opened post subtitles, comment/inbox headers, body text, and link buttons. Each section allows for setting the font scale to either use the global font scale or a specific scale factor."
+    },
+    {
+      "state_id": "state_27",
+      "type": "Settings - Appearance",
+      "context": "This screen presents a menu for adjusting the application's appearance, including options for font settings, behavior, images/video, cache management, network settings, menu configurations, accessibility features, and backup/restore functionality. It also includes an 'About' section, likely providing information about the application version or developer details."
     }
   ]
 }

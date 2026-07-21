@@ -1,0 +1,246 @@
+{
+  "screen_data": [
+    {
+      "screen_number": 1,
+      "filename": "level_8/state_0.png",
+      "extracted_text": "11:31 243\n\nRedReader\n\nReddit User Agreement\n\nRedReader accesses content using the Reddit\nAPI. To access Reddit, please read the terms\nand conditions at the link below, and confirm\nthat you accept them."
+    },
+    {
+      "screen_number": 2,
+      "filename": "level_1/state_1.png",
+      "extracted_text": "11:30\n\nRedReader\n\nFront Page\nAll Subreddits\nFind Location <Q\n\nSubscribed Subreddits\n\nart\nLog in\n\nYou are not currently logged in.\na You can access the account list by\nselecting Accounts from the menu.\n\nBe anonymous Log in now\n\nbe\n\ncreepy\ndataisbeautiful\ndiy\ndocumentaries\n\nearthporn"
+    },
+    {
+      "screen_number": 3,
+      "filename": "level_6/state_2.png",
+      "extracted_text": "11:31\n\nRedReader\n\nFront Page\nAll Subreddits\n\nFind Location <Q\n\nSubscribed Subreddits\n\nar\nReddit Accounts\na\nAdd Reddit Account\na\nAnonymous (Active)\na\nb Close\ncreepy\n\ndataisbeautiful\ndiy\ndocumentaries\n\nearthporn"
+    },
+    {
+      "screen_number": 4,
+      "filename": "level_3/state_3.png",
+      "extracted_text": "11:30\n\nRedReader\n\nFront Page\nAll Subreddits\n\nFind Location 4a\n\nSubscribed Subreddits\n\n\u00a2 To log in, you will now be taken to\nReddit in a web browser.\n\n\u00a2 When the login is complete, you should\nbe redirected back to RedReader.\n\n\u00a2 Having trouble logging in? Click here\nfor help.\n\na\n\nb Close Continue\n\ncreepy\n\ndataisbeautiful\ndiy\ndocumentaries\n\nearthporn"
+    },
+    {
+      "screen_number": 5,
+      "filename": "level_4/state_4.png",
+      "extracted_text": "11:31\n\n< RedReader\n\nWeb page not available\n\nThe web page at\nhttps://www.reddit.com/api/v1/authorize.compact?\nresponse_type=code&duration=permanent&state=Te>\ncould not be loaded because:\n\nnet::ERR_INTERNET_DISCONNECTED"
+    },
+    {
+      "screen_number": 6,
+      "filename": "level_5/state_5.png",
+      "extracted_text": "11:31\n\n< RedReader\n\nWeb page not available\n\nThe web page at\nhttps://www.reddit.com/api/v1/authorize.compact?\nresponse_type=code&duration=permanent&state=Te>\ncould not be loaded because:\n\nnet::ERR_INTERNET_DISCONNECTED"
+    },
+    {
+      "screen_number": 7,
+      "filename": "level_3/state_6.png",
+      "extracted_text": "11:31\n\nRedReader\n\nFront Page\n\nAll Subreddits\n\nFind Location PrN\nSubscribed Subreddits\n\nart\n\naskreddit\n\naskscience\n\naww\n\nbooks\n\ncreepy\n\ndataisbeautiful\n\ndiy\n\ndocumentaries\n\nearthporn"
+    },
+    {
+      "screen_number": 8,
+      "filename": "level_5/state_7.png",
+      "extracted_text": "11:32\n\nRedReader\n\nFront Page\n\nAll Subreddits\n\nFind Location <Q\nPinned Subreddits\n\ny Copy Link\nSul View in External Browser\nShare\n\n2 Block Subreddit\n\na Pin to Main Menu\n\naww\nbooks\n\ncreepy\ndataisbeautiful\n\ndiy"
+    },
+    {
+      "screen_number": 9,
+      "filename": "level_5/state_8.png",
+      "extracted_text": "11:31\n\nRedReader\n\nFront Page\nAll Subreddits\nFind Location <0,\n\nPinned Subreddits\n\n/t/diy\n\nSubscribed Subreddits\nart\naskreddit\naskscience\naww\nbooks\ncreepy\ndataisbeautiful\n\ndiy"
+    },
+    {
+      "screen_number": 10,
+      "filename": "level_6/state_9.png",
+      "extracted_text": "11:31\n\nRedReader\n\nFront Page\nAll Subreddits\nFind Location <0,\n\nPinned Subreddits\n\n/t/diy\n\nSubscribed Subreddits\nart\naskreddit\naskscience\naww\nbooks\ncreepy\ndataisbeautiful\n\ndiy"
+    },
+    {
+      "screen_number": 11,
+      "filename": "level_7/state_10.png",
+      "extracted_text": "11:31\n\n\u20ac Front Page\n\nFront Page\n\nreddit.com/hot\n\nReddit user agreement not accepted\n\nIf you wish to access content through the Reddit API,\nplease accept their user agreement.\n\nVIEW AGREEMENT DETAILS"
+    },
+    {
+      "screen_number": 12,
+      "filename": "level_9/state_11.png",
+      "extracted_text": "11:31\n\n\u20ac Front Page\n\nFront Page\n\nreddit.com/hot\n\nReddit user agreemen\nIf you wish to access conte\n\nplease accept their user agr\u00e9\n\nVIEW AGREEMENT\n\nPast Versions\n\nSubmit Post\n\nAccounts\n\nThemes\n\nSettings\n\nSearch"
+    },
+    {
+      "screen_number": 13,
+      "filename": "level_9/state_12.png",
+      "extracted_text": "11:31\n\n\u20ac Front Page\n\nFront Page\n\nreddit.com/hot\n\nNight\n\nNight (low contrast)\n\nGreen\n\nBlue\n\nLight Blue\n\nOrange\n\nGray\n\nOO0O0000000 \u00a9\n\nUltra Black"
+    },
+    {
+      "screen_number": 14,
+      "filename": "level_5/state_13.png",
+      "extracted_text": "11:32\n\n< /r/documentaries\n\nReddit user agreement not accepted\n\nIf you wish to access content through the Reddit API,\nplease accept their user agreement.\n\nDETAILS\n\nVIEW AGREEMENT"
+    },
+    {
+      "screen_number": 15,
+      "filename": "level_4/state_14.png",
+      "extracted_text": "11:32\n\n< /r/documentaries\n\nReddit user agreement not accepted\n\nIf you wish to access content through the Reddit API,\nplease accept their user agreement.\n\nDETAILS\n\nVIEW AGREEMENT"
+    },
+    {
+      "screen_number": 16,
+      "filename": "level_3/state_15.png",
+      "extracted_text": "11:32\n\nRedReader\n\nFront Page\n\nAll Subreddits\n\nFind Location <Q\nPinned Subreddits\n\ny Copy Link\nSul View in External Browser\nShare\n\n2 Block Subreddit\n\n@ \u2014Unpin from Main Menu\n\naww\nbooks\n\ncreepy\ndataisbeautiful\n\ndiy"
+    },
+    {
+      "screen_number": 17,
+      "filename": "level_4/state_16.png",
+      "extracted_text": "11:32\n\nRedReader\n\nFront Page\nAll Subreddits\nFind Location <0,\n\nPinned Subreddits\n\n/t/diy\n\nSubscribed Subreddits\nart\naskreddit\naskscience\naww\n\nbooks\n\ncreepy\n\nreddit\n.com/r/diy"
+    },
+    {
+      "screen_number": 18,
+      "filename": "level_5/state_17.png",
+      "extracted_text": "11:32\n\nRedReader\n\nFront Page\nAll Subreddits\nFind Location <0,\n\nPinned Subreddits\n\n/t/diy\n\nSubscribed Subreddits\nart\naskreddit\naskscience\naww\nbooks\ncreepy\ndataisbeautiful\n\ndiy"
+    },
+    {
+      "screen_number": 19,
+      "filename": "level_6/state_18.png",
+      "extracted_text": "11:32\n\n< /r/aww\n\nReddit user agreement not accepted\n\nIf you wish to access content through the Reddit API,\nplease accept their user agreement.\n\nDETAILS\n\nVIEW AGREEMENT"
+    },
+    {
+      "screen_number": 20,
+      "filename": "level_8/state_19.png",
+      "extracted_text": "11:33 20\n\u20ac_ Settings\nAppearance\nFont\nBehaviour\nImages/Video\nCache\nNetwork\nMenus\nAccessibility\nBackup/Restore\n\nAbout"
+    },
+    {
+      "screen_number": 21,
+      "filename": "level_9/state_20.png",
+      "extracted_text": "11:33 243\n\n< Font\n\nFont Scale\n\nGlobal\nNormal\n\nPost titles\nUse global font scale\n\nPost subtitles\nUse global font scale\n\nOpened post titles\nUse global font scale\n\nOpened post subtitles\nUse global font scale\n\nComment/Inbox headers\nUse global font scale\n\nBody text\nUse global font scale\n\nLink buttons\nUse global font scale"
+    },
+    {
+      "screen_number": 22,
+      "filename": "level_10/state_21.png",
+      "extracted_text": "11:33 74m\u2018)\n\nComment/Inbox headers\n\nUse global font scale\n0.7x\n0.8x\n0.9x\nNormal\n1.05x\n1.1x\n1.2x\n1.3x\n1.4x\n1.5x\n\n1.6x\n\n(OR Ol Ooen O ln Onn Onn On On On On On OO)\n\n1.7x\n\nCancel\n\n< @ a"
+    },
+    {
+      "screen_number": 23,
+      "filename": "level_11/state_22.png",
+      "extracted_text": "11:33 243\n\n< Font\n\nFont Scale\n\nGlobal\nNormal\n\nPost titles\nUse global font scale\n\nPost subtitles\nUse global font scale\n\nOpened post titles\nUse global font scale\n\nOpened post subtitles\nUse global font scale\n\nComment/Inbox headers\n0.7x\n\nBody text\nUse global font scale\n\nLink buttons\nUse global font scale"
+    },
+    {
+      "screen_number": 24,
+      "filename": "level_12/state_23.png",
+      "extracted_text": "11:33 74m\u2018)\n\nPost subtitles\n\nUse global font scale\n0.7x\n0.8x\n0.9x\nNormal\n1.05x\n1.1x\n1.2x\n1.3x\n1.4x\n1.5x\n\n1.6x\n\n(OR Ol Ooen O ln Onn Onn On On On On On OO)\n\n1.7x\n\nCancel\n\n< @ a"
+    },
+    {
+      "screen_number": 25,
+      "filename": "level_13/state_24.png",
+      "extracted_text": "11:33 243\n\n< Font\n\nFont Scale\n\nGlobal\nNormal\n\nPost titles\nUse global font scale\n\nPost subtitles\n1.1x\n\nOpened post titles\nUse global font scale\n\nOpened post subtitles\nUse global font scale\n\nComment/Inbox headers\n0.7x\n\nBody text\nUse global font scale\n\nLink buttons\nUse global font scale"
+    },
+    {
+      "screen_number": 26,
+      "filename": "level_14/state_25.png",
+      "extracted_text": "11:33 74m\u2018)\n\nOpened post titles\n\nUse global font scale\n0.7x\n0.8x\n0.9x\nNormal\n1.05x\n1.1x\n1.2x\n1.3x\n1.4x\n1.5x\n\n1.6x\n\n(OR Ol Ooen O ln Onn Onn On On On On On OO)\n\n1.7x\n\nCancel\n\n< @ a"
+    },
+    {
+      "screen_number": 27,
+      "filename": "level_16/state_26.png",
+      "extracted_text": "11:33 243\n\n< Font\n\nFont Scale\n\nGlobal\nNormal\n\nPost titles\nUse global font scale\n\nPost subtitles\n1.1x\n\nOpened post titles\n1.4x\n\nOpened post subtitles\nUse global font scale\n\nComment/Inbox headers\n0.7x\n\nBody text\nUse global font scale\n\nLink buttons\nUse global font scale"
+    },
+    {
+      "screen_number": 28,
+      "filename": "level_16/state_27.png",
+      "extracted_text": "11:33 20\n\u20ac_ Settings\nAppearance\nFont\nBehaviour\nImages/Video\nCache\nNetwork\nMenus\nAccessibility\nBackup/Restore\n\nAbout"
+    }
+  ],
+  "state_graph": {
+    "0": [
+      1,
+      10
+    ],
+    "1": [
+      2
+    ],
+    "2": [
+      3,
+      2,
+      6
+    ],
+    "3": [
+      2,
+      4
+    ],
+    "4": [
+      5,
+      2
+    ],
+    "5": [
+      2
+    ],
+    "6": [
+      7
+    ],
+    "7": [
+      8,
+      17
+    ],
+    "8": [
+      9
+    ],
+    "9": [
+      10,
+      13,
+      15
+    ],
+    "10": [
+      11,
+      0,
+      10,
+      9
+    ],
+    "11": [
+      11,
+      12,
+      19
+    ],
+    "12": [
+      10
+    ],
+    "13": [
+      14,
+      13,
+      9
+    ],
+    "14": [
+      13
+    ],
+    "15": [
+      16
+    ],
+    "16": [
+      7
+    ],
+    "17": [
+      18
+    ],
+    "18": [
+      11
+    ],
+    "19": [
+      20
+    ],
+    "20": [
+      21
+    ],
+    "21": [
+      22
+    ],
+    "22": [
+      23
+    ],
+    "23": [
+      24
+    ],
+    "24": [
+      25
+    ],
+    "25": [
+      26
+    ],
+    "26": [
+      26,
+      27
+    ],
+    "27": [
+      28
+    ]
+  }
+}

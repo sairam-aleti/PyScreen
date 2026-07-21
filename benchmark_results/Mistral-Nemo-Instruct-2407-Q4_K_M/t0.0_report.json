@@ -1,0 +1,182 @@
+{
+  "app_summary": "RedReader is an Android application that serves as a client for the Reddit platform. It allows users to browse, search, and interact with content from various subreddits. The app provides a user-friendly interface with customizable themes and font sizes. It also offers settings for behavior, media, performance, and accessibility. Users can log in, manage accounts, and access content through the Reddit API after accepting the user agreement.",
+  "core_workflows": [
+    {
+      "path": "0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 2 -> 10 -> 11 -> 12 -> 10",
+      "description": "1. User agrees to the Reddit User Agreement on the 'User Agreement' screen (state_0).\n2. User navigates to the 'Home Screen' (state_1) and selects 'All Subreddits'.\n3. User browses the 'Home Screen' (state_2) and selects a subreddit.\n4. User views the content of the selected subreddit on the 'Subreddit Selection Screen' (state_3).\n5. User views the 'Authorization Error' screen (state_4) due to a network disconnect while attempting to authorize with the Reddit API.\n6. User returns to the 'Home Screen' (state_5) and selects 'Front Page'.\n7. User views the 'Front Page' (state_6) and selects 'Themes'.\n8. User selects a theme on the 'Themes' screen (state_7).\n9. User returns to the 'Front Page' (state_8) and selects 'Agree to Terms'.\n10. User views the 'Reddit User Agreement' (state_9) and accepts the terms.\n11. User views the 'Themes' screen (state_10) and selects a theme.\n12. User returns to the 'Front Page' (state_11) and views the content.",
+      "purpose": "This workflow represents the user onboarding process, including accepting the Reddit user agreement, browsing subreddits, and customizing themes."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 10",
+      "description": "1. User agrees to the Reddit User Agreement on the 'User Agreement' screen (state_0).\n2. User navigates to the 'Home Screen' (state_1) and selects 'All Subreddits'.\n3. User browses the 'Home Screen' (state_2) and selects 'Pinned Subreddits'.\n4. User views the 'Subreddit Selection Screen' (state_3) and selects a pinned subreddit.\n5. User views the content of the selected subreddit on the 'Subreddit Selection Screen' (state_4).\n6. User views the 'Authorization Error' screen (state_5) due to a network disconnect while attempting to authorize with the Reddit API.\n7. User returns to the 'Home Screen' (state_6) and selects 'Front Page'.\n8. User views the 'Front Page' (state_7) and selects 'Themes'.\n9. User selects a theme on the 'Themes' screen (state_8).\n10. User returns to the 'Front Page' (state_9) and selects 'Agree to Terms'.\n11. User views the 'Reddit User Agreement' (state_10) and accepts the terms.\n12. User views the 'Themes' screen (state_11) and selects a theme.\n13. User returns to the 'Front Page' (state_12) and views the content.",
+      "purpose": "This workflow represents a user's journey through the app, including browsing pinned subreddits, viewing content, and customizing themes after accepting the Reddit user agreement."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 6 -> 7 -> 8 -> 9 -> 13 -> 14 -> 13 -> 9 -> 10 -> 11 -> 12 -> 10",
+      "description": "1. User agrees to the Reddit User Agreement on the 'User Agreement' screen (state_0).\n2. User navigates to the 'Home Screen' (state_1) and selects 'All Subreddits'.\n3. User browses the 'Home Screen' (state_2) and selects 'Pinned Subreddits'.\n4. User views the 'Subreddit Selection Screen' (state_3) and selects a pinned subreddit.\n5. User views the content of the selected subreddit on the 'Subreddit Selection Screen' (state_4).\n6. User views the 'Authorization Error' screen (state_5) due to a network disconnect while attempting to authorize with the Reddit API.\n7. User returns to the 'Home Screen' (state_6) and selects 'Front Page'.\n8. User views the 'Front Page' (state_7) and selects 'Themes'.\n9. User selects a theme on the 'Themes' screen (state_8).\n10. User returns to the 'Front Page' (state_9) and selects 'Agree to Terms'.\n11. User views the 'Reddit User Agreement' (state_10) and selects 'Details'.\n12. User views the 'Reddit User Agreement' (state_11) and accepts the terms.\n13. User returns to the 'Front Page' (state_12) and views the content.",
+      "purpose": "This workflow represents a user's journey through the app, including browsing pinned subreddits, viewing content, and accepting the Reddit user agreement after reviewing the details."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 6 -> 7 -> 8 -> 9 -> 15 -> 16 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 10",
+      "description": "1. User agrees to the Reddit User Agreement on the 'User Agreement' screen (state_0).\n2. User navigates to the 'Home Screen' (state_1) and selects 'All Subreddits'.\n3. User browses the 'Home Screen' (state_2) and selects 'Pinned Subreddits'.\n4. User views the 'Subreddit Selection Screen' (state_3) and selects a pinned subreddit.\n5. User views the content of the selected subreddit on the 'Subreddit Selection Screen' (state_4).\n6. User views the 'Authorization Error' screen (state_5) due to a network disconnect while attempting to authorize with the Reddit API.\n7. User returns to the 'Home Screen' (state_6) and selects 'Front Page'.\n8. User views the 'Front Page' (state_7) and selects 'Themes'.\n9. User selects a theme on the 'Themes' screen (state_8).\n10. User returns to the 'Front Page' (state_9) and selects 'Agree to Terms'.\n11. User views the 'Reddit User Agreement' (state_10) and selects 'View Agreement'.\n12. User views the 'Reddit User Agreement' (state_11) and accepts the terms.\n13. User returns to the 'Front Page' (state_12) and views the content.",
+      "purpose": "This workflow represents a user's journey through the app, including browsing pinned subreddits, viewing content, and accepting the Reddit user agreement after viewing the agreement."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 6 -> 7 -> 8 -> 9 -> 17 -> 18 -> 11 -> 12 -> 10 -> 11 -> 12 -> 10",
+      "description": "1. User agrees to the Reddit User Agreement on the 'User Agreement' screen (state_0).\n2. User navigates to the 'Home Screen' (state_1) and selects 'All Subreddits'.\n3. User browses the 'Home Screen' (state_2) and selects 'Pinned Subreddits'.\n4. User views the 'Subreddit Selection Screen' (state_3) and selects a pinned subreddit.\n5. User views the content of the selected subreddit on the 'Subreddit Selection Screen' (state_4).\n6. User views the 'Authorization Error' screen (state_5) due to a network disconnect while attempting to authorize with the Reddit API.\n7. User returns to the 'Home Screen' (state_6) and selects 'Front Page'.\n8. User views the 'Front Page' (state_7) and selects 'Themes'.\n9. User selects a theme on the 'Themes' screen (state_8).\n10. User returns to the 'Front Page' (state_9) and selects 'Agree to Terms'.\n11. User views the 'Reddit User Agreement' (state_10) and selects 'View Agreement'.\n12. User views the 'Reddit User Agreement' (state_11) and accepts the terms.\n13. User returns to the 'Front Page' (state_12) and views the content.",
+      "purpose": "This workflow represents a user's journey through the app, including browsing pinned subreddits, viewing content, and accepting the Reddit user agreement after viewing the agreement."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 6 -> 7 -> 8 -> 9 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27",
+      "description": "1. User agrees to the Reddit User Agreement on the 'User Agreement' screen (state_0).\n2. User navigates to the 'Home Screen' (state_1) and selects 'All Subreddits'.\n3. User browses the 'Home Screen' (state_2) and selects 'Pinned Subreddits'.\n4. User views the 'Subreddit Selection Screen' (state_3) and selects a pinned subreddit.\n5. User views the content of the selected subreddit on the 'Subreddit Selection Screen' (state_4).\n6. User views the 'Authorization Error' screen (state_5) due to a network disconnect while attempting to authorize with the Reddit API.\n7. User returns to the 'Home Screen' (state_6) and selects 'Front Page'.\n8. User views the 'Front Page' (state_7) and selects 'Themes'.\n9. User selects a theme on the 'Themes' screen (state_8).\n10. User returns to the 'Front Page' (state_9) and selects 'Agree to Terms'.\n11. User views the 'Reddit User Agreement' (state_10) and selects 'View Agreement'.\n12. User views the 'Reddit User Agreement' (state_11) and accepts the terms.\n13. User returns to the 'Front Page' (state_12) and views the content.\n14. User selects 'Settings' from the navigation menu.\n15. User views the 'Font Settings' screen (state_13) and adjusts the global font scale.\n16. User views the 'Settings' screen (state_14) and adjusts font sizes for various UI elements.\n17. User views the 'Settings - Main' screen (state_15) and navigates through the main settings menu.",
+      "purpose": "This workflow represents a user's journey through the app, including browsing pinned subreddits, viewing content, accepting the Reddit user agreement, and customizing font sizes in the settings menu."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 6 -> 7 -> 8 -> 9 -> 28",
+      "description": "1. User agrees to the Reddit User Agreement on the 'User Agreement' screen (state_0).\n2. User navigates to the 'Home Screen' (state_1) and selects 'All Subreddits'.\n3. User browses the 'Home Screen' (state_2) and selects 'Pinned Subreddits'.\n4. User views the 'Subreddit Selection Screen' (state_3) and selects a pinned subreddit.\n5. User views the content of the selected subreddit on the 'Subreddit Selection Screen' (state_4).\n6. User views the 'Authorization Error' screen (state_5) due to a network disconnect while attempting to authorize with the Reddit API.\n7. User returns to the 'Home Screen' (state_6) and selects 'Front Page'.\n8. User views the 'Front Page' (state_7) and selects 'Themes'.\n9. User selects a theme on the 'Themes' screen (state_8).\n10. User returns to the 'Front Page' (state_9) and selects 'Agree to Terms'.\n11. User views the 'Reddit User Agreement' (state_10) and selects 'View Agreement'.\n12. User views the 'Reddit User Agreement' (state_11) and accepts the terms.\n13. User returns to the 'Front Page' (state_12) and views the content.",
+      "purpose": "This workflow represents a user's journey through the app, including browsing pinned subreddits, viewing content, and accepting the Reddit user agreement."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "state_0",
+      "type": "User Agreement",
+      "context": "A welcome screen for the RedReader application, displaying the Reddit User Agreement. It contains a brief description of how the app accesses content using the Reddit API and a link to the terms and conditions. The user is required to confirm acceptance of the terms to proceed."
+    },
+    {
+      "state_id": "state_19",
+      "type": "Settings",
+      "context": "The settings screen for RedReader, divided into several categories: Appearance (Font), Behavior, Media (Images/Video), Performance (Cache, Network), Customization (Menus), Accessibility, and Backup/Restore. The 'About' section is also present at the bottom."
+    },
+    {
+      "state_id": "state_1",
+      "type": "Home Screen",
+      "context": "The screen displays the main interface of the RedReader application. It shows the current time (11:30), the app name ('RedReader'), and two main sections: 'Front Page' and 'Subscribed Subreddits'. The 'Front Page' section displays a list of popular or recommended subreddits, while the 'Subscribed Subreddits' section shows a list of subreddits the user has subscribed to, including 'art', 'dataisbeautiful', 'diy', 'documentaries', 'earthporn', and others. There is also a search bar at the top to 'Find Location'. The screen indicates that the user is not currently logged in, with a 'Log in' button and a message stating 'You are not currently logged in'. Below this, there are two options: 'Be anonymous' and 'Log in now'."
+    },
+    {
+      "state_id": "state_2",
+      "type": "Home Screen",
+      "context": "The main screen of the RedReader app displaying the front page with all subreddits. It shows a search bar to find locations, a list of subscribed subreddits, and an option to add or manage Reddit accounts. The screen also displays some popular subreddits like 'dataisbeautiful', 'diy', 'documentaries', and 'earthporn'."
+    },
+    {
+      "state_id": "state_9",
+      "type": "Subreddit Selection Screen",
+      "context": "This screen displays a list of pinned and subscribed subreddits. The user can select a subreddit to view its content. It shows a mix of categories like 'diy', 'dataisbeautiful', 'creepy', and 'aww'. The screen also has a search bar to find specific subreddits."
+    },
+    {
+      "state_id": "state_18",
+      "type": "Reddit API Agreement Screen",
+      "context": "This screen appears when the user tries to access content through the Reddit API. It displays a message stating that the Reddit user agreement has not been accepted and provides options to view the agreement details or accept the agreement."
+    },
+    {
+      "state_id": "state_3",
+      "type": "Login Screen",
+      "context": "This screen is a login screen for the RedReader application. It displays the time (11:30), the app name 'RedReader', and two main sections: 'Front Page' and 'All Subreddits'. Below these, there's a 'Find Location' button with a label '4a'. The 'Subscribed Subreddits' section lists some subscribed subreddits like 'creepy', 'dataisbeautiful', 'diy', etc. The screen also contains a login instruction message with options to 'Close' or 'Continue'."
+    },
+    {
+      "state_id": "state_6",
+      "type": "Subreddit Selection Screen",
+      "context": "This screen allows users to select subreddits. It displays the time (11:31), the app name 'RedReader', and the sections 'Front Page', 'All Subreddits', and 'Subscribed Subreddits'. The main content is a list of subreddits like 'art', 'askreddit', 'askscience', 'aww', etc. The 'Find Location' button is now labeled 'PrN'."
+    },
+    {
+      "state_id": "state_15",
+      "type": "Pinned Subreddits Screen",
+      "context": "This screen displays the user's pinned subreddits. It shows the time (11:32), the app name 'RedReader', and the sections 'Front Page', 'All Subreddits', and 'Pinned Subreddits'. The 'Find Location' button is now labeled '<Q'. The screen lists some pinned subreddits like 'aww', 'books', 'creepy', 'dataisbeautiful', 'diy', etc. Each subreddit has options to 'Copy Link', 'View in External Browser', 'Share', 'Block Subreddit', and 'Unpin from Main Menu'."
+    },
+    {
+      "state_id": "state_4.png",
+      "type": "Authorization Error",
+      "context": "This screen shows an error message indicating that the web page at the specified Reddit API URL could not be loaded due to a network disconnect (net::ERR_INTERNET_DISCONNECTED). The user is attempting to authorize RedReader with the Reddit API, but the process has failed due to the lack of internet connectivity."
+    },
+    {
+      "state_id": "state_14.png",
+      "type": "Reddit User Agreement",
+      "context": "This screen displays a message indicating that the user has not accepted the Reddit user agreement to access content through the Reddit API. The UI provides two options: 'DETAILS' to view more information about the agreement, and 'VIEW AGREEMENT' to accept the terms and proceed."
+    },
+    {
+      "state_id": "state_16.png",
+      "type": "RedReader Home Screen",
+      "context": "This screen represents the main home screen of the RedReader application. It displays various sections such as 'Front Page', 'All Subreddits', 'Pinned Subreddits', and 'Subscribed Subreddits'. The screen lists several subscribed subreddits, including 'diY', 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', and 'reddit'. The UI also includes a search bar to 'Find Location' and a logo for Reddit at the bottom."
+    },
+    {
+      "state_id": "state_5.png",
+      "type": "Authorization Error",
+      "context": "The screen displays an error message indicating that the web page at 'https://www.reddit.com/api/v1/authorize.compact?...' could not be loaded due to a network disconnect (net::ERR_INTERNET_DISCONNECTED). This suggests that the user is offline or there's a connectivity issue."
+    },
+    {
+      "state_id": "state_7.png",
+      "type": "Home Screen",
+      "context": "The screen shows the main home page of RedReader with the following sections: 'Front Page', 'All Subreddits', 'Pinned Subreddits', and 'Subscribed Subreddits'. It lists various subreddits like 'aww', 'books', 'creepy', 'dataisbeautiful', etc. There are also options to 'Find Location', 'Copy Link', 'View in External Browser', and 'Share'."
+    },
+    {
+      "state_id": "state_8.png",
+      "type": "Subreddit Screen",
+      "context": "The screen displays the content of the '/r/diy' subreddit. It shows the subreddit name and a list of subscribed subreddits, including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'."
+    },
+    {
+      "state_id": "state_13.png",
+      "type": "Reddit API Agreement Screen",
+      "context": "The screen displays a message indicating that the Reddit API user agreement has not been accepted. It provides options to view the details and the agreement itself, suggesting that the user needs to accept the agreement to access content through the Reddit API."
+    },
+    {
+      "state_id": "state_17.png",
+      "type": "Home Screen",
+      "context": "The screen is similar to 'state_7.png', displaying the main home page of RedReader with the same sections and subreddits listed. It shows the content of the '/r/diy' subreddit."
+    },
+    {
+      "state_id": "level_7/state_10",
+      "type": "Agreement Acceptance",
+      "context": "This screen displays a message indicating that the Reddit user agreement has not been accepted. It provides a button to 'VIEW AGREEMENT DETAILS'. This screen is part of the user onboarding process and is necessary to access content through the Reddit API."
+    },
+    {
+      "state_id": "state_11",
+      "type": "Front Page",
+      "context": "The screen displays the front page of Reddit with the 'hot' feed. It shows a list of posts with their titles, user names, and timestamps. There is a 'VIEW AGREEMENT' button at the bottom, suggesting that the user has not accepted the terms of use yet. The screen also has a navigation bar with options for 'Past Versions', 'Submit Post', 'Accounts', 'Themes', 'Settings', and 'Search'."
+    },
+    {
+      "state_id": "state_12",
+      "type": "Themes",
+      "context": "This screen displays the theme selection options. It lists various color schemes including 'Night', 'Night (low contrast)', 'Green', 'Blue', 'Light Blue', 'Orange', and 'Gray'. There is also an option for 'Ultra Black'. The screen has a copyright footer at the bottom."
+    },
+    {
+      "state_id": "state_20",
+      "type": "Font Settings",
+      "context": "This screen allows users to adjust the font scale globally and for specific elements within the app. Options include 'Normal' and 'Use global font scale' for various text elements such as post titles, subtitles, comment headers, and body text. There is also an option for 'Link buttons'."
+    },
+    {
+      "state_id": "level_10/state_21",
+      "type": "Settings",
+      "context": "This screen appears to be a part of the application's settings, specifically focused on adjusting the global font scale. It displays a range of font sizes from 0.7x to 1.7x, with 'Normal' being the default. The screen also contains a 'Cancel' button, suggesting that changes made on this screen can be discarded. No sensitive data is visible on this screen."
+    },
+    {
+      "state_id": "state_22",
+      "type": "Settings",
+      "context": "This screen appears to be a settings screen for font sizes within the application. It allows users to adjust the font scale for various UI elements such as post titles, subtitles, and comment/inbox headers. The screen also includes a 'Global' option to apply the font scale universally."
+    },
+    {
+      "state_id": "level_12/state_23",
+      "type": "Settings",
+      "context": "This screen appears to be a part of the application's settings, specifically focused on accessibility. It allows the user to adjust the global font scale for better readability. The options range from 0.7x to 1.7x, with 'Normal' being the default at 1.0x. The screen also contains a 'Cancel' button to discard any changes made. There are no sensitive data present on this screen."
+    },
+    {
+      "state_id": "state_24",
+      "type": "Settings",
+      "context": "This screen appears to be a settings screen for font sizes within the application. It allows users to adjust the font scale for various UI elements such as post titles, subtitles, comment headers, and body text. The screen also includes options for link buttons and opened post titles/subtitles."
+    },
+    {
+      "state_id": "state_25",
+      "type": "Settings",
+      "context": "This screen appears to be a settings menu for adjusting the font scale of post titles globally. It provides a range of options from 0.7x to 1.7x, with 'Normal' being the default. The screen also contains a 'Cancel' button to discard any changes made."
+    },
+    {
+      "state_id": "state_26",
+      "type": "Settings - Font",
+      "context": "This screen displays various font settings for the application. It includes options for global font scale, post titles, post subtitles, opened post titles, opened post subtitles, comment/inbox headers, body text, and link buttons. The screen also displays the current time (11:33) and the device's battery level (243)."
+    },
+    {
+      "state_id": "state_27",
+      "type": "Settings - Main",
+      "context": "This screen is the main settings menu. It lists various categories such as Appearance, Behaviour, Images/Video, Cache, Network, Menus, Accessibility, Backup/Restore, and About. The screen also displays the app's name ('\u20ac_') at the top."
+    }
+  ]
+}

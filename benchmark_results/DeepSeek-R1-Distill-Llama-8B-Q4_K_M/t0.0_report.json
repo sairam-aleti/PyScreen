@@ -2,229 +2,167 @@
 
 ```json
 {
-  "app_summary": "RedReader is a third-party Reddit client application that allows users to access Reddit content, manage subscriptions, set preferences, and handle user agreements. It provides features such as viewing subreddits, managing pinned posts, and customizing the app's appearance.",
+  "app_summary": "This app features a complex navigation system with multiple interactive screens. It allows users to traverse through various states, each representing a different screen or interface. The app likely includes features such as navigation menus, form submissions, settings adjustments, and user preferences management. The state transition graph indicates a hierarchical structure where users can explore different sections of the app, each accessible through specific actions and transitions.",
   "core_workflows": [
     {
-      "path": "0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 2 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27 -> 28",
-      "description": "The main user flow from the home screen to various settings and features, ensuring all app functionalities are accessible and customizable.",
-      "purpose": "This workflow ensures users can navigate through all app features, manage settings, and access various content and preferences."
-    }
-  ],
-  "screen_contexts": [
-    {
-      "state_id": "0",
-      "type": "Dashboard",
-      "context": "The main interface for RedReader, displaying navigation options, login prompts, and subscribed subreddits. It includes a search bar and buttons for actions like logging in or accessing settings."
+      "path": "0 -> 1 -> 2 -> 3 -> 2 -> 4 -> 5 -> 2 -> 6 -> 7 -> 8 -> 9 -> 10",
+      "description": "The user starts at State 0 and selects an option leading to State 1. From State 1, they proceed to State 2. State 2 then transitions to State 3, which in turn goes back to State 2. From State 2, the user selects an option leading to State 4, followed by State 5. State 5 returns to State 2, which then leads to State 6. State 6 transitions to State 7, then to State 8, followed by State 9. Finally, State 9 leads to State 10.",
+      "purpose": "This workflow allows users to navigate through a series of screens, potentially setting up initial preferences or parameters before proceeding further."
     },
     {
-      "state_id": "1",
-      "type": "Login",
-      "context": "A screen prompting users to log in or choose to be anonymous. It redirects to a web browser for authentication."
+      "path": "0 -> 10 -> 11 -> 12 -> 10",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which then transitions to State 12. State 12 returns to State 10, completing the flow.",
+      "purpose": "This workflow enables users to access a specific section of the app, possibly related to user profiles or account settings."
     },
     {
-      "state_id": "2",
-      "type": "Front Page",
-      "context": "Displays the front page of RedReader, listing subreddits and allowing users to view or select them. It includes options for finding location-based content and managing pinned subreddits."
+      "path": "0 -> 10 -> 11 -> 11 -> 12 -> 10",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which then transitions back to State 11. From State 11, the user selects an option leading to State 12, which returns to State 10.",
+      "purpose": "This workflow allows users to revisit or confirm a previous action, ensuring data consistency."
     },
     {
-      "state_id": "3",
-      "type": "Login Confirmation",
-      "context": "Confirms user acceptance of the Reddit user agreement, providing a link to view the terms and a confirmation button."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27 -> 28",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, State 25, State 26, State 27, and finally State 28.",
+      "purpose": "This workflow likely corresponds to a detailed form or data entry process, allowing users to input extensive information step by step."
     },
     {
-      "state_id": "4",
-      "type": "Error Handling",
-      "context": "Displays error messages for failed Reddit API requests, with options to retry or view settings."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 26 -> 27 -> 28",
+      "description": "The user begins at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, State 25, State 26, which loops back to State 26. From State 26, the user selects an option leading to State 27, and finally to State 28.",
+      "purpose": "This workflow allows users to revisit or confirm previous actions, ensuring data accuracy."
     },
     {
-      "state_id": "5",
-      "type": "API Error Handling",
-      "context": "Shows an error message when loading a Reddit authorization web page, prompting the user to try again or seek help."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, State 25, and State 26. From State 26, the user selects an option leading to State 27.",
+      "purpose": "This workflow likely corresponds to a multi-step form or data entry process, where users input information incrementally."
     },
     {
-      "state_id": "6",
-      "type": "Front Page Subreddits",
-      "context": "A view of the front page listing subreddits, allowing users to interact with their favorite communities and manage settings."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, and State 25. From State 25, the user selects an option leading to State 26.",
+      "purpose": "This workflow allows users to input partial information, possibly pausing a multi-step process."
     },
     {
-      "state_id": "7",
-      "type": "Pinned Subreddits Management",
-      "context": "Manages pinned subreddits, allowing users to copy links, view in a browser, or unpin subreddits."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, and State 24. From State 24, the user selects an option leading to State 25.",
+      "purpose": "This workflow likely corresponds to a step in a multi-step form or data entry process, where users input information sequentially."
     },
     {
-      "state_id": "8",
-      "type": "User Agreement",
-      "context": "Informs users about the Reddit user agreement requirement, providing a link to view it and a confirmation button."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24",
+      "description": "The user begins at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, and State 23. From State 23, the user selects an option leading to State 24.",
+      "purpose": "This workflow allows users to navigate through a subset of the app's features, potentially related to preferences or settings."
     },
     {
-      "state_id": "9",
-      "type": "Settings",
-      "context": "A comprehensive settings interface allowing users to customize appearance, font, behavior, images, cache, network, menus, accessibility, and backup/restore options."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, and State 23.",
+      "purpose": "This workflow likely corresponds to a partial navigation through the app's features, allowing users to explore specific sections."
     },
     {
-      "state_id": "10",
-      "type": "Confirmation",
-      "context": "Confirms user acceptance of the Reddit user agreement, redirecting back to the app after confirmation."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, and then State 22.",
+      "purpose": "This workflow allows users to access a specific section of the app, potentially related to data entry or form completion."
     },
     {
-      "state_id": "11",
-      "type": "Front Page with Theme Options",
-      "context": "A front page interface with theme customization options, allowing users to set night mode and other appearance preferences."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21.",
+      "purpose": "This workflow likely corresponds to an initial step in a multi-step process, allowing users to input or confirm information."
     },
     {
-      "state_id": "12",
-      "type": "Font Scale Settings",
-      "context": "A screen allowing users to adjust font sizes for various UI elements, enhancing accessibility and user experience."
+      "path": "0 -> 10 -> 11 -> 19 -> 20",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20.",
+      "purpose": "This workflow allows users to access a specific section of the app, potentially related to data entry or form initialization."
     },
     {
-      "state_id": "13",
-      "type": "Opened Post Titles",
-      "context": "A list of opened post titles, with options to adjust font sizes and manage preferences."
+      "path": "0 -> 10 -> 11 -> 19",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19.",
+      "purpose": "This workflow likely corresponds to an initial navigation step, allowing users to explore specific features of the app."
     },
     {
-      "state_id": "14",
-      "type": "Font Scale Adjustment",
-      "context": "A screen enabling users to set font scales for different text categories, such as post titles, comments, and headers."
+      "path": "0 -> 10 -> 11 -> 12 -> 10",
+      "description": "The user begins at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 12. State 12 returns to State 10, completing the flow.",
+      "purpose": "This workflow allows users to access a specific section of the app, possibly related to user profiles or account settings."
     },
     {
-      "state_id": "15",
-      "type": "Pinned Subreddits Management",
-      "context": "Manages pinned subreddits, allowing users to interact with their favorite communities and manage settings."
+      "path": "0 -> 10 -> 11 -> 12",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 12.",
+      "purpose": "This workflow likely corresponds to an initial navigation step, allowing users to explore specific features of the app."
     },
     {
-      "state_id": "16",
-      "type": "Appearance Settings",
-      "context": "A settings interface allowing users to customize the app's appearance, including font, behavior, images, cache, network, menus, accessibility, and about information."
+      "path": "0 -> 10 -> 11 -> 11 -> 12 -> 10",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions back to State 11. From State 11, the user selects an option leading to State 12, which returns to State 10.",
+      "purpose": "This workflow allows users to revisit or confirm a previous action, ensuring data consistency."
     },
     {
-      "state_id": "17",
-      "type": "Front Page with Theme Options",
-      "context": "A front page interface with theme customization options, allowing users to set night mode and other appearance preferences."
+      "path": "0 -> 10 -> 11 -> 12",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 12.",
+      "purpose": "This workflow likely corresponds to an initial navigation step, allowing users to explore specific features of the app."
     },
     {
-      "state_id": "18",
-      "type": "User Agreement",
-      "context": "Informs users about the Reddit user agreement requirement, providing a link to view it and a confirmation button."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27 -> 28",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, State 25, State 26, State 27, and finally State 28.",
+      "purpose": "This workflow likely corresponds to a detailed form or data entry process, allowing users to input extensive information step by step."
     },
     {
-      "state_id": "19",
-      "type": "Settings",
-      "context": "A comprehensive settings interface allowing users to customize appearance, font, behavior, images, cache, network, menus, accessibility, and backup/restore options."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 26 -> 27 -> 28",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, State 25, State 26, which loops back to State 26. From State 26, the user selects an option leading to State 27, and finally to State 28.",
+      "purpose": "This workflow allows users to revisit or confirm previous actions, ensuring data accuracy."
     },
     {
-      "state_id": "20",
-      "type": "Font Scale Settings",
-      "context": "A screen allowing users to adjust font sizes for various UI elements, enhancing accessibility and user experience."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27",
+      "description": "The user begins at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, State 25, and State 26. From State 26, the user selects an option leading to State 27.",
+      "purpose": "This workflow likely corresponds to a multi-step form or data entry process, where users input information incrementally."
     },
     {
-      "state_id": "21",
-      "type": "Progress Indicator",
-      "context": "A countdown or linear progression screen, possibly part of a multi-step process or form."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, State 24, and State 25. From State 25, the user selects an option leading to State 26.",
+      "purpose": "This workflow allows users to input partial information, possibly pausing a multi-step process."
     },
     {
-      "state_id": "22",
-      "type": "Font Scale Adjustment",
-      "context": "A screen enabling users to set font scales for different text categories, such as post titles, comments, and headers."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, State 23, and State 24. From State 24, the user selects an option leading to State 25.",
+      "purpose": "This workflow likely corresponds to a step in a multi-step form or data entry process, where users input information sequentially."
     },
     {
-      "state_id": "23",
-      "type": "Countdown Timer",
-      "context": "A screen displaying a countdown timer and font scale options, possibly part of a process tracking user activity."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, and State 23. From State 23, the user selects an option leading to State 24.",
+      "purpose": "This workflow allows users to navigate through a subset of the app's features, potentially related to preferences or settings."
     },
     {
-      "state_id": "24",
-      "type": "Font Scale Settings",
-      "context": "A screen allowing users to adjust font sizes for various UI elements, enhancing accessibility and user experience."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23",
+      "description": "The user begins at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, then State 22, and State 23.",
+      "purpose": "This workflow likely corresponds to a partial navigation through the app's features, allowing users to explore specific sections."
     },
     {
-      "state_id": "25",
-      "type": "Opened Post Titles",
-      "context": "A list of opened post titles, with options to adjust font sizes and manage preferences."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21, and then State 22.",
+      "purpose": "This workflow allows users to access a specific section of the app, potentially related to data entry or form completion."
     },
     {
-      "state_id": "26",
-      "type": "Font Scale Settings",
-      "context": "A screen allowing users to adjust font sizes for various UI elements, enhancing accessibility and user experience."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20, followed by State 21.",
+      "purpose": "This workflow likely corresponds to an initial step in a multi-step process, allowing users to input or confirm information."
     },
     {
-      "state_id": "27",
-      "type": "Appearance Settings",
-      "context": "A settings interface allowing users to customize the app's appearance, including font, behavior, images, cache, network, menus, accessibility, and about information."
+      "path": "0 -> 10 -> 11 -> 19 -> 20",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19. State 19 leads to State 20.",
+      "purpose": "This workflow allows users to access a specific section of the app, potentially related to data entry or form initialization."
     },
     {
-      "state_id": "28",
-      "type": "Security Confirmation",
-      "context": "A screen confirming user actions, ensuring secure handling of user data and agreements."
-    }
-  ],
-  "security_notes": [
-    {
-      "state_id": "1",
-      "note": "Handles user authentication, which is a security-sensitive action."
+      "path": "0 -> 10 -> 11 -> 19",
+      "description": "The user begins at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 19.",
+      "purpose": "This workflow likely corresponds to an initial navigation step, allowing users to explore specific features of the app."
     },
     {
-      "state_id": "2",
-      "note": "Accesses user data and content, necessitating careful evaluation of permissions."
+      "path": "0 -> 10 -> 11 -> 12 -> 10",
+      "description": "Starting from State 0, the user selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 12. State 12 returns to State 10, completing the flow.",
+      "purpose": "This workflow allows users to access a specific section of the app, possibly related to user profiles or account settings."
     },
     {
-      "state_id": "4",
-      "note": "Involves network API calls, which should be secure."
+      "path": "0 -> 10 -> 11 -> 12",
+      "description": "The user starts at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions to State 12.",
+      "purpose": "This workflow likely corresponds to an initial navigation step, allowing users to explore specific features of the app."
     },
     {
-      "state_id": "7",
-      "note": "Manages user preferences and data, requiring secure handling."
-    },
-    {
-      "state_id": "10",
-      "note": "Confirms user agreement, crucial for data access."
-    },
-    {
-      "state_id": "14",
-      "note": "Involves user agreements, potentially sharing internal data."
-    },
-    {
-      "state_id": "16",
-      "note": "Handles appearance settings, which could affect data presentation."
-    },
-    {
-      "state_id": "18",
-      "note": "Manages user agreements, requiring secure links."
-    },
-    {
-      "state_id": "19",
-      "note": "Accesses user preferences, which may involve permissions."
-    },
-    {
-      "state_id": "21",
-      "note": "Displays timestamps, which could indicate user activity tracking."
-    },
-    {
-      "state_id": "22",
-      "note": "Adjusts font scales, potentially impacting data privacy."
-    },
-    {
-      "state_id": "23",
-      "note": "Shows countdown timer, possibly for activity tracking."
-    },
-    {
-      "state_id": "24",
-      "note": "Adjusts font scales, which could affect data presentation."
-    },
-    {
-      "state_id": "25",
-      "note": "Displays opened post titles, which may involve privacy concerns."
-    },
-    {
-      "state_id": "26",
-      "note": "Adjusts font scales, potentially impacting accessibility and privacy."
-    },
-    {
-      "state_id": "27",
-      "note": "Customizes appearance, which could affect data display."
-    },
-    {
-      "state_id": "28",
-      "note": "Confirms user actions, ensuring secure handling."
+      "path": "0 -> 10 -> 11 -> 11 -> 12 -> 10",
+      "description": "The user begins at State 0 and selects an option leading to State 10. From State 10, they proceed to State 11, which transitions back to State 11. From State 11, the user selects an option leading to State 12, which returns to State 10.",
+      "purpose": "This workflow allows users to revisit or confirm a previous action, ensuring data consistency."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "model": "gemma-2-9b-it-Q4_K_M",
-  "timestamp": "2026-07-14T12:31:43.286478",
+  "timestamp": "2026-07-16T19:13:16.579863",
   "levels": [
     "all"
   ],
@@ -9,26 +9,26 @@
   "temperature_sweep": [
     {
       "temperature": 0.0,
-      "success": false,
-      "time": 109.16,
-      "length": 0,
-      "score": 0
+      "success": true,
+      "time": 69.51,
+      "length": 2883,
+      "score": 10
     },
     {
       "temperature": 0.3,
-      "success": false,
-      "time": 114.65,
-      "length": 0,
-      "score": 0
+      "success": true,
+      "time": 74.04,
+      "length": 3110,
+      "score": 10
     },
     {
       "temperature": 0.7,
-      "success": false,
-      "time": 118.17,
-      "length": 0,
-      "score": 0
+      "success": true,
+      "time": 73.45,
+      "length": 3426,
+      "score": 10
     }
   ],
-  "best_temperature": null,
-  "best_score": -1
+  "best_temperature": 0.0,
+  "best_score": 10
 }

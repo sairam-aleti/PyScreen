@@ -1,0 +1,664 @@
+--- Screen 1: level_8/state_0.png ---
+11:31 243
+
+RedReader
+
+Reddit User Agreement
+
+RedReader accesses content using the Reddit
+API. To access Reddit, please read the terms
+and conditions at the link below, and confirm
+that you accept them.
+
+--- Screen 2: level_1/state_1.png ---
+11:30
+
+RedReader
+
+Front Page
+All Subreddits
+Find Location <Q
+
+Subscribed Subreddits
+
+art
+Log in
+
+You are not currently logged in.
+a You can access the account list by
+selecting Accounts from the menu.
+
+Be anonymous Log in now
+
+be
+
+creepy
+dataisbeautiful
+diy
+documentaries
+
+earthporn
+
+--- Screen 3: level_6/state_2.png ---
+11:31
+
+RedReader
+
+Front Page
+All Subreddits
+
+Find Location <Q
+
+Subscribed Subreddits
+
+ar
+Reddit Accounts
+a
+Add Reddit Account
+a
+Anonymous (Active)
+a
+b Close
+creepy
+
+dataisbeautiful
+diy
+documentaries
+
+earthporn
+
+--- Screen 4: level_3/state_3.png ---
+11:30
+
+RedReader
+
+Front Page
+All Subreddits
+
+Find Location 4a
+
+Subscribed Subreddits
+
+¢ To log in, you will now be taken to
+Reddit in a web browser.
+
+¢ When the login is complete, you should
+be redirected back to RedReader.
+
+¢ Having trouble logging in? Click here
+for help.
+
+a
+
+b Close Continue
+
+creepy
+
+dataisbeautiful
+diy
+documentaries
+
+earthporn
+
+--- Screen 5: level_4/state_4.png ---
+11:31
+
+< RedReader
+
+Web page not available
+
+The web page at
+https://www.reddit.com/api/v1/authorize.compact?
+response_type=code&duration=permanent&state=Te>
+could not be loaded because:
+
+net::ERR_INTERNET_DISCONNECTED
+
+--- Screen 6: level_5/state_5.png ---
+11:31
+
+< RedReader
+
+Web page not available
+
+The web page at
+https://www.reddit.com/api/v1/authorize.compact?
+response_type=code&duration=permanent&state=Te>
+could not be loaded because:
+
+net::ERR_INTERNET_DISCONNECTED
+
+--- Screen 7: level_3/state_6.png ---
+11:31
+
+RedReader
+
+Front Page
+
+All Subreddits
+
+Find Location PrN
+Subscribed Subreddits
+
+art
+
+askreddit
+
+askscience
+
+aww
+
+books
+
+creepy
+
+dataisbeautiful
+
+diy
+
+documentaries
+
+earthporn
+
+--- Screen 8: level_5/state_7.png ---
+11:32
+
+RedReader
+
+Front Page
+
+All Subreddits
+
+Find Location <Q
+Pinned Subreddits
+
+y Copy Link
+Sul View in External Browser
+Share
+
+2 Block Subreddit
+
+a Pin to Main Menu
+
+aww
+books
+
+creepy
+dataisbeautiful
+
+diy
+
+--- Screen 9: level_5/state_8.png ---
+11:31
+
+RedReader
+
+Front Page
+All Subreddits
+Find Location <0,
+
+Pinned Subreddits
+
+/t/diy
+
+Subscribed Subreddits
+art
+askreddit
+askscience
+aww
+books
+creepy
+dataisbeautiful
+
+diy
+
+--- Screen 10: level_6/state_9.png ---
+11:31
+
+RedReader
+
+Front Page
+All Subreddits
+Find Location <0,
+
+Pinned Subreddits
+
+/t/diy
+
+Subscribed Subreddits
+art
+askreddit
+askscience
+aww
+books
+creepy
+dataisbeautiful
+
+diy
+
+--- Screen 11: level_7/state_10.png ---
+11:31
+
+€ Front Page
+
+Front Page
+
+reddit.com/hot
+
+Reddit user agreement not accepted
+
+If you wish to access content through the Reddit API,
+please accept their user agreement.
+
+VIEW AGREEMENT DETAILS
+
+--- Screen 12: level_9/state_11.png ---
+11:31
+
+€ Front Page
+
+Front Page
+
+reddit.com/hot
+
+Reddit user agreemen
+If you wish to access conte
+
+please accept their user agré
+
+VIEW AGREEMENT
+
+Past Versions
+
+Submit Post
+
+Accounts
+
+Themes
+
+Settings
+
+Search
+
+--- Screen 13: level_9/state_12.png ---
+11:31
+
+€ Front Page
+
+Front Page
+
+reddit.com/hot
+
+Night
+
+Night (low contrast)
+
+Green
+
+Blue
+
+Light Blue
+
+Orange
+
+Gray
+
+OO0O0000000 ©
+
+Ultra Black
+
+--- Screen 14: level_5/state_13.png ---
+11:32
+
+< /r/documentaries
+
+Reddit user agreement not accepted
+
+If you wish to access content through the Reddit API,
+please accept their user agreement.
+
+DETAILS
+
+VIEW AGREEMENT
+
+--- Screen 15: level_4/state_14.png ---
+11:32
+
+< /r/documentaries
+
+Reddit user agreement not accepted
+
+If you wish to access content through the Reddit API,
+please accept their user agreement.
+
+DETAILS
+
+VIEW AGREEMENT
+
+--- Screen 16: level_3/state_15.png ---
+11:32
+
+RedReader
+
+Front Page
+
+All Subreddits
+
+Find Location <Q
+Pinned Subreddits
+
+y Copy Link
+Sul View in External Browser
+Share
+
+2 Block Subreddit
+
+@ —Unpin from Main Menu
+
+aww
+books
+
+creepy
+dataisbeautiful
+
+diy
+
+--- Screen 17: level_4/state_16.png ---
+11:32
+
+RedReader
+
+Front Page
+All Subreddits
+Find Location <0,
+
+Pinned Subreddits
+
+/t/diy
+
+Subscribed Subreddits
+art
+askreddit
+askscience
+aww
+
+books
+
+creepy
+
+reddit
+.com/r/diy
+
+--- Screen 18: level_5/state_17.png ---
+11:32
+
+RedReader
+
+Front Page
+All Subreddits
+Find Location <0,
+
+Pinned Subreddits
+
+/t/diy
+
+Subscribed Subreddits
+art
+askreddit
+askscience
+aww
+books
+creepy
+dataisbeautiful
+
+diy
+
+--- Screen 19: level_6/state_18.png ---
+11:32
+
+< /r/aww
+
+Reddit user agreement not accepted
+
+If you wish to access content through the Reddit API,
+please accept their user agreement.
+
+DETAILS
+
+VIEW AGREEMENT
+
+--- Screen 20: level_8/state_19.png ---
+11:33 20
+€_ Settings
+Appearance
+Font
+Behaviour
+Images/Video
+Cache
+Network
+Menus
+Accessibility
+Backup/Restore
+
+About
+
+--- Screen 21: level_9/state_20.png ---
+11:33 243
+
+< Font
+
+Font Scale
+
+Global
+Normal
+
+Post titles
+Use global font scale
+
+Post subtitles
+Use global font scale
+
+Opened post titles
+Use global font scale
+
+Opened post subtitles
+Use global font scale
+
+Comment/Inbox headers
+Use global font scale
+
+Body text
+Use global font scale
+
+Link buttons
+Use global font scale
+
+--- Screen 22: level_10/state_21.png ---
+11:33 74m‘)
+
+Comment/Inbox headers
+
+Use global font scale
+0.7x
+0.8x
+0.9x
+Normal
+1.05x
+1.1x
+1.2x
+1.3x
+1.4x
+1.5x
+
+1.6x
+
+(OR Ol Ooen O ln Onn Onn On On On On On OO)
+
+1.7x
+
+Cancel
+
+< @ a
+
+--- Screen 23: level_11/state_22.png ---
+11:33 243
+
+< Font
+
+Font Scale
+
+Global
+Normal
+
+Post titles
+Use global font scale
+
+Post subtitles
+Use global font scale
+
+Opened post titles
+Use global font scale
+
+Opened post subtitles
+Use global font scale
+
+Comment/Inbox headers
+0.7x
+
+Body text
+Use global font scale
+
+Link buttons
+Use global font scale
+
+--- Screen 24: level_12/state_23.png ---
+11:33 74m‘)
+
+Post subtitles
+
+Use global font scale
+0.7x
+0.8x
+0.9x
+Normal
+1.05x
+1.1x
+1.2x
+1.3x
+1.4x
+1.5x
+
+1.6x
+
+(OR Ol Ooen O ln Onn Onn On On On On On OO)
+
+1.7x
+
+Cancel
+
+< @ a
+
+--- Screen 25: level_13/state_24.png ---
+11:33 243
+
+< Font
+
+Font Scale
+
+Global
+Normal
+
+Post titles
+Use global font scale
+
+Post subtitles
+1.1x
+
+Opened post titles
+Use global font scale
+
+Opened post subtitles
+Use global font scale
+
+Comment/Inbox headers
+0.7x
+
+Body text
+Use global font scale
+
+Link buttons
+Use global font scale
+
+--- Screen 26: level_14/state_25.png ---
+11:33 74m‘)
+
+Opened post titles
+
+Use global font scale
+0.7x
+0.8x
+0.9x
+Normal
+1.05x
+1.1x
+1.2x
+1.3x
+1.4x
+1.5x
+
+1.6x
+
+(OR Ol Ooen O ln Onn Onn On On On On On OO)
+
+1.7x
+
+Cancel
+
+< @ a
+
+--- Screen 27: level_16/state_26.png ---
+11:33 243
+
+< Font
+
+Font Scale
+
+Global
+Normal
+
+Post titles
+Use global font scale
+
+Post subtitles
+1.1x
+
+Opened post titles
+1.4x
+
+Opened post subtitles
+Use global font scale
+
+Comment/Inbox headers
+0.7x
+
+Body text
+Use global font scale
+
+Link buttons
+Use global font scale
+
+--- Screen 28: level_16/state_27.png ---
+11:33 20
+€_ Settings
+Appearance
+Font
+Behaviour
+Images/Video
+Cache
+Network
+Menus
+Accessibility
+Backup/Restore
+
+About
+

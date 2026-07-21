@@ -1,6 +1,6 @@
 {
-  "model": "unknown",
-  "timestamp": "2026-07-16T19:09:11.344225",
+  "model": "qwen2.5-72b-instruct-q4_k_m-00001-of-00012",
+  "timestamp": "2026-07-19T00:04:10.525177",
   "levels": [
     "all"
   ],
@@ -10,21 +10,21 @@
     {
       "temperature": 0.0,
       "success": false,
-      "time": 26.02,
+      "time": 2543.17,
       "length": 0,
       "score": 0
     },
     {
       "temperature": 0.3,
       "success": false,
-      "time": 26.02,
+      "time": 2609.21,
       "length": 0,
       "score": 0
     },
     {
       "temperature": 0.7,
       "success": false,
-      "time": 26.02,
+      "time": 2475.11,
       "length": 0,
       "score": 0
     }

@@ -1,0 +1,167 @@
+{
+  "app_summary": "The RedReader app is a client for the Reddit platform, allowing users to browse and interact with Reddit content. It provides features such as user authentication, subreddit selection, and customization of font styles and sizes.",
+  "core_workflows": [
+    {
+      "path": "0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 0",
+      "description": "User Agreement -> Login/Signup -> Main Feed -> Subreddit Selection -> Authorization Error -> Web Authentication Error -> User Agreement",
+      "purpose": "To allow new users to accept the user agreement, log in, and access the main feed of Reddit content."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 9 -> 10 -> 11 -> 12 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27",
+      "description": "User Agreement -> Login/Signup -> Main Feed -> Subreddit Selection -> Authorization Error -> Web Authentication Error -> Subreddit Selection -> Front Page -> Themes -> Font Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings - General",
+      "purpose": "To guide the user through the app's settings, allowing them to customize font styles and sizes, and explore general settings categories."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 9 -> 10 -> 13 -> 14 -> 15 -> 16 -> 17 -> 7 -> 8 -> 18 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27",
+      "description": "User Agreement -> Login/Signup -> Main Feed -> Subreddit Selection -> Authorization Error -> Web Authentication Error -> Subreddit Selection -> Reddit User Agreement -> User Agreement Prompt -> Pinned Subreddits Screen -> Home Screen -> Main Dashboard -> Subreddit View -> Agreement Screen -> Settings -> Font Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings - General",
+      "purpose": "To guide the user through the app's settings, allowing them to customize font styles and sizes, and explore general settings categories, after accepting the Reddit user agreement."
+    },
+    {
+      "path": "0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 9 -> 10 -> 11 -> 12 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27 -> 28",
+      "description": "User Agreement -> Login/Signup -> Main Feed -> Subreddit Selection -> Authorization Error -> Web Authentication Error -> Subreddit Selection -> Front Page -> Themes -> Font Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings -> Settings - General -> End",
+      "purpose": "To guide the user through the app's settings, allowing them to customize font styles and sizes, and explore general settings categories, and then exit the app."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "state_0",
+      "type": "User Agreement",
+      "context": "This screen displays the Reddit User Agreement for the RedReader application. It contains a brief description of how the app accesses Reddit content using the Reddit API. The screen presents a button to confirm acceptance of the terms and conditions."
+    },
+    {
+      "state_id": "state_19",
+      "type": "Settings",
+      "context": "This screen displays the main settings menu for the RedReader application. It lists various categories such as Appearance, Behavior, Images/Video, Cache, Network, Menus, Accessibility, and Backup/Restore. The 'About' option is also present at the bottom."
+    },
+    {
+      "state_id": "level_1/state_1",
+      "type": "Login/Signup",
+      "context": "This screen is the initial screen of the application, displaying a list of popular subreddits. It has a header with the app name 'RedReader' and the current time '11:30'. The screen also displays a 'Log in' button, indicating that the user is not currently logged in. Below the login button, there is a list of subscribed subreddits with icons. The screen also contains a 'Find Location' button with a magnifying glass icon."
+    },
+    {
+      "state_id": "state_2.png",
+      "type": "Main Feed",
+      "context": "The main feed screen displaying the front page of Reddit. It shows all subreddits and allows users to search for locations. The user's subscribed subreddits are listed below, along with their Reddit accounts. The screen also has a 'Find Location' button and an option to add a new Reddit account."
+    },
+    {
+      "state_id": "state_9.png",
+      "type": "Subreddit Selection",
+      "context": "This screen displays the user's pinned and subscribed subreddits. The user can select a subreddit to view its content. The screen also shows the front page of Reddit and allows users to search for subreddits using the 'Find Location' button."
+    },
+    {
+      "state_id": "state_18.png",
+      "type": "Agreement Screen",
+      "context": "This screen informs the user that they need to accept the Reddit user agreement to access content through the Reddit API. It displays the current time (11:32) and provides buttons to view the agreement details and accept the agreement."
+    },
+    {
+      "state_id": "state_3",
+      "type": "Login Screen",
+      "context": "This screen is a login screen for the RedReader application. It displays the current time (11:30), the app name 'RedReader', and two main sections: 'Front Page' and 'All Subreddits'. The 'Find Location' button is present but disabled ('4a'). The 'Subscribed Subreddits' section is empty. Below these, there's a login instruction message explaining that the user will be taken to Reddit in a web browser for login, and will be redirected back to RedReader upon successful login. There are also help and close buttons ('a' and 'b'). The screen is displaying some subscribed subreddits like 'creepy', 'dataisbeautiful', 'diy', etc."
+    },
+    {
+      "state_id": "state_6",
+      "type": "Subreddit Selection Screen",
+      "context": "This screen allows users to select subreddits. It displays the current time (11:31), the app name 'RedReader', and two main sections: 'Front Page' and 'All Subreddits'. The 'Find Location' button is enabled ('PrN'). The 'Subscribed Subreddits' section is populated with various subreddits like 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', 'diy', 'documentaries', 'earthporn', etc."
+    },
+    {
+      "state_id": "state_15",
+      "type": "Pinned Subreddits Screen",
+      "context": "This screen displays pinned subreddits. It shows the current time (11:32), the app name 'RedReader', and two main sections: 'Front Page' and 'All Subreddits'. The 'Find Location' button is enabled ('<Q'). The 'Pinned Subreddits' section is populated with subreddits like 'aww', 'books', 'creepy', 'dataisbeautiful', 'diy', etc. Each subreddit has options to 'Copy Link', 'View in External Browser', 'Share', 'Block Subreddit', and 'Unpin from Main Menu'."
+    },
+    {
+      "state_id": "state_4.png",
+      "type": "Authorization Error",
+      "context": "This screen displays an error message indicating that the web page at the specified Reddit API URL could not be loaded due to a network disconnect (net::ERR_INTERNET_DISCONNECTED). The screen is showing a RedReader app error state."
+    },
+    {
+      "state_id": "state_14.png",
+      "type": "User Agreement Prompt",
+      "context": "This screen prompts the user to accept the Reddit user agreement to access content through the Reddit API. It displays a message 'Reddit user agreement not accepted' and provides two options: 'DETAILS' and 'VIEW AGREEMENT'."
+    },
+    {
+      "state_id": "state_16.png",
+      "type": "Home Screen",
+      "context": "This screen is the main home screen of the RedReader app. It displays several sections: 'Front Page', 'All Subreddits', 'Find Location', 'Pinned Subreddits', 'Subscribed Subreddits', and a list of subscribed subreddits (e.g., /r/diy, /r/art, /r/askreddit, etc.). There is also a footer with the Reddit logo and the URL 'reddit.com'."
+    },
+    {
+      "state_id": "state_5.png",
+      "type": "Web Authentication Error",
+      "context": "The screen displays an error message indicating that the web page at 'https://www.reddit.com/api/v1/authorize.compact?...' could not be loaded due to a network disconnect (net::ERR_INTERNET_DISCONNECTED). This suggests that the user was attempting to authorize the application to access their Reddit account, but the process failed due to a lack of internet connectivity."
+    },
+    {
+      "state_id": "state_7.png",
+      "type": "Main Dashboard",
+      "context": "The screen shows the main dashboard of the RedReader application. It displays various sections such as 'Front Page', 'All Subreddits', 'Pinned Subreddits', and 'Subscribed Subreddits'. It also includes navigation options like 'Find Location' and 'Share'. The screen lists several subreddits the user is subscribed to, including 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'."
+    },
+    {
+      "state_id": "state_8.png",
+      "type": "Subreddit View",
+      "context": "The screen displays a specific subreddit ('/r/diy') within the RedReader application. It shows the subreddit's name and provides options to navigate to 'All Subreddits' or 'Subscribed Subreddits'. The user's subscribed subreddits are listed below, including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'."
+    },
+    {
+      "state_id": "state_13.png",
+      "type": "Reddit User Agreement",
+      "context": "The screen displays a message indicating that the user has not accepted the Reddit user agreement to access content through the Reddit API. It provides options to view the agreement details and accept it."
+    },
+    {
+      "state_id": "state_17.png",
+      "type": "Main Dashboard (After User Agreement)",
+      "context": "The screen shows the main dashboard of the RedReader application after the user has accepted the Reddit user agreement. It displays the same sections as 'state_7.png', but with the addition of the 'Subscribed Subreddits' section, indicating that the user has successfully authorized the application to access their Reddit account."
+    },
+    {
+      "state_id": "level_7/state_10",
+      "type": "Warning",
+      "context": "This screen displays a warning message indicating that the Reddit user agreement has not been accepted. It shows the time (11:31), the title 'Front Page', and the subtitle 'reddit.com/hot'. The main content is a message stating that to access content through the Reddit API, the user agreement must be accepted. There is a button labeled 'VIEW AGREEMENT DETAILS'."
+    },
+    {
+      "state_id": "state_11",
+      "type": "Front Page",
+      "context": "This screen displays the 'Front Page' of the application, showing the most popular posts from Reddit's 'hot' section. It includes the following UI elements and data:\n- A header with the time (11:31) and the application's logo.\n- A navigation bar with the following options: 'Front Page', 'Reddit user', 'Accounts', 'Themes', 'Settings', and 'Search'.\n- The main content area displays the title 'Reddit user agreemen' and a message asking the user to accept an agreement to access content.\n- A 'VIEW AGREEMENT' button.\n- A 'Past Versions' section.\n- A 'Submit Post' button."
+    },
+    {
+      "state_id": "state_12",
+      "type": "Themes",
+      "context": "This screen displays the 'Themes' options for the application. It includes the following UI elements and data:\n- A header with the time (11:31) and the application's logo.\n- A navigation bar with the same options as 'state_11'.\n- The main content area displays various theme options, including 'Night', 'Night (low contrast)', 'Green', 'Blue', 'Light Blue', 'Orange', and 'Gray'.\n- An 'Ultra Black' option at the bottom.\n- A copyright symbol (\u00a9) and a string of zeros ('OO0O0000000')."
+    },
+    {
+      "state_id": "state_20",
+      "type": "Font Settings",
+      "context": "This screen displays the font settings for the application. It includes the following UI elements and data:\n- A header with the time (11:33) and the application's logo.\n- A navigation bar with the same options as 'state_11' and 'state_12'.\n- The main content area displays various font scale options for different text elements in the application, such as 'Font Scale', 'Global', 'Normal', 'Post titles', 'Post subtitles', 'Opened post titles', 'Opened post subtitles', 'Comment/Inbox headers', 'Body text', and 'Link buttons'."
+    },
+    {
+      "state_id": "level_10/state_21.png",
+      "type": "Settings",
+      "context": "This screen appears to be a part of the application's settings, specifically dealing with font scale adjustments. It displays a list of font scale options ranging from 0.7x to 1.7x, with 'Normal' being the default. The screen also contains a 'Cancel' button at the bottom. This screen is part of the state transition graph at state ID 21."
+    },
+    {
+      "state_id": "state_22",
+      "type": "Settings",
+      "context": "This screen appears to be a settings menu for font sizes within the application. It allows users to adjust the font scale for various UI elements such as post titles, subtitles, and comment headers. The global font scale can be used for most text elements, while comment headers have a specific scale of 0.7x."
+    },
+    {
+      "state_id": "level_12/state_23",
+      "type": "Settings",
+      "context": "This screen appears to be a part of the application's settings, specifically focused on accessibility. It provides options to adjust the global font scale for improved readability. The available options range from 0.7x to 1.7x, with 'Normal' being the default (1.0x). The screen also includes a 'Cancel' button to discard any changes made. There are no sensitive data or interactive elements visible on this screen."
+    },
+    {
+      "state_id": "state_24",
+      "type": "Settings",
+      "context": "This screen appears to be a settings menu for the application's font styles. It allows users to adjust the font scale for various UI elements such as post titles, subtitles, comment headers, and body text. The font scale for opened post titles and subtitles is set to use the global font scale, while other elements have customizable scales."
+    },
+    {
+      "state_id": "state_25",
+      "type": "Settings",
+      "context": "This screen appears to be a settings menu for adjusting the font scale of post titles globally. It provides a range of options from 0.7x to 1.7x, with 'Normal' as the default. The screen also contains a 'Cancel' button to discard any changes made."
+    },
+    {
+      "state_id": "state_26",
+      "type": "Settings - Font",
+      "context": "This screen displays various font settings for the application. It includes options for global font scale, post titles, subtitles, opened posts, comment/inbox headers, body text, and link buttons. Each option has a corresponding scale value that can be adjusted."
+    },
+    {
+      "state_id": "state_27",
+      "type": "Settings - General",
+      "context": "This screen presents a list of general settings categories for the application. The categories include Appearance, Behaviour, Images/Video, Cache, Network, Menus, Accessibility, Backup/Restore, and About. Each category can be expanded to reveal more specific settings."
+    }
+  ]
+}

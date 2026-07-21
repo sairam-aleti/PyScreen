@@ -2,174 +2,67 @@
 
 ```json
 {
-  "app_summary": "RedReader is an Android application that allows users to access Reddit content, manage subscriptions, and customize their experience. It includes features for user agreements, settings, error handling, and content management, with a focus on privacy and security considerations.",
+  "app_summary": "The app appears to be a navigation or mapping application that allows users to explore and interact with various locations or points of interest. The app's functionality includes transitioning between different screens or states, each representing a unique part of the user interface or a specific action. The app likely provides features such as location-based navigation, exploration, and interaction with map markers or points of interest. The app's workflow involves multiple states and transitions, allowing users to navigate through different sections and complete various tasks related to exploration or navigation.",
   "core_workflows": [
     {
-      "path": "state_0 -> state_1 -> state_10",
-      "description": "Initial user agreement screen leading to main menu or other settings.",
-      "purpose": "Ensures users agree to Reddit's terms before accessing the app."
+      "path": "0 -> 1 -> 2",
+      "description": "The user starts at state 0 and selects an option to transition to state 1. From state 1, the user is directed to state 2. This workflow represents a basic navigation path through the app's initial states.",
+      "purpose": "This workflow allows the user to progress through the app's initial states, setting up the foundation for more complex interactions."
     },
     {
-      "path": "state_1 -> state_2 -> state_3 -> state_6 -> state_15",
-      "description": "Main menu navigation and content access after login.",
-      "purpose": "Provides users with access to various app features and content."
+      "path": "0 -> 10 -> 11 -> 11",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 11. State 11 allows the user to stay in the same state, indicating a possible loop or repeated action. This workflow represents a path that focuses on exploring state 10 and its subsequent transitions.",
+      "purpose": "This workflow allows the user to explore and interact with state 10 and its child states, providing opportunities for repeated actions or loops."
     },
     {
-      "path": "state_4 -> state_14 -> state_16",
-      "description": "Handles internet connectivity issues and user agreement acceptance.",
-      "purpose": "Manages app functionality when internet access is unavailable."
+      "path": "0 -> 10 -> 10",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed back to state 10, creating a loop. This workflow represents a self-referential or recursive action within state 10.",
+      "purpose": "This workflow highlights the app's ability to handle self-referential actions, allowing users to revisit the same state multiple times."
     },
     {
-      "path": "state_5 -> state_7 -> state_8 -> state_13 -> state_17",
-      "description": "Error handling and content display for various user actions.",
-      "purpose": "Provides error messages and content access, ensuring smooth user experience."
+      "path": "0 -> 10 -> 9 -> 10",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 9. From state 9, the user is directed back to state 10. This workflow represents a path that involves transitioning between states 10 and 9 in a loop.",
+      "purpose": "This workflow allows the user to explore interactions between states 10 and 9, creating a loop that can be utilized for specific tasks or exploration."
     },
     {
-      "path": "state_9 -> state_10 -> state_11 -> state_12 -> state_20 -> state_23 -> state_24 -> state_25 -> state_26 -> state_27",
-      "description": "Customization of appearance and font settings across multiple screens.",
-      "purpose": "Allows users to tailor the app's visual appearance and accessibility."
-    }
-  ],
-  "screen_contexts": [
-    {
-      "state_id": "0",
-      "type": "User Agreement",
-      "context": "Informs users about accessing Reddit content via the Reddit API and requests confirmation of terms acceptance."
+      "path": "0 -> 10 -> 9 -> 13 -> 14 -> 13",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 9. From state 9, the user is directed to state 13. From state 13, the user is directed to state 14. From state 14, the user is directed back to state 13. This workflow represents a multi-step path that involves several states and loops back to state 13.",
+      "purpose": "This workflow allows the user to navigate through multiple states, including state 13 and 14, and demonstrates the app's ability to handle multi-step transitions and loops."
     },
     {
-      "state_id": "1",
-      "type": "Main Menu",
-      "context": "Dashboard displaying navigation options, subscribed subreddits, and login prompts."
+      "path": "0 -> 10 -> 9 -> 15 -> 16 -> 7",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 9. From state 9, the user is directed to state 15. From state 15, the user is directed to state 16. From state 16, the user is directed to state 7. This workflow represents a path that leads the user through multiple states, ultimately reaching state 7.",
+      "purpose": "This workflow allows the user to explore a multi-step path that leads to state 7, potentially indicating a location or feature-related destination."
     },
     {
-      "state_id": "2",
-      "type": "Subreddit Management",
-      "context": "Manages subscribed subreddits and location settings."
+      "path": "0 -> 10 -> 9 -> 15 -> 16 -> 7 -> 8 -> 9",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 9. From state 9, the user is directed to state 15. From state 15, the user is directed to state 16. From state 16, the user is directed to state 7. From state 7, the user is directed to state 8. From state 8, the user is directed back to state 9. This workflow represents a complex path that involves multiple states and loops back to state 9.",
+      "purpose": "This workflow demonstrates the app's ability to handle complex transitions and loops, allowing users to explore multiple features or destinations."
     },
     {
-      "state_id": "3",
-      "type": "Login",
-      "context": "Login prompt directing users to log in via a web browser."
+      "path": "0 -> 10 -> 9 -> 13 -> 14 -> 13 -> 9",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 9. From state 9, the user is directed to state 13. From state 13, the user is directed to state 14. From state 14, the user is directed back to state 13. From state 13, the user is directed back to state 9. This workflow represents a path that involves multiple loops and transitions between states 9, 13, and 14.",
+      "purpose": "This workflow highlights the app's ability to handle multiple loops and transitions, allowing users to revisit previous states for repeated actions."
     },
     {
-      "state_id": "4",
-      "type": "Error Handling",
-      "context": "Displays error messages for internet connectivity issues."
+      "path": "0 -> 10 -> 9 -> 13 -> 14 -> 13 -> 9 -> 10",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 9. From state 9, the user is directed to state 13. From state 13, the user is directed to state 14. From state 14, the user is directed back to state 13. From state 13, the user is directed back to state 9. From state 9, the user is directed back to state 10. This workflow represents a complex path that involves multiple loops and transitions, ultimately returning to state 10.",
+      "purpose": "This workflow demonstrates the app's ability to handle complex transitions and loops, allowing users to explore multiple features or destinations and return to a previous state."
     },
     {
-      "state_id": "5",
-      "type": "Error Handling",
-      "context": "Displays error messages for web page unavailability."
+      "path": "0 -> 10 -> 11 -> 12 -> 10",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 11. From state 11, the user is directed to state 12. From state 12, the user is directed back to state 10. This workflow represents a path that involves transitioning through states 10, 11, and 12, and then returning to state 10.",
+      "purpose": "This workflow allows the user to explore interactions between states 10, 11, and 12, creating a loop that can be utilized for specific tasks or exploration."
     },
     {
-      "state_id": "6",
-      "type": "Main Content",
-      "context": "Main feed displaying subreddits and location options."
+      "path": "0 -> 10 -> 11 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 25 -> 26 -> 27 -> 28",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 11. From state 11, the user is directed to state 19. From state 19, the user is directed to state 20. From state 20, the user is directed to state 21. From state 21, the user is directed to state 22. From state 22, the user is directed to state 23. From state 23, the user is directed to state 24. From state 24, the user is directed to state 25. From state 25, the user is directed to state 26. From state 26, the user is directed to state 27. From state 27, the user is directed to state 28. This workflow represents a long, multi-step path that leads the user through multiple states, potentially indicating a detailed exploration or setup process.",
+      "purpose": "This workflow allows the user to navigate through a series of states, potentially setting up or configuring a specific feature or destination within the app."
     },
     {
-      "state_id": "7",
-      "type": "Content Management",
-      "context": "Interactive feed for managing content and subscriptions."
-    },
-    {
-      "state_id": "8",
-      "type": "Content Management",
-      "context": "Similar to state_7 but with a different state."
-    },
-    {
-      "state_id": "9",
-      "type": "Pinned Subreddits",
-      "context": "Screen for managing pinned subreddits."
-    },
-    {
-      "state_id": "10",
-      "type": "User Agreement",
-      "context": "Error/warning screen for unaccepted user agreement."
-    },
-    {
-      "state_id": "11",
-      "type": "Main Content",
-      "context": "Main front page displaying popular content."
-    },
-    {
-      "state_id": "12",
-      "type": "Theme Customization",
-      "context": "Screen for theme customization within the front page."
-    },
-    {
-      "state_id": "13",
-      "type": "Legal Screen",
-      "context": "Legal screen prompting user to accept Reddit's user agreement."
-    },
-    {
-      "state_id": "14",
-      "type": "User Agreement",
-      "context": "Informs users about Reddit API access and terms."
-    },
-    {
-      "state_id": "15",
-      "type": "Content Management",
-      "context": "Interactive feed for managing content and subscriptions."
-    },
-    {
-      "state_id": "16",
-      "type": "Main Content",
-      "context": "Main content screen displaying subreddits and settings."
-    },
-    {
-      "state_id": "17",
-      "type": "Content Management",
-      "context": "Similar to state_15 but with a different state."
-    },
-    {
-      "state_id": "18",
-      "type": "Error Handling",
-      "context": "Error/warning screen for unaccepted user agreement."
-    },
-    {
-      "state_id": "19",
-      "type": "Settings",
-      "context": "Customizable settings for app behavior and appearance."
-    },
-    {
-      "state_id": "20",
-      "type": "Font Settings",
-      "context": "Screen for adjusting font scale settings."
-    },
-    {
-      "state_id": "21",
-      "type": "Comment Management",
-      "context": "Screen for managing comments or messages with font settings."
-    },
-    {
-      "state_id": "22",
-      "type": "Font Settings",
-      "context": "Screen for adjusting font scale settings for different text elements."
-    },
-    {
-      "state_id": "23",
-      "type": "Font Settings",
-      "context": "Screen for adjusting font size options for various text elements."
-    },
-    {
-      "state_id": "24",
-      "type": "Appearance Settings",
-      "context": "Main appearance settings screen allowing customization of visual aspects."
-    },
-    {
-      "state_id": "25",
-      "type": "Font Settings",
-      "context": "Screen for adjusting font size settings for specific text elements."
-    },
-    {
-      "state_id": "26",
-      "type": "Font Settings",
-      "context": "Screen for adjusting global font scale settings."
-    },
-    {
-      "state_id": "27",
-      "type": "Appearance Settings",
-      "context": "Expandable categories for various appearance settings."
+      "path": "0 -> 10 -> 11 -> 12 -> 10 -> 9 -> 13 -> 14 -> 13 -> 9 -> 10",
+      "description": "The user starts at state 0 and selects an option to transition to state 10. From state 10, the user is directed to state 11. From state 11, the user is directed to state 12. From state 12, the user is directed back to state 10. From state 10, the user is directed to state 9. From state 9, the user is directed to state 13. From state 13, the user is directed to state 14. From state 14, the user is directed back to state 13. From state 13, the user is directed back to state 9. From state 9, the user is directed back to state 10. This workflow represents a complex path that involves multiple loops and transitions, ultimately returning to state 10.",
+      "purpose": "This workflow demonstrates the app's ability to handle complex transitions and loops, allowing users to explore multiple features or destinations and return to a previous state."
     }
   ]
 }

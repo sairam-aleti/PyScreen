@@ -134,9 +134,10 @@ def main():
                         help="Temperatures to sweep")
     parser.add_argument("--top_p", type=float, default=0.95, help="Top_p for inference")
     parser.add_argument("--top_k", type=int, default=64, help="Top_k for inference")
+    parser.add_argument("--output-dir", type=str, default="benchmark_results", help="Directory to store benchmark results.")
     args = parser.parse_args()
 
-    results_dir = "benchmark_results"
+    results_dir = args.output_dir
     os.makedirs(results_dir, exist_ok=True)
     cache_path = os.path.join(results_dir, "ocr_cache.json")
 
