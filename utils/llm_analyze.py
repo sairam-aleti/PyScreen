@@ -13,6 +13,91 @@ import logging
 import json
 from dotenv import load_dotenv
 
+BATCH_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "screen_contexts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "state_id": {"type": "string"},
+          "type": {"type": "string"},
+          "context": {"type": "string"},
+          "confidence_score": {"type": "integer"}
+        },
+        "required": ["state_id", "type", "context", "confidence_score"]
+      }
+    }
+  },
+  "required": ["screen_contexts"]
+}
+
+SYNTHESIS_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "app_summary": {"type": "string"},
+    "core_workflows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {"type": "string"},
+          "description": {"type": "string"},
+          "purpose": {"type": "string"}
+        },
+        "required": ["path", "description", "purpose"]
+      }
+    }
+  },
+  "required": ["app_summary", "core_workflows"]
+}
+
+SINGLE_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "app_summary": {"type": "string"},
+    "core_workflows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {"type": "string"},
+          "description": {"type": "string"},
+          "purpose": {"type": "string"}
+        },
+        "required": ["path", "description", "purpose"]
+      }
+    },
+    "screen_contexts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "state_id": {"type": "string"},
+          "type": {"type": "string"},
+          "context": {"type": "string"},
+          "confidence_score": {"type": "integer"}
+        },
+        "required": ["state_id", "type", "context", "confidence_score"]
+      }
+    }
+  },
+  "required": ["app_summary", "core_workflows", "screen_contexts"]
+}
+
+AUDITOR_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "state_id": {"type": "string"},
+    "type": {"type": "string"},
+    "context": {"type": "string"},
+    "confidence_score": {"type": "integer"}
+  },
+  "required": ["state_id", "type", "context", "confidence_score"]
+}
+
+
 load_dotenv()
 
 logger = logging.getLogger("pyscreen")
@@ -167,9 +252,21 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
             "temperature": kwargs.get("temperature", 1.0),
             "top_p": kwargs.get("top_p", 0.95),
             "top_k": kwargs.get("top_k", 64),
-            "response_format": {"type": "json_object"},
             "stream": False,
         }
+
+        # If a strict schema is provided, force grammar constraint
+        if kwargs.get("schema"):
+            payload["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "strict_extraction",
+                    "strict": True,
+                    "schema": kwargs["schema"]
+                }
+            }
+        else:
+            payload["response_format"] = {"type": "json_object"}
 
         try:
             resp = _requests.post(url, json=payload, headers=headers, timeout=600)
@@ -223,9 +320,12 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
 
         return text
 
-    def _call_api(prompt):
+    def _call_api(prompt, schema=None):
         logger.info(f"Calling LLM ({backend}: {model_name})...")
         logger.debug(f"Prompt length: {len(prompt)} characters")
+
+        if schema:
+            kwargs["schema"] = schema
 
         if backend == "ollama":
             return _call_ollama(prompt)
@@ -337,7 +437,7 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
 
     if not state_graph:
         prompt = _build_prompt(screen_data)
-        return _call_api(prompt)
+        return _call_api(prompt, schema=SINGLE_SCHEMA)
 
     # ARES mode: Process sequentially by level to avoid 503 Server Error for massive prompts
     logger.info("Grouping screens by level for sequential batch analysis...")
@@ -359,12 +459,38 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
         logger.info(f"  Analyzing level {i}/{len(levels)}: {level_name} ({len(level_screens)} screens)...")
         prompt = _build_ares_batch_prompt(level_screens, state_graph, level_name)
         try:
-            report = _call_api(prompt)
+            report = _call_api(prompt, schema=BATCH_SCHEMA)
             import json
             try:
                 data = json.loads(report)
                 if "screen_contexts" in data:
-                    all_screen_contexts.extend(data["screen_contexts"])
+                    raw_contexts = data["screen_contexts"]
+                    logger.info(f"    Running Auditor Pass on {len(raw_contexts)} screens...")
+                    verified_contexts = []
+                    
+                    for ctx in raw_contexts:
+                        # Find OCR text for the auditor
+                        ocr_text = ""
+                        for s in level_screens:
+                            if s['filename'] == ctx.get('state_id'):
+                                ocr_text = s['extracted_text']
+                                break
+                                
+                        if not ocr_text:
+                            verified_contexts.append(ctx)
+                            continue
+                            
+                        # Auditor call
+                        auditor_prompt = _build_auditor_prompt(ocr_text, json.dumps(ctx))
+                        try:
+                            auditor_report = _call_api(auditor_prompt, schema=AUDITOR_SCHEMA)
+                            auditor_data = json.loads(auditor_report)
+                            verified_contexts.append(auditor_data)
+                        except Exception as e:
+                            logger.error(f"Auditor failed for {ctx.get('state_id')}: {e}. Using raw.")
+                            verified_contexts.append(ctx)
+                            
+                    all_screen_contexts.extend(verified_contexts)
             except json.JSONDecodeError:
                 logger.error(f"Failed to parse JSON for {level_name}: {report[:100]}...")
         except RuntimeError as e:
@@ -376,7 +502,7 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
 
     logger.info("Synthesizing core workflows into final analysis...")
     synthesis_prompt = _build_ares_synthesis_prompt(all_screen_contexts, state_graph)
-    synthesis_report = _call_api(synthesis_prompt)
+    synthesis_report = _call_api(synthesis_prompt, schema=SYNTHESIS_SCHEMA)
     
     import json
     try:
@@ -411,7 +537,8 @@ Use the following JSON schema:
     {
       "screen_id": "filename or state ID",
       "type": "e.g. Splash Screen, Login, Dashboard",
-      "context": "Detailed description of UI elements, buttons, and text on this screen."
+      "context": "Detailed description of UI elements, buttons, and text on this screen.",
+      "confidence_score": 95
     }
   ]
 }
@@ -450,7 +577,29 @@ Use this JSON schema:
     {
       "state_id": "filename or state ID",
       "type": "e.g. Dashboard, Settings",
-      "context": "Detailed description of the screen's UI and data shown."
+      "context": "Detailed description of the screen's UI and data shown.",
+      "confidence_score": 90
+    }
+  ]
+}
+
+### CRITICAL: CONFIDENCE SCORING
+Assign a `confidence_score` (0-100) based on the quality of the OCR. If the OCR is a mess of random characters and you cannot reliably determine the UI elements, score it below 50. If the text is clean and the UI is obvious, score it 90+.
+
+### GOLDEN EXAMPLE
+**OCR Input:**
+[Settings Menu]
+[Profile]
+[Logout]
+
+**Ideal JSON Output:**
+{
+  "screen_contexts": [
+    {
+      "state_id": "level_1/state_1.png",
+      "type": "Settings",
+      "context": "The screen displays a basic Settings Menu with two clickable options: Profile and Logout.",
+      "confidence_score": 98
     }
   ]
 }
@@ -529,11 +678,12 @@ Use the following JSON schema:
       "purpose": "Why this flow is important to the app's functionality."
     }
   ],
-  "screen_contexts": [
+    "screen_contexts": [
     {
       "state_id": "state number",
       "type": "e.g. Dashboard, Settings",
-      "context": "Detailed description of the screen's UI and data shown."
+      "context": "Detailed description of the screen's UI and data shown.",
+      "confidence_score": 90
     }
   ]
 }
@@ -546,3 +696,33 @@ Use the following JSON schema:
         prompt += "\n"
 
     return prompt
+
+def _build_auditor_prompt(ocr_text, generated_json):
+    """Build a prompt for the Auditor Pass to verify and scrub hallucinations."""
+    prompt = f"""
+You are a strict security Auditor. Your job is to verify that a generated UI context perfectly matches the physical OCR text extracted from an Android screen.
+
+You must scrub any hallucinated UI elements, buttons, or features that were hallucinated by the previous model.
+
+### Original OCR Text
+{ocr_text}
+
+### Generated Context (To Be Audited)
+{generated_json}
+
+CRITICAL INSTRUCTIONS:
+1. Compare the 'context' field against the Original OCR.
+2. If the 'context' describes buttons, menus, or features NOT present in the OCR, REMOVE THEM.
+3. If the 'context' is mostly accurate, keep it.
+4. Output the corrected JSON object. Keep the 'state_id' the same. Update 'confidence_score' if the OCR is exceptionally messy.
+
+Use this EXACT JSON schema:
+{{
+  "state_id": "string",
+  "type": "string",
+  "context": "string (scrubbed of hallucinations)",
+  "confidence_score": integer
+}}
+"""
+    return prompt
+
