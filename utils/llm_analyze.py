@@ -8,10 +8,80 @@ Supports three backends:
 Set the LLM_BACKEND env var to choose. Default is "gemini".
 """
 import os
+import re
 import time
 import logging
 import json
-from dotenv import load_dotenv
+import concurrent.futures
+
+
+def strip_markdown_json(text):
+    """Strip markdown code fences from LLM output to extract raw JSON.
+    Handles: ```json ... ```, ``` ... ```, and leading/trailing whitespace.
+    """
+    text = text.strip()
+    # Try to extract from ```json ... ``` or ``` ... ``` blocks
+    match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    # Try to extract from ```json ... ``` blocks with array
+    match = re.search(r'```(?:json)?\s*(\[.*?\])\s*```', text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    # If no code fences, try to find raw JSON object
+    match = re.search(r'(\{.*\})', text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return text
+
+
+def deterministic_verify(ocr_text, context_str):
+    """Deterministic keyword-matching verifier. Does NOT use an LLM.
+    
+    Extracts significant words from the generated context and checks
+    how many of them actually appear in the original OCR text.
+    Returns a dict with verified=True/False and a cleaned confidence score.
+    """
+    if not ocr_text or not context_str:
+        return {"verified": True, "ocr_coverage": 0.0}
+    
+    # Normalize both texts
+    ocr_lower = ocr_text.lower()
+    ctx_lower = context_str.lower()
+    
+    # Extract significant words from context (3+ chars, not stopwords)
+    stopwords = {
+        'the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can',
+        'had', 'her', 'was', 'one', 'our', 'out', 'has', 'have', 'each',
+        'with', 'this', 'that', 'from', 'they', 'been', 'said', 'will',
+        'into', 'also', 'than', 'them', 'other', 'some', 'there', 'which',
+        'their', 'about', 'would', 'these', 'could', 'does', 'most',
+        'screen', 'displays', 'shows', 'includes', 'provides', 'option',
+        'options', 'button', 'text', 'page', 'menu', 'user', 'section',
+        'application', 'named', 'various', 'below', 'above', 'such',
+        'state', 'level', 'type', 'string', 'integer', 'context',
+    }
+    
+    ctx_words = set()
+    for word in re.findall(r'[a-z]{3,}', ctx_lower):
+        if word not in stopwords:
+            ctx_words.add(word)
+    
+    if not ctx_words:
+        return {"verified": True, "ocr_coverage": 1.0}
+    
+    # Check how many context words appear in the OCR text
+    found = sum(1 for w in ctx_words if w in ocr_lower)
+    coverage = found / len(ctx_words) if ctx_words else 1.0
+    
+    return {
+        "verified": coverage >= 0.15,  # At least 15% of keywords found in OCR
+        "ocr_coverage": round(coverage, 3),
+        "total_keywords": len(ctx_words),
+        "matched_keywords": found,
+    }
+
+
 
 BATCH_SCHEMA = {
   "type": "object",
@@ -98,17 +168,12 @@ AUDITOR_SCHEMA = {
 }
 
 
-load_dotenv()
-
-logger = logging.getLogger("pyscreen")
-
 # Default models per backend
-DEFAULT_MODEL = "gemini-2.5-flash"
 DEFAULT_OLLAMA_MODEL = "gemma3:27b"
-DEFAULT_LLAMA_CPP_MODEL = "Gemma 4 31B QAT"  # alias set in llama-server
+DEFAULT_LLAMA_CPP_MODEL = "Qwen2.5-32B-Instruct-Q4_K_M"
 
-# Backend selection
-LLM_BACKEND = os.getenv("LLM_BACKEND", "gemini").strip().lower()
+# Backend selection (Default to llama_cpp instead of gemini)
+LLM_BACKEND = os.getenv("LLM_BACKEND", "llama_cpp").strip().lower()
 
 # Retry configuration
 MAX_RETRIES = 5
@@ -121,38 +186,14 @@ LLAMA_CPP_HOST = os.getenv("LLAMA_CPP_HOST", "http://localhost:8001").strip()
 LLAMA_CPP_API_KEY = os.getenv("LLAMA_CPP_API_KEY", "my_secret_token").strip()
 
 
-def validate_api_key():
-    """
-    Check that a Gemini API key is configured.
-
-    Returns:
-        The API key string.
-
-    Raises:
-        ValueError: If the key is missing or empty.
-    """
-    key = os.getenv("GEMINI_API_KEY", "").strip()
-    if not key:
-        raise ValueError(
-            "GEMINI_API_KEY not found in environment.\n"
-            "To fix this:\n"
-            "  1. Go to https://aistudio.google.com/apikey\n"
-            "  2. Sign in with your Google account\n"
-            "  3. Click 'Create API Key'\n"
-            "  4. Copy the key\n"
-            "  5. Add it to your .env file: GEMINI_API_KEY=your_key_here\n"
-        )
-    return key
-
-
 def analyze_screens(screen_data, model=None, benchmark_callback=None, state_graph=None, **kwargs):
     """
-    Send extracted screen text data to an LLM for a detailed
+    Send extracted screen text data to a local LLM for a detailed
     user-journey and security analysis report.
 
-    Supports two backends (set via LLM_BACKEND env var):
-      - "gemini": Google Gemini cloud API
-      - "ollama": Local Ollama server (e.g., Gemma, Llama)
+    Supports two local backends (set via LLM_BACKEND env var):
+      - "llama_cpp": Local llama.cpp server (OpenAI-compatible)
+      - "ollama": Local Ollama server
 
     Args:
         screen_data: List of dicts with 'screen_number', 'filename', 'extracted_text'
@@ -165,17 +206,12 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
         The analysis report as a string.
 
     Raises:
-        ValueError: If API key is not configured (Gemini backend only).
         RuntimeError: If all retries are exhausted.
     """
     backend = LLM_BACKEND
     logger.info(f"Using LLM backend: {backend}")
 
-    if backend == "gemini":
-        from google import genai
-        api_key = validate_api_key()
-        model_name = model or os.getenv("GEMINI_MODEL", DEFAULT_MODEL)
-    elif backend == "ollama":
+    if backend == "ollama":
         import requests as _requests
         model_name = model or os.getenv("OLLAMA_MODEL", DEFAULT_OLLAMA_MODEL)
         logger.info(f"Ollama model: {model_name} at {OLLAMA_HOST}")
@@ -184,7 +220,7 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
         model_name = model or os.getenv("LLAMA_CPP_MODEL", DEFAULT_LLAMA_CPP_MODEL)
         logger.info(f"llama.cpp model: {model_name} at {LLAMA_CPP_HOST}")
     else:
-        raise ValueError(f"Unknown LLM_BACKEND: '{backend}'. Use 'gemini', 'ollama', or 'llama_cpp'.")
+        raise ValueError(f"Unknown LLM_BACKEND: '{backend}'. Use 'llama_cpp' or 'ollama'.")
 
     def _call_ollama(prompt):
         """Call the local Ollama REST API."""
@@ -318,7 +354,7 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
                 error=None,
             )
 
-        return text
+        return strip_markdown_json(text)
 
     def _call_api(prompt, schema=None):
         logger.info(f"Calling LLM ({backend}: {model_name})...")
@@ -329,184 +365,99 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
 
         if backend == "ollama":
             return _call_ollama(prompt)
-        if backend == "llama_cpp":
+        elif backend == "llama_cpp":
             return _call_llama_cpp(prompt)
-
-        # --- Gemini backend ---
-        last_error = None
-        retries_used = 0
-
-        for attempt in range(MAX_RETRIES + 1):
-            try:
-                client = genai.Client(api_key=api_key)
-                start_time = time.perf_counter()
-
-                response = client.models.generate_content(
-                    model=model_name,
-                    contents=prompt,
-                )
-
-                request_time = time.perf_counter() - start_time
-
-                # Extract token usage if available
-                input_tokens = 0
-                output_tokens = 0
-                if hasattr(response, 'usage_metadata') and response.usage_metadata:
-                    input_tokens = getattr(response.usage_metadata, 'prompt_token_count', 0) or 0
-                    output_tokens = getattr(response.usage_metadata, 'candidates_token_count', 0) or 0
-
-                logger.info(f"API response received in {request_time:.1f}s")
-                logger.info(f"Tokens — input: {input_tokens}, output: {output_tokens}")
-
-                # Report metrics
-                if benchmark_callback:
-                    benchmark_callback(
-                        model=model_name,
-                        input_tokens=input_tokens,
-                        output_tokens=output_tokens,
-                        request_time=request_time,
-                        retries=retries_used,
-                        success=True,
-                        error=None,
-                    )
-
-                return response.text
-
-            except Exception as e:
-                last_error = e
-                error_str = str(e)
-
-                # Check for rate limit (429)
-                if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
-                    if attempt < MAX_RETRIES:
-                        delay = RETRY_DELAYS[min(attempt, len(RETRY_DELAYS) - 1)]
-                        retries_used += 1
-                        logger.warning(
-                            f"Rate limited (429). Retry {retries_used}/{MAX_RETRIES} "
-                            f"in {delay}s..."
-                        )
-                        time.sleep(delay)
-                        continue
-                    else:
-                        logger.error("Rate limit: all retries exhausted.")
-
-                # Check for invalid API key
-                elif "401" in error_str or "UNAUTHENTICATED" in error_str:
-                    logger.error(
-                        "Invalid API key. Please check your GEMINI_API_KEY in .env file.\n"
-                        "Get a new key at: https://aistudio.google.com/apikey"
-                    )
-                    if benchmark_callback:
-                        benchmark_callback(
-                            model=model_name, input_tokens=0, output_tokens=0,
-                            request_time=0, retries=retries_used,
-                            success=False, error=f"Invalid API key: {error_str}",
-                        )
-                    raise ValueError(f"Invalid Gemini API key: {error_str}")
-
-                # Check for server error (500+)
-                elif "500" in error_str or "503" in error_str or "INTERNAL" in error_str:
-                    if attempt < MAX_RETRIES:
-                        delay = RETRY_DELAYS[min(attempt, len(RETRY_DELAYS) - 1)]
-                        retries_used += 1
-                        logger.warning(f"Server error. Retry {retries_used}/{MAX_RETRIES} in {delay}s...")
-                        time.sleep(delay)
-                        continue
-
-                # Unknown error — don't retry
-                else:
-                    logger.error(f"Gemini API error: {error_str}")
-                    if benchmark_callback:
-                        benchmark_callback(
-                            model=model_name, input_tokens=0, output_tokens=0,
-                            request_time=0, retries=retries_used,
-                            success=False, error=error_str,
-                        )
-                    raise RuntimeError(f"Gemini API error: {error_str}")
-
-        # All retries exhausted
-        if benchmark_callback:
-            benchmark_callback(
-                model=model_name, input_tokens=0, output_tokens=0,
-                request_time=0, retries=retries_used,
-                success=False, error=str(last_error),
-            )
-        raise RuntimeError(
-            f"Gemini API failed after {MAX_RETRIES} retries. Last error: {last_error}"
-        )
+        else:
+             raise ValueError("Only local backends (llama_cpp, ollama) are supported.")
 
     if not state_graph:
         prompt = _build_prompt(screen_data)
         return _call_api(prompt, schema=SINGLE_SCHEMA)
 
-    # ARES mode: Process sequentially by level to avoid 503 Server Error for massive prompts
-    logger.info("Grouping screens by level for sequential batch analysis...")
+    # ARES mode: Process by level
+    logger.info("Grouping screens by level for analysis...")
     from collections import defaultdict
     import time
     levels = defaultdict(list)
     for screen in screen_data:
         # Assuming filename is something like 'level_8/state_0.png'
         if '/' in screen['filename'] or '\\' in screen['filename']:
-            # Handle both forward and backslashes
             level_name = screen['filename'].replace('\\', '/').split('/')[0]
         else:
             level_name = 'unknown_level'
         levels[level_name].append(screen)
 
     all_screen_contexts = []
-    logger.info(f"Processing {len(levels)} levels sequentially to avoid server timeouts...")
-    for i, (level_name, level_screens) in enumerate(levels.items(), 1):
+    
+    def process_level(level_info):
+        i, level_name, level_screens = level_info
         logger.info(f"  Analyzing level {i}/{len(levels)}: {level_name} ({len(level_screens)} screens)...")
         prompt = _build_ares_batch_prompt(level_screens, state_graph, level_name)
+        
         try:
             report = _call_api(prompt, schema=BATCH_SCHEMA)
-            import json
-            try:
-                data = json.loads(report)
-                if "screen_contexts" in data:
-                    raw_contexts = data["screen_contexts"]
-                    logger.info(f"    Running Auditor Pass on {len(raw_contexts)} screens...")
-                    verified_contexts = []
+            clean_report = strip_markdown_json(report)
+            data = json.loads(clean_report)
+            verified_contexts = []
+            
+            if "screen_contexts" in data:
+                raw_contexts = data["screen_contexts"]
+                for ctx in raw_contexts:
+                    ocr_text = ""
+                    for s in level_screens:
+                        if s['filename'] == ctx.get('state_id'):
+                            ocr_text = s['extracted_text']
+                            break
+                            
+                    if not ocr_text:
+                        verified_contexts.append(ctx)
+                        continue
+                        
+                    verify_result = deterministic_verify(ocr_text, ctx.get('context', ''))
                     
-                    for ctx in raw_contexts:
-                        # Find OCR text for the auditor
-                        ocr_text = ""
-                        for s in level_screens:
-                            if s['filename'] == ctx.get('state_id'):
-                                ocr_text = s['extracted_text']
-                                break
-                                
-                        if not ocr_text:
-                            verified_contexts.append(ctx)
-                            continue
-                            
-                        # Auditor call
-                        auditor_prompt = _build_auditor_prompt(ocr_text, json.dumps(ctx))
-                        try:
-                            auditor_report = _call_api(auditor_prompt, schema=AUDITOR_SCHEMA)
-                            auditor_data = json.loads(auditor_report)
-                            verified_contexts.append(auditor_data)
-                        except Exception as e:
-                            logger.error(f"Auditor failed for {ctx.get('state_id')}: {e}. Using raw.")
-                            verified_contexts.append(ctx)
-                            
-                    all_screen_contexts.extend(verified_contexts)
-            except json.JSONDecodeError:
-                logger.error(f"Failed to parse JSON for {level_name}: {report[:100]}...")
+                    if verify_result["verified"]:
+                        ocr_cov = verify_result["ocr_coverage"]
+                        if ocr_cov < 0.3:
+                            ctx["confidence_score"] = min(ctx.get("confidence_score", 50), 50)
+                            ctx["verification_note"] = f"Low OCR coverage ({ocr_cov:.0%}). Context may contain inferred elements."
+                        verified_contexts.append(ctx)
+                    else:
+                        logger.warning(f"    ⚠ Verifier REJECTED {ctx.get('state_id')}: OCR coverage {verify_result['ocr_coverage']:.0%}")
+                        ctx["confidence_score"] = 20
+                        ctx["verification_note"] = f"FLAGGED: Only {verify_result['matched_keywords']}/{verify_result['total_keywords']} keywords found in OCR."
+                        verified_contexts.append(ctx)
+            return verified_contexts
+        except json.JSONDecodeError:
+            logger.error(f"Failed to parse JSON for {level_name}")
+            return []
         except RuntimeError as e:
-            logger.error(f"Failed to analyze {level_name}: {e}. Skipping to next level to save pipeline.")
-        
-        # Tiny sleep to avoid 429 RPM limits on free tier
-        if i < len(levels):
-            time.sleep(2)
+            logger.error(f"Failed to analyze {level_name}: {e}")
+            return []
+            
+    # Smart batching: If more than 3 levels, run concurrently (up to 3 parallel workers)
+    level_list = [(i+1, k, v) for i, (k, v) in enumerate(levels.items())]
+    if len(levels) > 3:
+        logger.info(f"Processing {len(levels)} levels concurrently (Thread pool)...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            results = list(executor.map(process_level, level_list))
+            for res in results:
+                all_screen_contexts.extend(res)
+    else:
+        logger.info(f"Processing {len(levels)} levels sequentially...")
+        for level_info in level_list:
+            res = process_level(level_info)
+            all_screen_contexts.extend(res)
+            time.sleep(1)
 
     logger.info("Synthesizing core workflows into final analysis...")
     synthesis_prompt = _build_ares_synthesis_prompt(all_screen_contexts, state_graph)
     synthesis_report = _call_api(synthesis_prompt, schema=SYNTHESIS_SCHEMA)
     
+    # Apply markdown stripping before JSON parse
+    clean_synthesis = strip_markdown_json(synthesis_report)
     import json
     try:
-        final_data = json.loads(synthesis_report)
+        final_data = json.loads(clean_synthesis)
         final_data["screen_contexts"] = all_screen_contexts
         return json.dumps(final_data, indent=2)
     except json.JSONDecodeError:
@@ -626,9 +577,23 @@ Your task is to synthesize these contexts into a SINGLE, cohesive Final Report i
 CRITICAL INSTRUCTIONS FOR CORE WORKFLOWS:
 1. You MUST extract EVERY SINGLE distinct workflow path (level) present in the state graph.
 2. DO NOT summarize them into just 2 or 3 workflows. If there are 10 unique paths in the graph, you MUST output at least 10 core_workflows. 
-3. For the description, provide a HIGHLY DETAILED, step-by-step breakdown of every single action and screen transition that occurs in that path.
+3. For EVERY state transition, you MUST describe the SPECIFIC PHYSICAL USER ACTION that causes it.
+   - BAD: "The user transitions to State 10"
+   - BAD: "The user moves to the settings screen"
+   - GOOD: "The user taps the 'Accept' button on the user agreement dialog, which navigates to the Front Page (State 11)"
+   - GOOD: "The user presses the Android back button to return to the subreddit list (State 13)"
+   - GOOD: "The user scrolls down and taps the 'Appearance' option in the Settings menu to open font settings (State 20)"
+4. Use the screen_contexts to identify WHAT buttons, links, and menu items are physically visible on each screen. Reference them by name.
+5. If the state graph shows a backward transition (e.g., State 12 -> State 10), describe it as "the user presses Back" or "the user taps Close/Cancel".
 
 CRITICAL: Do NOT output `screen_contexts`. We already have it. You must ONLY output `app_summary` and `core_workflows`.
+
+### GOLDEN WORKFLOW EXAMPLE
+{
+  "path": "State 0 -> State 10 -> State 11",
+  "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0) which displays the RedReader terms. Step 2: The user taps the 'Accept' button at the bottom of the agreement dialog, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps 'I Agree' to confirm acceptance, which loads the Front Page (State 11) showing a list of subscribed subreddits like 'art', 'askreddit', and 'aww'.",
+  "purpose": "First-time user onboarding flow that gates access behind agreement acceptance."
+}
 
 Use this EXACT JSON schema:
 {
@@ -636,7 +601,7 @@ Use this EXACT JSON schema:
   "core_workflows": [
     {
       "path": "e.g. State 0 -> State 10 -> State 12",
-      "description": "A highly detailed, step-by-step breakdown of exactly what the user clicks and does at every state in this flow.",
+      "description": "A step-by-step breakdown where EVERY transition describes the exact button/link/action the user physically performs. Never say 'transitions to' — always say what was tapped/pressed/scrolled.",
       "purpose": "Why this flow is important to the app's functionality."
     }
   ]

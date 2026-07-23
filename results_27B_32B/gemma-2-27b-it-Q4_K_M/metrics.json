@@ -1,0 +1,27 @@
+{
+  "model": "gemma-2-27b-it-Q4_K_M",
+  "timestamp": "2026-07-22T16:08:40.041868",
+  "levels": [
+    "all"
+  ],
+  "top_p": 0.95,
+  "top_k": 64,
+  "temperature_sweep": [
+    {
+      "temperature": 0.0,
+      "success": true,
+      "time": 150.23,
+      "length": 15371,
+      "score": 100
+    },
+    {
+      "temperature": 0.3,
+      "success": true,
+      "time": 155.23,
+      "length": 15150,
+      "score": 100
+    }
+  ],
+  "best_temperature": 0.0,
+  "best_score": 100
+}

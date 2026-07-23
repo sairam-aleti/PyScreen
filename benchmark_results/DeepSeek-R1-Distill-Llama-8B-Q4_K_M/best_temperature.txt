@@ -1,3 +1,0 @@
-Best Temperature: 0.0
-Quality Score: 10/100
-Best Report: t0.0_report.json

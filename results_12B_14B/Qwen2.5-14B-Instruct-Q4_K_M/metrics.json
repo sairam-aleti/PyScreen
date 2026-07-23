@@ -1,0 +1,27 @@
+{
+  "model": "Qwen2.5-14B-Instruct-Q4_K_M",
+  "timestamp": "2026-07-22T15:18:36.590059",
+  "levels": [
+    "all"
+  ],
+  "top_p": 0.95,
+  "top_k": 64,
+  "temperature_sweep": [
+    {
+      "temperature": 0.0,
+      "success": true,
+      "time": 96.81,
+      "length": 16865,
+      "score": 100
+    },
+    {
+      "temperature": 0.3,
+      "success": true,
+      "time": 116.84,
+      "length": 21287,
+      "score": 100
+    }
+  ],
+  "best_temperature": 0.0,
+  "best_score": 100
+}

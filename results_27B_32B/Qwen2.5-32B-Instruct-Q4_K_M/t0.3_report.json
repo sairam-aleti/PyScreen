@@ -1,0 +1,226 @@
+{
+  "app_summary": "The app is a Reddit client named RedReader, which allows users to access content through the Reddit API. It features a main menu with options for 'Front Page', 'All Subreddits', 'Find Location', 'Subscribed Subreddits', and 'Reddit Accounts'. The app includes a user agreement that must be accepted before accessing content. It also offers extensive settings for customizing the user experience, including appearance, font scaling, and behavior.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 10 -> State 11",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0) which displays the RedReader terms. Step 2: The user taps the 'Accept' button at the bottom of the agreement dialog, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps 'I Agree' to confirm acceptance, which loads the Front Page (State 11) showing a list of subscribed subreddits like 'art', 'askreddit', and 'aww'.",
+      "purpose": "First-time user onboarding flow that gates access behind agreement acceptance."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 10",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the Reddit User Agreement screen (State 10).",
+      "purpose": "Flow that allows users to navigate back and forth between the agreement and subreddit list screens."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 13 -> State 14 -> State 13",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 13). Step 5: The user taps the 'Settings' button to navigate to the Theme Selection screen (State 14). Step 6: The user taps the 'Back' button to return to the main menu (State 13).",
+      "purpose": "Flow that allows users to navigate to settings and back to the main menu."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 8 -> State 9",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 15). Step 5: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 6: The user taps the 'Back' button to return to the main menu (State 7). Step 7: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 8). Step 8: The user taps the 'Back' button to return to the Pinned Subreddits screen (State 9).",
+      "purpose": "Flow that allows users to navigate through settings and subreddit lists."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 17 -> State 18 -> State 11",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 15). Step 5: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 6: The user taps the 'Back' button to return to the main menu (State 7). Step 7: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 17). Step 8: The user taps the 'Settings' button to navigate to the Settings Menu (State 18). Step 9: The user taps the 'Back' button to return to the Front Page (State 11).",
+      "purpose": "Flow that allows users to navigate through settings and subreddit lists, ending on the Front Page."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 17 -> State 18 -> State 11 -> State 12 -> State 10",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 15). Step 5: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 6: The user taps the 'Back' button to return to the main menu (State 7). Step 7: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 17). Step 8: The user taps the 'Settings' button to navigate to the Settings Menu (State 18). Step 9: The user taps the 'Back' button to return to the Front Page (State 11). Step 10: The user taps the 'Back' button to return to the Reddit User Agreement screen (State 12). Step 11: The user taps the 'Back' button to return to the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Flow that allows users to navigate through settings and subreddit lists, ending on the User Agreement screen."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 17 -> State 18 -> State 11 -> State 19 -> State 20 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 15). Step 5: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 6: The user taps the 'Back' button to return to the main menu (State 7). Step 7: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 17). Step 8: The user taps the 'Settings' button to navigate to the Settings Menu (State 18). Step 9: The user taps the 'Back' button to return to the Front Page (State 11). Step 10: The user taps the 'Settings' button to navigate to the Appearance settings (State 19). Step 11: The user scrolls down and taps the 'Font' option to navigate to the Font Settings screen (State 20). Step 12: The user scrolls down and taps the 'Body Text' option to navigate to the Font Scale settings (State 21). Step 13: The user scrolls down and taps the 'Link Buttons' option to navigate to the Font Scale settings (State 22). Step 14: The user scrolls down and taps the 'Cancel' button to return to the Font Settings screen (State 23). Step 15: The user scrolls down and taps the 'Cancel' button to return to the Appearance settings (State 24). Step 16: The user scrolls down and taps the 'Cancel' button to return to the Settings Menu (State 25). Step 17: The user scrolls down and taps the 'Cancel' button to return to the Front Page (State 26). Step 18: The user scrolls down and taps the 'Cancel' button to return to the main menu (State 27).",
+      "purpose": "Flow that allows users to navigate through settings, including appearance and font customization."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 17 -> State 18 -> State 11 -> State 19 -> State 20 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27 -> State 11",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 15). Step 5: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 6: The user taps the 'Back' button to return to the main menu (State 7). Step 7: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 17). Step 8: The user taps the 'Settings' button to navigate to the Settings Menu (State 18). Step 9: The user taps the 'Back' button to return to the Front Page (State 11). Step 10: The user taps the 'Settings' button to navigate to the Appearance settings (State 19). Step 11: The user scrolls down and taps the 'Font' option to navigate to the Font Settings screen (State 20). Step 12: The user scrolls down and taps the 'Body Text' option to navigate to the Font Scale settings (State 21). Step 13: The user scrolls down and taps the 'Link Buttons' option to navigate to the Font Scale settings (State 22). Step 14: The user scrolls down and taps the 'Cancel' button to return to the Font Settings screen (State 23). Step 15: The user scrolls down and taps the 'Cancel' button to return to the Appearance settings (State 24). Step 16: The user scrolls down and taps the 'Cancel' button to return to the Settings Menu (State 25). Step 17: The user scrolls down and taps the 'Cancel' button to return to the Front Page (State 26). Step 18: The user scrolls down and taps the 'Cancel' button to return to the main menu (State 27). Step 19: The user taps the 'Back' button to return to the Front Page (State 11).",
+      "purpose": "Flow that allows users to navigate through settings, including appearance and font customization, and return to the Front Page."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 17 -> State 18 -> State 11 -> State 19 -> State 20 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27 -> State 11 -> State 12 -> State 10",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 15). Step 5: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 6: The user taps the 'Back' button to return to the main menu (State 7). Step 7: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 17). Step 8: The user taps the 'Settings' button to navigate to the Settings Menu (State 18). Step 9: The user taps the 'Back' button to return to the Front Page (State 11). Step 10: The user taps the 'Settings' button to navigate to the Appearance settings (State 19). Step 11: The user scrolls down and taps the 'Font' option to navigate to the Font Settings screen (State 20). Step 12: The user scrolls down and taps the 'Body Text' option to navigate to the Font Scale settings (State 21). Step 13: The user scrolls down and taps the 'Link Buttons' option to navigate to the Font Scale settings (State 22). Step 14: The user scrolls down and taps the 'Cancel' button to return to the Font Settings screen (State 23). Step 15: The user scrolls down and taps the 'Cancel' button to return to the Appearance settings (State 24). Step 16: The user scrolls down and taps the 'Cancel' button to return to the Settings Menu (State 25). Step 17: The user scrolls down and taps the 'Cancel' button to return to the Front Page (State 26). Step 18: The user scrolls down and taps the 'Cancel' button to return to the main menu (State 27). Step 19: The user taps the 'Back' button to return to the Front Page (State 11). Step 20: The user taps the 'Back' button to return to the Reddit User Agreement screen (State 12). Step 21: The user taps the 'Back' button to return to the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Flow that allows users to navigate through settings, including appearance and font customization, and return to the User Agreement screen."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 17 -> State 18 -> State 11 -> State 19 -> State 20 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27 -> State 11 -> State 12 -> State 10 -> State 9 -> State 15 -> State 16 -> State 7 -> State 17 -> State 18 -> State 11",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Accept' button, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 4: The user taps the 'Back' button to return to the main menu (State 15). Step 5: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 6: The user taps the 'Back' button to return to the main menu (State 7). Step 7: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 17). Step 8: The user taps the 'Settings' button to navigate to the Settings Menu (State 18). Step 9: The user taps the 'Back' button to return to the Front Page (State 11). Step 10: The user taps the 'Settings' button to navigate to the Appearance settings (State 19). Step 11: The user scrolls down and taps the 'Font' option to navigate to the Font Settings screen (State 20). Step 12: The user scrolls down and taps the 'Body Text' option to navigate to the Font Scale settings (State 21). Step 13: The user scrolls down and taps the 'Link Buttons' option to navigate to the Font Scale settings (State 22). Step 14: The user scrolls down and taps the 'Cancel' button to return to the Font Settings screen (State 23). Step 15: The user scrolls down and taps the 'Cancel' button to return to the Appearance settings (State 24). Step 16: The user scrolls down and taps the 'Cancel' button to return to the Settings Menu (State 25). Step 17: The user scrolls down and taps the 'Cancel' button to return to the Front Page (State 26). Step 18: The user scrolls down and taps the 'Cancel' button to return to the main menu (State 27). Step 19: The user taps the 'Back' button to return to the Front Page (State 11). Step 20: The user taps the 'Back' button to return to the Reddit User Agreement screen (State 12). Step 21: The user taps the 'Back' button to return to the Reddit User Agreement confirmation (State 10). Step 22: The user taps the 'Close' button to return to the Pinned Subreddits screen (State 9). Step 23: The user taps the 'Back' button to return to the main menu (State 15). Step 24: The user taps the 'Settings' button to navigate to the Font Settings screen (State 16). Step 25: The user taps the 'Back' button to return to the main menu (State 7). Step 26: The user taps the 'Settings' button to navigate to the Subreddit List screen (State 17). Step 27: The user taps the 'Settings' button to navigate to the Settings Menu (State 18). Step 28: The user taps the 'Back' button to return to the Front Page (State 11).",
+      "purpose": "Flow that allows users to navigate through settings, including appearance and font customization, and return to the Front Page after revisiting the User Agreement screen."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "level_8/state_0.png",
+      "type": "Agreement",
+      "context": "This screen shows the Reddit User Agreement for RedReader, an application that accesses content via the Reddit API. It prompts the user to read the terms and conditions from a provided link and confirm their acceptance.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_8/state_19.png",
+      "type": "Settings",
+      "context": "The screen displays a Settings menu for an application, with options categorized under Appearance, Font, Behaviour, Images/Video, Cache, Network, Menus, Accessibility, and Backup/Restore. There is also an 'About' section.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_1/state_1.png",
+      "type": "Home Screen",
+      "context": "The screen displays the main interface of the RedReader app, featuring a clock showing 11:30 at the top. It includes options for 'Front Page', 'All Subreddits', and 'Find Location'. There is a section for 'Subscribed Subreddits' listing categories such as art, creepy, dataisbeautiful, diy, documentaries, and earthporn. A message indicates that the user is not logged in and provides an option to log in or remain anonymous.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_6/state_2.png",
+      "type": "Main Menu",
+      "context": "The screen displays the main menu of the RedReader application with options for 'Front Page', 'All Subreddits', 'Find Location', 'Subscribed Subreddits', and 'Reddit Accounts'. Under 'Reddit Accounts', there are options to add a Reddit account and view the current anonymous account which is active.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_6/state_9.png",
+      "type": "Pinned Subreddits",
+      "context": "The screen shows a list of Pinned Subreddits with '/t/diy' highlighted. Below it, there is a list of Subscribed Subreddits including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_6/state_18.png",
+      "type": "User Agreement",
+      "context": "The screen indicates that the Reddit user agreement has not been accepted and prompts the user to accept the agreement to access content through the Reddit API. There are buttons to view the details and the agreement itself.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_3/state_3.png",
+      "type": "Login Prompt",
+      "context": "The screen shows a login prompt for RedReader, a Reddit client. It informs the user that they will be redirected to a web browser to log in to Reddit and then redirected back to the app. It also provides a link for help if the user encounters issues during the login process. The screen includes a list of some subreddits and two buttons: Close and Continue.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_3/state_6.png",
+      "type": "Subreddit List",
+      "context": "This screen displays a list of subreddits in RedReader, including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', 'diy', 'documentaries', and 'earthporn'. It appears to be a general subreddit list screen, likely part of the main navigation of the app.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_3/state_15.png",
+      "type": "Pinned Subreddits",
+      "context": "The screen shows a list of pinned subreddits in RedReader, with options to copy a link, view in an external browser, share, block the subreddit, and unpin from the main menu. The subreddits listed are 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_4/state_4.png",
+      "type": "Error Page",
+      "context": "The screen displays an error message indicating that the web page at https://www.reddit.com/api/v1/authorize.compact could not be loaded due to an internet disconnection. The error message is 'net::ERR_INTERNET_DISCONNECTED'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_4/state_14.png",
+      "type": "User Agreement",
+      "context": "The screen shows a message indicating that the Reddit user agreement has not been accepted. It prompts the user to accept the agreement to access content through the Reddit API. There are two buttons: 'DETAILS' and 'VIEW AGREEMENT'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_4/state_16.png",
+      "type": "Main Menu",
+      "context": "The screen displays the main menu of the RedReader app. It includes options for 'Front Page', 'All Subreddits', and 'Find Location'. It also shows a pinned subreddit '/t/diy' and a list of subscribed subreddits including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', and 'reddit.com/r/diy'.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_5/state_5.png",
+      "type": "Error Page",
+      "context": "The screen displays an error message indicating that the web page at https://www.reddit.com/api/v1/authorize.compact could not be loaded due to an internet disconnection.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_5/state_7.png",
+      "type": "Main Menu",
+      "context": "The screen shows the main menu of the RedReader app with options for 'Front Page', 'All Subreddits', and 'Find Location'. It also lists pinned subreddits including 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_5/state_8.png",
+      "type": "Subreddit List",
+      "context": "The screen displays a list of subreddits in RedReader, including 'Pinned Subreddits' and 'Subscribed Subreddits'. The pinned subreddit '/t/diy' is highlighted, and the subscribed subreddits listed include 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_5/state_13.png",
+      "type": "User Agreement",
+      "context": "The screen shows a message indicating that the Reddit user agreement has not been accepted, preventing access to content through the Reddit API. Options to view details and accept the agreement are provided.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_5/state_17.png",
+      "type": "Subreddit List",
+      "context": "The screen displays a list of subreddits in RedReader, including 'Pinned Subreddits' and 'Subscribed Subreddits'. The pinned subreddit '/t/diy' is highlighted, and the subscribed subreddits listed include 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_7/state_10.png",
+      "type": "User Agreement",
+      "context": "The screen displays a message indicating that the Reddit user agreement has not been accepted. It shows a timestamp of 11:31, a title 'Front Page', and a link to 'reddit.com/hot'. There is a button to 'VIEW AGREEMENT DETAILS' for users who wish to access content through the Reddit API.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_9/state_11.png",
+      "type": "Settings Menu",
+      "context": "The screen displays a settings menu with options for Reddit user agreement, past versions, submit post, accounts, themes, and settings. It also includes a search bar and a 'VIEW AGREEMENT' button related to the Reddit user agreement.",
+      "confidence_score": 85
+    },
+    {
+      "state_id": "level_9/state_12.png",
+      "type": "Theme Selection",
+      "context": "The screen shows a list of theme options for the application, including Night, Night (low contrast), Green, Blue, Light Blue, Orange, Gray, and Ultra Black. The current time is also displayed.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_9/state_20.png",
+      "type": "Font Settings",
+      "context": "The screen displays font settings for various elements within the application, such as post titles, post subtitles, opened post titles, opened post subtitles, comment/inbox headers, body text, and link buttons. Each element can use the global font scale.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_10/state_21.png",
+      "type": "Settings",
+      "context": "The screen displays settings related to font scaling. It includes a list of font scale options ranging from 0.7x to 1.7x, with 'Normal' being the default option. There are two headers at the top: 'Comment' and 'Inbox'. The screen also includes a 'Cancel' button for exiting the settings without making changes.",
+      "confidence_score": 85
+    },
+    {
+      "state_id": "level_11/state_22.png",
+      "type": "Settings",
+      "context": "The screen is a settings page focused on font customization. It includes options to adjust the font scale for various elements such as global settings, post titles, post subtitles, opened post titles, opened post subtitles, comment/inbox headers, body text, and link buttons. Each element can either use the global font scale or have a specific scale, with the comment/inbox headers set to 0.7x.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_12/state_23.png",
+      "type": "Settings",
+      "context": "The screen displays a settings menu related to subtitles and font scaling. It includes an option to 'Post subtitles' and a list of font scale options ranging from 0.7x to 1.7x, with 'Normal' as the default selection. There is a 'Cancel' button at the bottom.",
+      "confidence_score": 85
+    },
+    {
+      "state_id": "level_13/state_24.png",
+      "type": "Settings",
+      "context": "The screen displays font settings for various elements of the application. It includes options for adjusting the font scale for post titles, post subtitles, opened post titles, opened post subtitles, comment/inbox headers, body text, and link buttons. The global font scale is set to 'Normal', and the post subtitles and comment/inbox headers have specific font scales set to 1.1x and 0.7x, respectively. Other elements are set to use the global font scale.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_14/state_25.png",
+      "type": "Settings",
+      "context": "The screen displays a settings menu related to font scaling options. It includes a list of font scale options ranging from 0.7x to 1.7x, with 'Normal' as the default option. There is also a 'Cancel' button to exit the settings without making changes.",
+      "confidence_score": 50,
+      "verification_note": "Low OCR coverage (29%). Context may contain inferred elements."
+    },
+    {
+      "state_id": "level_16/state_26.png",
+      "type": "Settings",
+      "context": "The screen displays font scaling settings for various elements of the app. It includes options for global font scale, post titles, post subtitles, opened post titles, opened post subtitles, comment/inbox headers, body text, and link buttons. Each element has a specific scaling option, such as 1.1x for post subtitles and 1.4x for opened post titles.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_16/state_27.png",
+      "type": "Settings",
+      "context": "This screen shows a Settings menu with categories for Appearance, Font, Behaviour, Images/Video, Cache, Network, Menus, Accessibility, Backup/Restore, and About. It appears to be a navigation menu for accessing different settings sections.",
+      "confidence_score": 95
+    }
+  ]
+}

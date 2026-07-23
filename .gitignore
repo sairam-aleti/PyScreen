@@ -31,4 +31,4 @@ result/
 videos/
 
 # Test data (keep ARES_screenshots, exclude temp test folders)
-ARES_test/
+ARES_test/pyscreen_env/

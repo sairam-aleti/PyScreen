@@ -143,7 +143,7 @@ def text_compute(frames, disable_analysis, output_dir="result", tracker=None, st
 
 def image_to_string(img):
     """
-    Convert an image to text using Tesseract OCR.
+    Convert an image to text using Tesseract OCR with advanced preprocessing.
 
     Args:
         img: OpenCV image (BGR format).
@@ -155,9 +155,26 @@ def image_to_string(img):
         RuntimeError: If Tesseract is not installed or accessible.
     """
     try:
+        # Convert to grayscale
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        gray = cv2.medianBlur(gray, 3)
-        text = pytesseract.image_to_string(gray, lang="eng")
+        
+        # Upscale the image by 2x to improve Tesseract's DPI reading
+        # Mobile fonts can be small, scaling helps Tesseract recognize characters
+        scaled = cv2.resize(gray, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+        
+        # Apply adaptive thresholding to handle uneven lighting/shadows in UIs
+        # This converts the image to strict black and white, making text pop
+        thresh = cv2.adaptiveThreshold(
+            scaled, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
+        )
+        
+        # Optional: Add a slight median blur to remove salt-and-pepper noise
+        processed = cv2.medianBlur(thresh, 3)
+        
+        # Use Tesseract with PSM 11 (Sparse text. Find as much text as possible in no particular order)
+        # Mobile UIs are sparse, not blocks of text like a book.
+        custom_config = r'--oem 3 --psm 11'
+        text = pytesseract.image_to_string(processed, lang="eng", config=custom_config)
         return text
     except pytesseract.TesseractNotFoundError:
         raise RuntimeError(
@@ -167,3 +184,4 @@ def image_to_string(img):
             "  macOS:   brew install tesseract\n"
             "  Linux:   sudo apt install tesseract-ocr\n"
         )
+

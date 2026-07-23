@@ -1,3 +1,0 @@
-Best Temperature: None
-Quality Score: -1/100
-Best Report: tNone_report.json

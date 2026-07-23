@@ -2,7 +2,7 @@
 """
 PyScreen - Android Side-Channel Screen Analyzer
 
-Analyzes screenshots or video recordings from Android apps using OCR and Gemini AI
+Analyzes screenshots or video recordings from Android apps using OCR and local LLMs
 to extract context, identify user actions, and flag security/privacy concerns.
 
 Usage:
@@ -66,11 +66,11 @@ Examples:
     parser.add_argument('--output_dir', type=str, default='result',
                         help='Output directory for results. Default: result/')
     parser.add_argument('--disable_analysis', action='store_true',
-                        help='Disable Gemini AI analysis (only extract text via OCR).')
+                        help='Disable LLM analysis (only extract text via OCR).')
     parser.add_argument('--benchmark', action='store_true',
                         help='Enable benchmarking — track timing, memory, and API metrics.')
     parser.add_argument('--model', type=str, default=None,
-                        help='Gemini model to use. Default: value from GEMINI_MODEL env var or gemini-3.5-flash')
+                        help='Local LLM model to use. Default: value from LLAMA_CPP_MODEL env var')
     parser.add_argument('--verbose', action='store_true',
                         help='Enable verbose debug logging.')
 

@@ -29,6 +29,7 @@ from datetime import datetime
 from utils.frames import get_frames_from_ares_dir
 from utils.text_compute import text_compute
 from utils.llm_analyze import analyze_screens
+from utils.generate_mermaid import generate_mermaid
 
 
 def detect_model_name(host="http://127.0.0.1:8001", api_key="my_secret_token"):
@@ -261,6 +262,12 @@ def main():
         f.write(f"Best Temperature: {best_temp}\n")
         f.write(f"Quality Score: {best_score}/100\n")
         f.write(f"Best Report: t{best_temp}_report.json\n")
+        
+    # Generate visual workflow diagram for the best report
+    if best_temp is not None:
+        best_report_path = os.path.join(model_dir, f"t{best_temp}_report.json")
+        diagram_path = os.path.join(model_dir, "workflow_map.md")
+        generate_mermaid(best_report_path, diagram_path)
 
     # ----------------------------------------------------------------
     # Step 5: Update model comparison

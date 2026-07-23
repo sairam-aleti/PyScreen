@@ -1,0 +1,225 @@
+{
+  "app_summary": "RedReader is an Android application that provides a user interface for browsing Reddit content. It allows users to view and interact with various subreddits, manage their Reddit accounts, and customize the app's appearance and behavior through extensive settings.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 10 -> State 11",
+      "description": "Step 1: The user opens the app and sees the Reddit User Agreement screen (State 0) which displays the RedReader terms. Step 2: The user taps the 'Accept' button at the bottom of the agreement dialog, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps 'I Agree' to confirm acceptance, which loads the Front Page (State 11) showing a list of subscribed subreddits like 'art', 'askreddit', and 'aww'.",
+      "purpose": "First-time user onboarding flow that gates access behind agreement acceptance."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 3",
+      "description": "Step 1: The user taps on 'Front Page' on the home screen (State 1), navigating to the subreddit list (State 2). Step 2: The user scrolls down and taps on 'Login' in the subreddit list, opening the login screen (State 3).",
+      "purpose": "User login workflow for accessing personalized content."
+    },
+    {
+      "path": "State 2 -> State 6 -> State 7",
+      "description": "Step 1: The user taps on 'All Subreddits' on the home screen (State 2), navigating to the all subreddits list (State 6). Step 2: The user scrolls down and taps on 'Find Location' in the subreddit list, opening the search location screen (State 7).",
+      "purpose": "Workflow for searching and discovering new subreddits."
+    },
+    {
+      "path": "State 7 -> State 8 -> State 9",
+      "description": "Step 1: The user enters a search query in the search bar on the search location screen (State 7) and taps 'Search'. Step 2: The search results are displayed, and the user taps on a subreddit, navigating to the subreddit selection screen (State 8). Step 3: The user taps on the desired subreddit, loading the subreddit content (State 9).",
+      "purpose": "Subreddit search and selection workflow."
+    },
+    {
+      "path": "State 9 -> State 10 -> State 11",
+      "description": "Step 1: The user taps on the 'Agreement' button on the subreddit content screen (State 9), navigating to the Reddit User Agreement screen (State 10). Step 2: The user taps 'I Agree' to confirm acceptance, which loads the Front Page (State 11).",
+      "purpose": "Workflow for accepting the Reddit user agreement to access content."
+    },
+    {
+      "path": "State 11 -> State 12 -> State 10",
+      "description": "Step 1: The user taps on the 'Settings' button on the front page (State 11), navigating to the settings menu (State 12). Step 2: The user taps on 'Close/Cancel' in the settings menu, returning to the front page (State 10).",
+      "purpose": "Workflow for accessing and exiting the app's settings."
+    },
+    {
+      "path": "State 12 -> State 19 -> State 20",
+      "description": "Step 1: The user taps on 'Appearance' in the settings menu (State 12), navigating to the appearance settings (State 19). Step 2: The user taps on 'Font' in the appearance settings, opening the font settings (State 20).",
+      "purpose": "Workflow for accessing and customizing the app's font settings."
+    },
+    {
+      "path": "State 20 -> State 21 -> State 20",
+      "description": "Step 1: The user taps on 'Global Font Scale' in the font settings (State 20), opening the font scale adjustment menu (State 21). Step 2: The user taps on 'Cancel' in the font scale adjustment menu, returning to the font settings (State 20).",
+      "purpose": "Workflow for adjusting the global font scale in the app."
+    },
+    {
+      "path": "State 21 -> State 22 -> State 23 -> State 24 -> State 25",
+      "description": "Step 1: The user taps on 'Post Titles' in the font scale adjustment menu (State 21), navigating to the post titles font scale adjustment screen (State 22). Step 2: The user taps on 'Subtitles' in the font scale adjustment menu (State 22), navigating to the subtitles font scale adjustment screen (State 23). Step 3: The user taps on 'Comment Headers' in the font scale adjustment menu (State 23), navigating to the comment headers font scale adjustment screen (State 24). Step 4: The user taps on 'Global Font Scale' in the font scale adjustment menu (State 24), navigating to the global font scale adjustment screen (State 25).",
+      "purpose": "Workflow for adjusting the font scale for various UI elements in the app."
+    },
+    {
+      "path": "State 25 -> State 26 -> State 27",
+      "description": "Step 1: The user taps on 'Appearance' in the font scale adjustment menu (State 25), navigating to the appearance settings (State 26). Step 2: The user taps on 'Images/Video' in the appearance settings, opening the images and video settings (State 27).",
+      "purpose": "Workflow for accessing and customizing the app's images and video settings."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "level_8/state_0.png",
+      "type": "Reddit User Agreement",
+      "context": "The screen displays a user agreement for RedReader, an application that accesses content using the Reddit API. It asks the user to read and accept the terms and conditions by providing a link.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_8/state_19.png",
+      "type": "Settings",
+      "context": "The screen displays a Settings menu with several categories: Appearance (Font, Behaviour, Images/Video, Cache, Network, Menus, Accessibility, Backup/Restore) and About. Each category likely contains further customization options for the application.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_1/state_1.png",
+      "type": "Home Screen",
+      "context": "The screen displays a home screen for the RedReader application. It shows the current time (11:30), the app name (RedReader), and three main sections: 'Front Page', 'All Subreddits', and 'Find Location'. Below these, it lists some subscribed subreddits such as 'art', 'creepy', 'dataisbeautiful', 'diy', 'documentaries', 'earthporn', among others. The screen also displays a login prompt with options to 'Log in' or 'Be anonymous', along with a message indicating that the user is currently not logged in. There's also a note about accessing the account list by selecting 'Accounts' from the menu.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_6/state_2.png",
+      "type": "Home Screen",
+      "context": "The screen displays the main RedReader app interface. It shows the current time (11:31), the app name (RedReader), and two main sections: 'Front Page' and 'All Subreddits'. There's also a search bar for finding locations and a section for 'Subscribed Subreddits' with a list of subscribed subreddits (ar, dataisbeautiful, earthporn, etc.). Additionally, there are options to manage Reddit accounts, including adding a new account or using an anonymous one.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_6/state_9.png",
+      "type": "Subreddit Selection",
+      "context": "This screen shows the RedReader app interface with the current time (11:31) and the app name. It displays a list of 'Pinned Subreddits' with the selected subreddit (/r/diy) highlighted. Below that, it shows a list of 'Subscribed Subreddits' with various subreddits like art, askreddit, aww, books, creepy, dataisbeautiful, and diy.",
+      "confidence_score": 92
+    },
+    {
+      "state_id": "level_6/state_18.png",
+      "type": "User Agreement",
+      "context": "The screen displays a message indicating that the Reddit user agreement has not been accepted. It states that to access content through the Reddit API, the user must accept the agreement. There are two clickable options: 'DETAILS' and 'VIEW AGREEMENT'. The current subreddit is shown as /r/aww.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_3/state_3.png",
+      "type": "Login Screen",
+      "context": "The screen displays a login screen for Reddit with the title 'RedReader'. It shows the current time as 11:30. There are options to log in via a web browser, get help with login, and close or continue the process. Below these options, there are lists of subscribed subreddits and other categories like 'Front Page', 'All Subreddits', and 'Find Location'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_3/state_6.png",
+      "type": "Subreddit Selection Screen",
+      "context": "The screen displays a list of subreddits to choose from, categorized under 'Front Page', 'All Subreddits', and 'Subscribed Subreddits'. It shows the current time as 11:31. The subreddits listed include 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', 'diy', 'documentaries', and 'earthporn'.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_3/state_15.png",
+      "type": "Pinned Subreddits Screen",
+      "context": "The screen displays a list of 'Pinned Subreddits' with the title 'RedReader'. It shows the current time as 11:32. The pinned subreddits listed include 'aww', 'books', 'creepy', 'dataisbeautiful', 'diy', and others. There are options to copy the link, view in an external browser, share, block, or unpin each subreddit.",
+      "confidence_score": 92
+    },
+    {
+      "state_id": "level_4/state_4.png",
+      "type": "Authorization Error",
+      "context": "The screen displays an error message indicating that the web page at the specified Reddit API URL could not be loaded due to a network disconnect (net::ERR_INTERNET_DISCONNECTED).",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_4/state_14.png",
+      "type": "Reddit API Agreement",
+      "context": "The screen presents a message stating that the Reddit user agreement has not been accepted, and access to content through the Reddit API is therefore restricted. It provides options to view the agreement details and accept it.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_4/state_16.png",
+      "type": "RedReader Home",
+      "context": "The screen displays the main home screen of the RedReader application. It shows various sections such as Front Page, All Subreddits, Pinned Subreddits, and Subscribed Subreddits. It also lists some subreddits that the user is subscribed to, such as r/diy, r/art, r/askreddit, and others.",
+      "confidence_score": 92
+    },
+    {
+      "state_id": "level_5/state_5.png",
+      "type": "Web Authentication",
+      "context": "The screen displays an error message indicating that the web page at 'https://www.reddit.com/api/v1/authorize.compact?...' could not be loaded due to a network disconnect. The page is attempting to authorize the user's Reddit account for the RedReader application.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_5/state_7.png",
+      "type": "Home Screen",
+      "context": "The screen displays the main home screen of the RedReader application. It shows the 'Front Page' and 'All Subreddits' options, along with a search bar to 'Find Location'. There are also options to view 'Pinned Subreddits', 'Share' the app, and 'Block' or 'Pin' specific subreddits to the main menu. The screen lists several subreddits such as 'aww', 'books', 'creepy', and 'dataisbeautiful'.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_5/state_8.png",
+      "type": "Subreddit List",
+      "context": "The screen displays a list of subreddits the user is subscribed to, including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'. The user is currently viewing the 'diys' subreddit.",
+      "confidence_score": 92
+    },
+    {
+      "state_id": "level_5/state_13.png",
+      "type": "Reddit API Agreement",
+      "context": "The screen displays a message stating that the Reddit user agreement has not been accepted. It prompts the user to accept the agreement to access content through the Reddit API, with options to view the details and the agreement itself.",
+      "confidence_score": 97
+    },
+    {
+      "state_id": "level_5/state_17.png",
+      "type": "Subreddit List",
+      "context": "The screen displays a list of subreddits the user is subscribed to, similar to state_8.png. The user is currently viewing the 'diys' subreddit. The screen also displays the 'Front Page' and 'All Subreddits' options.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_7/state_10.png",
+      "type": "Warning",
+      "context": "The screen displays a warning message indicating that the Reddit user agreement has not been accepted. It also provides a 'VIEW AGREEMENT DETAILS' button to access the agreement.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_9/state_11.png",
+      "type": "Home Screen",
+      "context": "The screen displays the front page of Reddit with the 'Hot' feed. It shows a user's name ('agreemen') and a 'VIEW AGREEMENT' button, suggesting a user agreement is in place. The screen also includes navigation options like 'Past Versions', 'Submit Post', 'Accounts', 'Themes', 'Settings', and 'Search'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_9/state_12.png",
+      "type": "Theme Selection",
+      "context": "This screen presents various themes to change the app's appearance. Options include 'Night', 'Night (low contrast)', 'Green', 'Blue', 'Light Blue', 'Orange', and 'Gray'. The 'Ultra Black' theme is selected. The screen also displays copyright information.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_9/state_20.png",
+      "type": "Font Settings",
+      "context": "This screen allows users to adjust the font scale globally and for specific elements within the app. Options include 'Global', 'Normal', and various post and comment text styles. All options are set to use the 'global font scale'.",
+      "confidence_score": 85
+    },
+    {
+      "state_id": "level_10/state_21.png",
+      "type": "Settings",
+      "context": "The screen displays a font scale settings menu with options ranging from 0.7x to 1.7x. The user can select their preferred font scale. The 'Cancel' button is present at the bottom of the screen.",
+      "confidence_score": 85
+    },
+    {
+      "state_id": "level_11/state_22.png",
+      "type": "Settings",
+      "context": "The screen displays a settings menu for font sizes. It allows users to adjust the font scale for various elements such as post titles, subtitles, and comment headers. The global font scale can be used for most elements, while comment headers have a fixed scale of 0.7x.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_12/state_23.png",
+      "type": "Settings",
+      "context": "The screen displays a font scale adjustment menu for subtitles. It offers various options ranging from 0.7x to 1.7x. The 'Cancel' button is present at the bottom of the screen.",
+      "confidence_score": 85
+    },
+    {
+      "state_id": "level_13/state_24.png",
+      "type": "Settings",
+      "context": "This screen appears to be a part of the application's settings, specifically focused on font customization. It displays various font scale options for different elements within the application such as post titles, subtitles, comment headers, and body text. The screen also includes a 'Global' option to apply the font scale universally.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_14/state_25.png",
+      "type": "Font Scale Settings",
+      "context": "The screen displays a settings menu for adjusting the global font scale. It offers multiple options ranging from 0.7x to 1.7x. The screen also contains a 'Cancel' button at the bottom.",
+      "confidence_score": 85
+    },
+    {
+      "state_id": "level_16/state_26.png",
+      "type": "Font Settings",
+      "context": "The screen displays various font settings for different UI elements in the application. It includes options for global font scale, post titles, post subtitles, opened post titles, opened post subtitles, comment/inbox headers, body text, and link buttons. The screen also shows the current time (11:33 243).",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_16/state_27.png",
+      "type": "Settings Menu",
+      "context": "The screen displays a comprehensive Settings Menu with several categories: Appearance (including Font and Behaviour), Images/Video, Cache, Network, Menus, Accessibility, Backup/Restore, and About. Each category has multiple sub-options that can be configured.",
+      "confidence_score": 90
+    }
+  ]
+}

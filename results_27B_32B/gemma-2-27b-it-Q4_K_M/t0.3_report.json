@@ -1,0 +1,216 @@
+{
+  "app_summary": "RedReader is a Reddit client application that allows users to browse and interact with Reddit content. It provides a familiar Reddit-like interface with features such as subreddit browsing, post viewing, and commenting. The app requires users to accept the Reddit user agreement before accessing content. It also offers customization options for themes and font sizes.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 10 -> State 11",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0) which displays the RedReader terms. Step 2: The user taps the 'Accept' button at the bottom of the agreement dialog, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps 'I Agree' to confirm acceptance, which loads the Front Page (State 11) showing a list of subscribed subreddits like 'art', 'askreddit', and 'aww'.",
+      "purpose": "First-time user onboarding flow that gates access behind agreement acceptance."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 3 -> State 4 -> State 5 -> State 2 -> State 6",
+      "description": "Step 1: The user is on the Front Page (State 1) and taps the 'Find Location' search bar. Step 2: This takes them to the Subreddit List (State 2) where they can search for subreddits. Step 3: The user taps a subreddit, navigating to the Subreddit Detail screen (State 3). Step 4: The user taps a link within the subreddit detail, which opens a web browser (State 4). Step 5: The user closes the web browser (State 5), returning to the Subreddit Detail screen (State 2). Step 6: The user presses the Android back button to return to the Subreddit List (State 6).",
+      "purpose": "Browsing and viewing subreddit content, including external links."
+    },
+    {
+      "path": "State 11 -> State 12 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' menu option. Step 2: This opens the Settings menu (State 12) where they can adjust various app settings. Step 3: The user presses the Android back button to return to the Front Page (State 10).",
+      "purpose": "Accessing and modifying app settings."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 20 -> State 21 -> State 22 -> State 23 -> State 24 -> State 25 -> State 26 -> State 27",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' menu option. Step 2: This opens the Settings menu (State 19) where they can adjust various app settings. Step 3: The user taps 'Font Settings' (State 20) to customize font sizes. Step 4: They adjust the global font scale using a slider (State 21), then navigate to individual font size settings for post subtitles (State 22), comment headers (State 23), and body text (State 24). Step 5: They further adjust the global font scale again (State 25) and finally preview the changes in the Font Settings screen (State 26) before returning to the Settings menu (State 27).",
+      "purpose": "Fine-tuning font sizes and appearance customization."
+    },
+    {
+      "path": "State 9 -> State 13 -> State 14 -> State 9",
+      "description": "Step 1: The user is viewing a subreddit list (State 9) and taps the 'Pinned Subreddits' option. Step 2: This opens the Pinned Subreddits list (State 13) where they can view pinned subreddits. Step 3: The user taps the 'Back' button to return to the subreddit list (State 14). Step 4: The user presses the Android back button to return to the previous screen (State 9).",
+      "purpose": "Viewing and managing pinned subreddits."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 7 -> State 8 -> State 9",
+      "description": "Step 1: The user is on the Front Page (State 1) and taps the 'Subreddits' tab. Step 2: This takes them to the Subreddit List (State 2). Step 3: The user taps a subreddit, navigating to the Subreddit Detail screen (State 7). Step 4: The user taps the 'Back' button to return to the Subreddit List (State 8). Step 5: The user presses the Android back button to return to the Front Page (State 9).",
+      "purpose": "Browsing and navigating between the Front Page and subreddit details."
+    },
+    {
+      "path": "State 1 -> State 2 -> State 6 -> State 9",
+      "description": "Step 1: The user is on the Front Page (State 1) and taps the 'Subreddits' tab. Step 2: This takes them to the Subreddit List (State 2). Step 3: The user scrolls through the list and taps a subreddit, navigating to the Subreddit Detail screen (State 6). Step 4: The user presses the Android back button to return to the Subreddit List (State 9).",
+      "purpose": "Browsing and viewing subreddit content."
+    },
+    {
+      "path": "State 0 -> State 10 -> State 0",
+      "description": "Step 1: The user opens the app and sees the User Agreement screen (State 0). Step 2: The user taps the 'Decline' button at the bottom of the agreement dialog, which returns them to the User Agreement screen (State 10). Step 3: The user presses the Android back button to return to the initial User Agreement screen (State 0).",
+      "purpose": "Declining the User Agreement and exiting the app."
+    }
+  ],
+  "screen_contexts": [
+    {
+      "state_id": "level_8/state_0.png",
+      "type": "Terms and Conditions",
+      "context": "This screen displays the Reddit User Agreement. It informs the user that RedReader accesses content via the Reddit API and prompts the user to read and accept the terms and conditions.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_8/state_19.png",
+      "type": "Settings Menu",
+      "context": "This screen shows a Settings menu with various options categorized under headings like Appearance, Behaviour, Images/Video, Network, Menus, Accessibility, Backup/Restore, and About.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_1/state_1.png",
+      "type": "Front Page",
+      "context": "This screen displays the front page of a Reddit-like application called 'RedReader'. It shows a list of subscribed subreddits: art, creepy, dataisbeautiful, diy, documentaries, and earthporn. There's a 'Find Location' search bar and a message prompting the user to log in.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_6/state_2.png",
+      "type": "Subreddit List",
+      "context": "This screen displays a list of subreddits. It shows sections for 'Subscribed Subreddits' and 'Pinned Subreddits'. The user is currently viewing the 'Front Page' and 'All Subreddits'. There is a search bar at the top labeled 'Find Location'.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_6/state_9.png",
+      "type": "Subreddit List",
+      "context": "This screen displays a list of subreddits. It shows sections for 'Pinned Subreddits' and 'Subscribed Subreddits'. The user is currently viewing the 'Front Page' and 'All Subreddits'. The pinned subreddit is '/r/diy'.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_6/state_18.png",
+      "type": "Reddit API Access Error",
+      "context": "This screen displays an error message stating that the Reddit user agreement has not been accepted. It informs the user that they need to accept the agreement to access content through the Reddit API.",
+      "confidence_score": 98
+    },
+    {
+      "state_id": "level_3/state_3.png",
+      "type": "Login Instruction",
+      "context": "This screen displays instructions for logging into the RedReader application using a web browser. It mentions redirection back to the app after login and provides a link for troubleshooting login issues.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_3/state_6.png",
+      "type": "Subreddit List",
+      "context": "This screen shows a list of subreddits categorized as 'All Subreddits' and 'Subscribed Subreddits'. It appears to be the main feed of the RedReader application.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_3/state_15.png",
+      "type": "Pinned Subreddit Detail",
+      "context": "This screen displays details for a pinned subreddit, likely 'aww'. It includes options to copy the subreddit link, view it in an external browser, share it, block the subreddit, and unpin it from the main menu.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_4/state_4.png",
+      "type": "Error Screen",
+      "context": "Displays an error message indicating that the web page at a Reddit API endpoint could not be loaded due to an internet connection issue.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_4/state_14.png",
+      "type": "User Agreement Prompt",
+      "context": "Informs the user that they need to accept the Reddit user agreement to access content through the Reddit API. Provides buttons to view the agreement and dismiss the prompt.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_4/state_16.png",
+      "type": "Subreddit List",
+      "context": "Shows the main screen of the RedReader application, displaying a list of subscribed subreddits including 'diy', 'art', 'askreddit', 'askscience', 'aww', 'books', and 'creepy'. Also includes options for 'Front Page', 'All Subreddits', and 'Find Location'.",
+      "confidence_score": 98
+    },
+    {
+      "state_id": "level_5/state_5.png",
+      "type": "Error Screen",
+      "context": "Displays an error message indicating that the web page at https://www.reddit.com/api/v1/authorize.compact? could not be loaded due to an internet connection issue.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_5/state_7.png",
+      "type": "Subreddit List",
+      "context": "Shows a list of subreddits, including 'Pinned Subreddits' and 'Subscribed Subreddits'. Options to 'Copy Link', 'View in External Browser', 'Share', 'Block Subreddit', and 'Pin to Main Menu' are visible.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_5/state_8.png",
+      "type": "Subreddit List",
+      "context": "Displays a list of subscribed subreddits, including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'. It also shows 'Pinned Subreddits' and 'All Subreddits' options.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_5/state_13.png",
+      "type": "User Agreement Prompt",
+      "context": "Informs the user that they need to accept the Reddit user agreement to access content through the Reddit API. Provides buttons to 'VIEW AGREEMENT' and 'DETAILS'.",
+      "confidence_score": 98
+    },
+    {
+      "state_id": "level_5/state_17.png",
+      "type": "Subreddit List",
+      "context": "Shows a list of subscribed subreddits, including 'art', 'askreddit', 'askscience', 'aww', 'books', 'creepy', 'dataisbeautiful', and 'diy'. It also shows 'Pinned Subreddits' and 'All Subreddits' options.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_7/state_10.png",
+      "type": "Error Screen",
+      "context": "The screen displays an error message stating that the Reddit user agreement has not been accepted. It instructs the user to accept the agreement to access content through the Reddit API and provides a link to view the agreement details.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_9/state_11.png",
+      "type": "Front Page",
+      "context": "The screen displays the top portion of a Reddit Front Page. It shows the Reddit logo, the subreddit name 'Front Page', the URL 'reddit.com/hot', and a section titled 'Reddit user agreement' with a button to 'VIEW AGREEMENT'. There are also links to 'Past Versions', 'Submit Post', 'Accounts', 'Themes', 'Settings', and a search bar.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_9/state_12.png",
+      "type": "Theme Selection",
+      "context": "This screen shows a list of available themes for the Reddit app. The options include various color schemes like 'Night', 'Green', 'Blue', 'Light Blue', 'Orange', 'Gray', 'Ultra Black', and a placeholder represented by 'OO0O0000000 \u00a9'.",
+      "confidence_score": 90
+    },
+    {
+      "state_id": "level_9/state_20.png",
+      "type": "Font Settings",
+      "context": "This screen displays font customization options within the Reddit app. It allows users to adjust the font scale globally or individually for different elements like post titles, subtitles, comment headers, and body text. Each element has a toggle to 'Use global font scale'.",
+      "confidence_score": 98
+    },
+    {
+      "state_id": "level_10/state_21.png",
+      "type": "Settings",
+      "context": "This screen appears to be a settings menu related to font size. It displays a list of font scaling options ranging from 0.7x to 1.7x. There's also a 'Cancel' button at the bottom.",
+      "confidence_score": 50,
+      "verification_note": "Low OCR coverage (20%). Context may contain inferred elements."
+    },
+    {
+      "state_id": "level_11/state_22.png",
+      "type": "Font Settings",
+      "context": "This screen displays font customization options. It allows users to adjust the font scale for various elements like post titles, subtitles, opened post titles and subtitles, comment/inbox headers, body text, and link buttons. Some elements are set to use the global font scale, while others, like comment/inbox headers, have a specific scale of 0.7x.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_12/state_23.png",
+      "type": "Settings",
+      "context": "The screen displays settings for post subtitles. It allows the user to adjust the global font scale for subtitles using a slider with options ranging from 0.7x to 1.7x. There's a 'Cancel' button at the bottom.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_13/state_24.png",
+      "type": "Settings",
+      "context": "This screen displays font customization settings. Users can adjust font scales for various elements like post titles, subtitles, comment headers, and body text. Some elements use the global font scale setting.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_14/state_25.png",
+      "type": "Settings",
+      "context": "This screen displays a settings menu for adjusting the global font scale. It shows a slider with various font size options ranging from 0.7x to 1.7x. There's also a 'Cancel' button at the bottom.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_16/state_26.png",
+      "type": "Font Settings",
+      "context": "This screen displays various font scaling options for different elements within the application. Users can customize the font size for post titles, subtitles, comment headers, body text, and link buttons. Some options utilize the global font scale setting.",
+      "confidence_score": 95
+    },
+    {
+      "state_id": "level_16/state_27.png",
+      "type": "Settings Menu",
+      "context": "This screen shows a Settings menu with multiple categories: Appearance, Font, Behaviour, Images/Video, Cache, Network, Menus, Accessibility, Backup/Restore, and About.",
+      "confidence_score": 98
+    }
+  ]
+}

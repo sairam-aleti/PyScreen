@@ -1,0 +1,383 @@
+{
+  "app_summary": "RedReader is an Android application that allows users to access and interact with content from Reddit using the Reddit API. It provides a user-friendly interface for browsing subreddits, managing user accounts, and customizing app settings. The app requires users to accept the Reddit user agreement before accessing content.",
+  "core_workflows": [
+    {
+      "path": "State 0 -> State 10 -> State 11",
+      "description": "Step 1: The user opens the app and sees the Reddit User Agreement screen (State 0) which displays the RedReader terms. Step 2: The user taps the 'Accept' button at the bottom of the agreement dialog, navigating to the Reddit User Agreement confirmation (State 10). Step 3: The user taps 'I Agree' to confirm acceptance, which loads the Front Page (State 11) showing a list of subscribed subreddits like 'art', 'askreddit', and 'aww'.",
+      "purpose": "First-time user onboarding flow that gates access behind agreement acceptance."
+    },
+    {
+      "path": "State 11 -> State 12 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Themes' option in the menu. Step 2: The user selects a theme in the Themes screen (State 12). Step 3: The user presses the Android back button to return to the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to customize the app's appearance by changing themes."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 20 -> State 21",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' option in the menu. Step 2: The user selects 'Appearance' in the Settings menu (State 19) to open font settings (State 20). Step 3: The user adjusts the font scale using the global font scale adjustment menu (State 21).",
+      "purpose": "Enables users to adjust the font scale globally and for specific elements within the app."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 20 -> State 22",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' option in the menu. Step 2: The user selects 'Appearance' in the Settings menu (State 19) to open font settings (State 20). Step 3: The user adjusts the font scale for post titles using the post titles font scale adjustment menu (State 22).",
+      "purpose": "Allows users to customize the font scale for post titles within the app."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 20 -> State 23",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' option in the menu. Step 2: The user selects 'Appearance' in the Settings menu (State 19) to open font settings (State 20). Step 3: The user adjusts the font scale for subtitles using the subtitles font scale adjustment menu (State 23).",
+      "purpose": "Enables users to customize the font scale for subtitles within the app."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 20 -> State 24",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' option in the menu. Step 2: The user selects 'Appearance' in the Settings menu (State 19) to open font settings (State 20). Step 3: The user adjusts the font scale for comment headers using the comment headers font scale adjustment menu (State 24).",
+      "purpose": "Allows users to customize the font scale for comment headers within the app."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 20 -> State 25",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' option in the menu. Step 2: The user selects 'Appearance' in the Settings menu (State 19) to open font settings (State 20). Step 3: The user adjusts the global font scale using the global font scale adjustment menu (State 25).",
+      "purpose": "Enables users to adjust the global font scale within the app."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 26",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' option in the menu. Step 2: The user selects 'Appearance' in the Settings menu (State 19) to open font settings (State 26).",
+      "purpose": "Provides users with a comprehensive font settings menu to customize various font sizes and styles within the app."
+    },
+    {
+      "path": "State 11 -> State 19 -> State 27",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Settings' option in the menu. Step 2: The user selects 'Appearance' in the Settings menu (State 19) to open the main settings menu (State 27).",
+      "purpose": "Offers users access to various app settings and customization options."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 14 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 14) and taps 'VIEW AGREEMENT'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to access content from specific subreddits after accepting the Reddit user agreement."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 15 -> State 16",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user taps the 'Unpin from Main Menu' option in the Subreddit Management screen (State 15). Step 4: The user is returned to the Front Page (State 16).",
+      "purpose": "Enables users to manage their pinned subreddits and remove them from the main menu."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 18",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'VIEW AGREEMENT'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 18).",
+      "purpose": "Allows users to access content from specific subreddits after accepting the Reddit user agreement."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 11",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'CANCEL'. Step 4: The user is returned to the Front Page (State 11).",
+      "purpose": "Allows users to cancel the agreement acceptance process and return to the Front Page."
+    },
+    {
+      "path": "State 11 -> State 13 -> State 17 -> State 10",
+      "description": "Step 1: The user is on the Front Page (State 11) and taps the 'Find Location' search bar. Step 2: The user selects a subreddit from the Subreddit Selection screen (State 13). Step 3: The user is presented with the Reddit User Agreement screen (State 17) and taps 'DETAILS'. Step 4: The user taps 'I Agree' to confirm acceptance, which loads the Reddit User Agreement confirmation (State 10).",
+      "purpose": "Allows users to view the details of the Reddit user agreement before accepting it."
+    }

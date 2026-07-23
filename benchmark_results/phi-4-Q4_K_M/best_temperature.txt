@@ -1,3 +1,0 @@
-Best Temperature: 0.3
-Quality Score: 94/100
-Best Report: t0.3_report.md
