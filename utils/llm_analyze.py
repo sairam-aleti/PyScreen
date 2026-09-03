@@ -10,9 +10,12 @@ Set the LLM_BACKEND env var to choose. Default is "gemini".
 import os
 import re
 import time
-import logging
 import json
+import logging
+
 import concurrent.futures
+
+logger = logging.getLogger("pyscreen")
 
 
 def strip_markdown_json(text):
@@ -437,8 +440,8 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
     # Smart batching: If more than 3 levels, run concurrently (up to 3 parallel workers)
     level_list = [(i+1, k, v) for i, (k, v) in enumerate(levels.items())]
     if len(levels) > 3:
-        logger.info(f"Processing {len(levels)} levels concurrently (Thread pool)...")
-        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        logger.info(f"Processing {len(levels)} levels sequentially to save VRAM...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
             results = list(executor.map(process_level, level_list))
             for res in results:
                 all_screen_contexts.extend(res)
@@ -447,22 +450,41 @@ def analyze_screens(screen_data, model=None, benchmark_callback=None, state_grap
         for level_info in level_list:
             res = process_level(level_info)
             all_screen_contexts.extend(res)
+            
+            # Save progressively after every batch!
+            os.makedirs("results_1000_benchmark", exist_ok=True)
+            with open("results_1000_benchmark/intermediate_contexts.json", "w") as f:
+                json.dump({"screen_contexts": all_screen_contexts}, f, indent=2)
+                
             time.sleep(1)
 
     logger.info("Synthesizing core workflows into final analysis...")
     synthesis_prompt = _build_ares_synthesis_prompt(all_screen_contexts, state_graph)
-    synthesis_report = _call_api(synthesis_prompt, schema=SYNTHESIS_SCHEMA)
     
-    # Apply markdown stripping before JSON parse
-    clean_synthesis = strip_markdown_json(synthesis_report)
-    import json
     try:
+        synthesis_report = _call_api(synthesis_prompt, schema=SYNTHESIS_SCHEMA)
+        # Apply markdown stripping before JSON parse
+        clean_synthesis = strip_markdown_json(synthesis_report)
         final_data = json.loads(clean_synthesis)
         final_data["screen_contexts"] = all_screen_contexts
         return json.dumps(final_data, indent=2)
+    except RuntimeError as e:
+        logger.error(f"Synthesis API failed (likely token overflow): {e}")
+        logger.info("Falling back to returning raw screen contexts.")
+        fallback_data = {
+            "app_summary": "Synthesis failed due to token overflow.",
+            "core_workflows": [],
+            "screen_contexts": all_screen_contexts
+        }
+        return json.dumps(fallback_data, indent=2)
     except json.JSONDecodeError:
-        logger.error(f"Failed to parse synthesis JSON: {synthesis_report[:100]}...")
-        return synthesis_report
+        logger.error(f"Failed to parse synthesis JSON.")
+        fallback_data = {
+            "app_summary": "Synthesis returned invalid JSON.",
+            "core_workflows": [],
+            "screen_contexts": all_screen_contexts
+        }
+        return json.dumps(fallback_data, indent=2)
 
 
 def _build_prompt(screen_data):
@@ -510,14 +532,9 @@ def _build_ares_batch_prompt(screen_data, state_graph, level_name):
     prompt = f"""
 You are a security researcher analyzing a subset of screens from an Android application.
 You are currently analyzing screens from '{level_name}'.
-
-To prevent hallucinations, here is the GLOBAL State Transition Graph for the entire application:
 """
-    import json
-    prompt += json.dumps(state_graph, indent=2) + "\n\n"
-
     prompt += """
-Your task is to analyze ONLY the provided screens below, and extract their contextual meaning, UI elements, and any sensitive data. Keep in mind where they fit into the overall state graph.
+Your task is to analyze ONLY the provided screens below, and extract their contextual meaning, UI elements, and any sensitive data.
 
 Produce a JSON array containing the detailed context of EVERY SINGLE SCREEN provided. Do NOT skip any screens.
 Do not output markdown block formatting, output raw JSON.
@@ -609,7 +626,7 @@ Use this EXACT JSON schema:
 
 ### State Transition Graph (JSON)
 """
-    import json
+    
     prompt += json.dumps(state_graph, indent=2) + "\n\n"
 
     prompt += "### Aggregated Screen Contexts\n\n"
@@ -625,7 +642,7 @@ You are an expert mobile application analyst mapping the functional surface of a
 
 To prevent hallucinations, here is the GLOBAL State Transition Graph for the entire application:
 """
-    import json
+    
     prompt += json.dumps(state_graph, indent=2) + "\n\n"
 
     prompt += """
