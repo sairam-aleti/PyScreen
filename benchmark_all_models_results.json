@@ -1,0 +1,60 @@
+{
+  "ocr_time_seconds": 395.7,
+  "total_frames": 1000,
+  "models": [
+    {
+      "model": "Qwen2.5-14B",
+      "params": "14B",
+      "status": "COMPLETE",
+      "llm_time_seconds": 1244.1,
+      "total_api_calls": 50,
+      "input_tokens": 97395,
+      "output_tokens": 80608,
+      "failed_calls": 0,
+      "output_report_chars": 309573,
+      "tokens_per_second": 64.79
+    },
+    {
+      "model": "Phi-4-14B",
+      "params": "14B",
+      "status": "FAILED_TO_START",
+      "error": "llama-server did not start within 120s"
+    },
+    {
+      "model": "Mistral-Nemo-12B",
+      "params": "12B",
+      "status": "COMPLETE",
+      "llm_time_seconds": 1013.24,
+      "total_api_calls": 50,
+      "input_tokens": 101832,
+      "output_tokens": 79479,
+      "failed_calls": 0,
+      "output_report_chars": 305337,
+      "tokens_per_second": 78.44
+    },
+    {
+      "model": "Gemma2-9B",
+      "params": "9B",
+      "status": "COMPLETE",
+      "llm_time_seconds": 1004.31,
+      "total_api_calls": 50,
+      "input_tokens": 100569,
+      "output_tokens": 83064,
+      "failed_calls": 0,
+      "output_report_chars": 297204,
+      "tokens_per_second": 82.71
+    },
+    {
+      "model": "LLaMA3.1-8B",
+      "params": "8B",
+      "status": "COMPLETE",
+      "llm_time_seconds": 853.8,
+      "total_api_calls": 50,
+      "input_tokens": 92888,
+      "output_tokens": 98042,
+      "failed_calls": 0,
+      "output_report_chars": 344380,
+      "tokens_per_second": 114.83
+    }
+  ]
+}

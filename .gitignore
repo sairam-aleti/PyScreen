@@ -38,6 +38,5 @@ ARES_1000_screenshots/
 ARES_1000_state_graph.txt
 results_*/
 benchmark_*_output.log
-benchmark_*_results.json
 nohup.out
 pyscreen_env/
