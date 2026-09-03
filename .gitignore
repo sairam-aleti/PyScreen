@@ -40,3 +40,6 @@ results_*/
 benchmark_*_output.log
 nohup.out
 pyscreen_env/
+
+# Personal local files
+meeting_report.md
